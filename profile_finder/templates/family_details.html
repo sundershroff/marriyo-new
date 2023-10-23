@@ -1,0 +1,641 @@
+<html>
+    <head>
+        <title></title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://jqueryvalidation.org/files/demo/site-demos.css">
+        <link rel="stylesheet" href="/media/css/style.css">
+        <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="    sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
+        crossorigin="anonymous" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+        <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    </head>
+    <body>
+
+        
+        {% include 'header.html' %}
+        <section class="fam_det_sec">
+	
+            <div class="container">
+                
+                <div class="row py-4">
+        
+                    <div class="col-lg-12">
+                        <div class="fam_det_sec1">
+                            <h3>Family Details</h3>
+                        </div>
+                    </div>
+                    
+                </div>
+        
+                <div class="row py-4">
+        
+                    <div class="col-lg-12">
+                        <div class="fam_det_sec2">
+                            <div class="bar1"></div>
+                            <div class="bar1"></div>
+                            <div class="bar1"></div>
+                        </div>
+                    </div>
+                    
+                </div>
+               <!-- form -->
+               <form method="post" action="#" class="fam_det_form" enctype="multipart/form-data" id="myform">
+                {% csrf_token %}
+                    <div class="row my-3">
+        
+                    <div class="col-lg-4">
+                        <label class="py-3">Family Status<span>*</span></label>
+                              
+                            <select class="form-select" name="family_status">
+                                <option value="default">Select</option>
+                                <option value="Rich">Rich</option>
+                                <option value="Upper Middle Class">Upper Middle Class</option>
+                                <option value="Middle Class">Middle Class</option>
+                                <option value="Lower Middle Class">Lower Middle Class</option>
+                            </select>
+                    </div>
+                    
+                </div>
+                <div class="row py-3">
+        
+                    <div class="col-lg-12">
+        
+                        <div class="fam_det_cont1 pb-4">
+        
+                            <h4>Father's Details</h4>
+                            
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="row my-2">
+        
+                    
+        
+                    <div class="col-lg-4">
+                        <label class="py-3">Father’s Name<span>*</span></label>
+                          <input type="text"  placeholder="Father Name" class="form-control" name="father_name">	
+                            
+                    </div>
+        
+                    <div class="col-lg-4">
+                        <label class="py-3">Father’s Birth Country<span>*</span></label>
+                              
+                            <select class="form-select" id="countryone"  name="father_country" onchange="fun1.call(this,event)">
+                                <option value="default">Select</option>
+                                {% for j in all %}
+                                <option value="{{j.name}}">{{j.name}}</option>
+                                {% endfor %} 
+                            </select>
+                    </div>
+        
+                        <div class="col-lg-4">
+                        <label class="py-3">Father’s Birth City<span>*</span></label>
+
+                        <select class="form-select" id="res2"  name="father_city">
+                            <option value="default">Select</option>
+                            <script>
+                              stat = {{ states|safe }};
+                          ttt = stat[0].states;
+                          for (i=0;i<ttt.length;i++){
+                             tt = ttt[i].name;
+                             document.write("<option value="tt">"+tt+"</option>");
+                          }
+                        </script>
+                        </select>
+                        <!-- <select id="res2" class="form-select" name="r_state">
+                            <option value="">Select</option>
+                            <script>
+                              stat = {{ states|safe }};
+                          ttt = stat[0].states;
+                          for (i=0;i<ttt.length;i++){
+                             tt = ttt[i].name;
+                             document.write("<option value="tt">"+tt+"</option>");
+                          }
+                        </script> -->
+                        </select>
+                                    
+                    </div>
+                    
+                </div>
+        
+                <div class="row my-3">
+                  
+                  <div class="col-lg-4">
+                        <label class="py-3">Father's Job<span>*</span></label>
+                              
+                            <input type="text" class="form-select" name="father_job">
+                                
+                    </div>
+                    <div class="col-lg-4">
+                        <label class="py-3">Father's Family Name<span>*</span></label>
+                              
+                            <input type="text" class="form-select" name="father_family_name">
+                                
+                    </div>
+        
+                </div>
+        
+                <div class="row py-3">
+        
+                    <div class="col-lg-12">
+        
+                        <div class="fam_det_cont1 pb-4">
+        
+                            <h4>Mother’s Details</h4>
+                            
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="row my-2">
+        
+                    
+        
+                    <div class="col-lg-4">
+                        <label class="py-3">Mother’s Name<span>*</span></label>
+                          <input type="text"  placeholder="Mother's Name" class="form-control" name="mother_name">	
+                            
+                    </div>
+        
+                    <div class="col-lg-4">
+                        <label class="py-3">Mother’s Birth Country<span>*</span></label>
+                              
+                            <select class="form-select" id="countrytwo" name="mother_country"  onchange="fun2.call(this,event)">
+                                <option value="default">Select</option>
+                                {% for j in all %}
+                                <option value="{{j.name}}">{{j.name}}</option>
+                                {% endfor %} 
+                            </select>
+                    </div>
+        
+                        <div class="col-lg-4">
+                        <label class="py-3">Mother’s Birth City<span>*</span></label>
+                        <select class="form-select" id="res3" name="mother_city">
+                            <option value="default">Select</option>
+                            <script>
+                              stat = {{ states|safe }};
+                          ttt = stat[0].states;
+                          for (i=0;i<ttt.length;i++){
+                             tt = ttt[i].name;
+                             document.write("<option value="tt">"+tt+"</option>");
+                          }
+                        </script>
+                        </select>
+                            <!-- <input type="text" class="form-select" name="mother_city"> -->
+                             
+                    </div>
+                    
+                </div>
+        
+                <div class="row my-3">
+                  
+                  <div class="col-lg-4">
+                        <label class="py-3">Mother's Job<span>*</span></label>
+                              
+                            <input type="text" class="form-select" name="mother_job">
+                                
+                    </div>
+                    <div class="col-lg-4">
+                        <label class="py-3">Mother's Family Name<span>*</span></label>
+                              
+                            <input type="text" class="form-select" name="mother_family_name">
+                               
+                    </div>
+        
+                </div>
+                <div class="row py-3">
+        
+                    <div class="col-lg-12">
+        
+                        <div class="fam_det_cont1 pb-4">
+        
+                            <h4>Sibling’s Details</h4>
+                            
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+        
+                <div class="row my-2">
+        
+                    <div class="col-lg-4">
+                        <label class="py-3">Full Name<span>*</span></label>
+                          <input type="text"  placeholder="Name" class="form-control" name="sibling_name">	
+                            
+                    </div>
+                    
+                    <div class="col-lg-4">
+                        <label class="py-3">Type of Relation<span>*</span></label>
+                              
+                            <select class="form-select" name="sibling_relation">
+                                <option value="default">Select</option>
+                                <option value="Brother">Brother</option>
+                                <option value="Sister">Sister</option>
+                            </select>
+                    </div>
+        
+                    <div class="col-lg-4">
+                        <label class="py-3"></label>
+                        <div class="fam_det_radio my-4">
+                            <div>
+                                <input class="form-check-input" type="radio" value="Younger" name="sibling_young_or_old" id="flexRadioDefault1" checked>
+                             <label class="form-check-label" for="flexRadioDefault1">
+                             Younger
+                             </label>
+                            </div>
+        
+                            <div>
+                                <input class="form-check-input" type="radio" value="Older" name="sibling_young_or_old" id="flexRadioDefault1">
+                             <label class="form-check-label" for="flexRadioDefault1">
+                             Older
+                             </label>
+                            </div>
+                             
+                        </div>
+                    </div>
+        
+                </div>
+               
+               <div class="row my-3">
+                   
+              
+        
+                    <div class="col-lg-4">
+                        <label class="py-3">Occupations<span>*</span></label>
+                              
+                            <input type="text" class="form-select" name="sibling_occupation">
+                               
+                    </div>
+        
+                        <div class="col-lg-4">
+                        <label class="py-3">Marital Status<span>*</span></label>
+                              
+                            <select class="form-select" name="sibling_marital">
+                                <option value="default">Select</option>
+                                <option value="Unmarried">Unmarried</option>
+                                <option value="Divorce">Divorce</option>
+                                <option value="Awaiting Divorce">Awaiting Divorce</option>
+                                <option value="Widow/Widower">Widow/Widower</option>
+                                <option value="Annulled">Annulled</option>
+                            </select>
+                    </div>
+        
+        
+                     <div class="col-lg-4">
+        
+                        <label class="py-3">Email ID<span>*</span></label>
+                          <input type="email"  placeholder="Father Name" class="form-control" name="sibling_email">	
+                            
+                    </div>
+                    
+                </div>
+                 <div class="row my-3"> 
+                         <div class="col-lg-4">
+                         <label class="py-3">DOB<span>*</span></label>
+                              <input type="date" placeholder="Select" class="form-control" name="sibling_dob">
+                     </div>
+                </div>
+        
+        
+        
+        
+                <div id="fam_add_more1">
+        
+                    <div class="row my-2">
+        
+                    <div class="col-lg-4">
+                        <label class="py-3">Full Name<span>*</span></label>
+                          <input type="text"  placeholder="Name" class="form-control" name="sibling_name">	
+                            
+                    </div>
+                    
+                    <div class="col-lg-4">
+                        <label class="py-3">Type of Relation<span>*</span></label>
+                              
+                            <select class="form-select" name="sibling_relation">
+                                <option value="default">Select</option>
+                                <option value="Brother">Brother</option>
+                                <option value="Sister">Sister</option>
+                            </select>
+                    </div>
+        
+                    <div class="col-lg-4">
+                        <label class="py-3"></label>
+                        <div class="fam_det_radio my-4">
+                            <div>
+                                <input class="form-check-input" type="radio" name="sibling_young_or_old" id="flexRadioDefault1">
+                             <label class="form-check-label" for="flexRadioDefault1">
+                             Younger
+                             </label>
+                            </div>
+        
+                            <div>
+                                <input class="form-check-input" type="radio" name="sibling_young_or_old" id="flexRadioDefault1">
+                             <label class="form-check-label" for="flexRadioDefault1">
+                             Older
+                             </label>
+                            </div>
+                             
+                        </div>
+                        <label id="sibling_young_or_old-error" class="error" for="sibling_young_or_old"></label>
+                    </div>
+        
+                </div>
+               
+               <div class="row my-3">
+                   
+              
+        
+                    <div class="col-lg-4">
+                        <label class="py-3">Occupations<span>*</span></label>
+                              
+                            <input type="text" class="form-select" name="sibling_occupation">
+                              
+                    </div>
+        
+                        <div class="col-lg-4">
+                        <label class="py-3">Marital Status<span>*</span></label>
+                              
+                            <select class="form-select" name="sibling_marital">
+                                <option value="default">Select</option>
+                                <option value="Unmarried">Unmarried</option>
+                                <option value="Divorce">Divorce</option>
+                                <option value="Awaiting Divorce">Awaiting Divorce</option>
+                                <option value="Widow/Widower">Widow/Widower</option>
+                                <option value="Annulled">Annulled</option>
+                            </select>
+                    </div>
+        
+        
+                     <div class="col-lg-4">
+        
+                        <label class="py-3">Email ID<span>*</span></label>
+                          <input type="email"  placeholder="Father Name" class="form-control" name="sibling_email">	
+                            
+                    </div>
+                    
+                </div>
+                 <div class="row my-3"> 
+                         <div class="col-lg-4">
+                         <label class="py-3">DOB<span>*</span></label>
+                              <input type="date"  placeholder="Select" class="form-control" name="sibling_dob">
+                     </div>
+                </div>
+        
+                <div class="fam_det_sec3 my-5">
+        
+                                  <button type="button" onclick="fam_add_more_hide1()">close</button>
+                </div>
+        
+                    
+                </div>
+        
+        
+        
+                <div class="row my-5">
+                    <div class="col-lg-4">
+        
+                        <div class="fam_det_sec3">
+                                  <button type="button" class="fam_add_more1">Add More</button>
+                          </div>
+                        
+                    </div>
+                </div>
+        
+                <div class="py-2">
+                    
+                </div>
+        
+                <div class="row my-3">
+                    <div class="col-lg-6">
+                        <div class="fam_det_sec4">
+                            <h4 class="py-3">About Candidates</h4>
+                            <textarea class="form-control" name="about_candidate"></textarea>
+                        </div>
+                        
+        
+                    </div>
+        
+                    <div class="col-lg-6">
+                      <div class="fam_det_sec4">
+        
+                        <h4 class="py-3">Current status</h4>
+                        <textarea class="form-control" name="current_status"></textarea>
+                      </div>
+                    </div>
+                </div>
+        
+                <div class="row py-5">
+        
+                    <div class="col-lg-12">
+                        <div class="fam_det_btns">
+                            <a href="#">Back</a>
+                            <button type="submit">Go Next</button>
+                        </div>
+                    </div>
+                    
+                </div>
+           
+               </form>
+               <!-- over -->
+            </div>
+        
+        </section>
+{% include 'footer.html' %}
+<script>
+    jQuery.validator.setDefaults({
+        debug: true,
+        success: "valid"
+    });
+    $.validator.addMethod("valueNotEquals", function(value, element, arg){
+        return arg !== value;
+    }, "Select Any One");
+    $( "#myform" ).validate({
+        rules: {
+        family_status:{
+            valueNotEquals: "default",
+        },
+        father_name:{
+            required: true,
+        },
+        father_country:{
+            valueNotEquals: "default",
+        },
+        father_city: {
+            valueNotEquals: "default"
+        },
+        father_job:{
+            required:true,
+        },
+        father_family_name:{
+            required:true,
+        },
+        mother_name:{
+            required:true,
+        },
+        mother_country:{
+            valueNotEquals: "default"
+        },
+        mother_city:{
+            valueNotEquals: "default"
+        },
+        mother_job:{
+            required:true,
+        },
+        mother_family_name:{
+            required:true,
+        },
+        sibling_name:{
+            required:true,
+        },
+        sibling_relation:{
+            valueNotEquals: "default"
+        },
+        sibling_young_or_old:{
+            required:true,
+        },
+        sibling_occupation:{
+            required:true,
+        },
+        sibling_marital:{
+            valueNotEquals: "default"
+        },
+        sibling_email:{
+            required:true,
+        },
+        sibling_dob:{
+            required:true,
+        },
+        about_candidate:{
+            required:true,
+        },
+        current_status:{
+            required:true
+        }
+
+
+        },
+        submitHandler: function (form) {
+            console.log('test');
+            form.submit();
+        }
+    });
+    $(document).ready(function(){
+        $("#family_fatherbirthcountry").select2();
+        $("#family_fatherbirthcity").select2();
+        $("#family_motherbirthcountry").select2();
+        $("#family_motherbirthcity").select2();
+        $("#addmore").hide();
+        $("#remove_button").hide();
+    });
+    $("#addmorebutt").click(function(){
+        $("#addmore").show();
+        $("#addmorebutt").hide();
+        $("#remove_button").show();
+    });
+    $("#remove_button").click(function(){
+        $("#addmore").hide();
+        $("#addmorebutt").show();
+        $("#remove_button").hide();
+    });
+    $("#family_fatherbirthcountry").change(function(){
+        country = $("#family_fatherbirthcountry").val();
+        //alert(country);
+        $.ajax({
+        type: "GET",
+        url: "fstatelist/"+country,
+        }).done(function (data_json) {
+        var data = JSON.parse(data_json);
+        state = "";
+        for (let i = 0; i < data.length; i++) {
+            console.log(data[i].name);
+            state+="<option value='"+data[i].name+"'>"+data[i].name+"</option>";
+        }
+        $("#family_fatherbirthcity").append(state);
+        });
+    });
+
+    $("#family_motherbirthcountry").change(function(){
+        country = $("#family_motherbirthcountry").val();
+        //alert(country);
+        $.ajax({
+        type: "GET",
+        url: "mstatelist/"+country,
+        }).done(function (data_json) {
+        var data = JSON.parse(data_json);
+        state = "";
+        for (let i = 0; i < data.length; i++) {
+            console.log(data[i].name);
+            state+="<option value='"+data[i].name+"'>"+data[i].name+"</option>";
+        }
+        $("#family_motherbirthcity").append(state);
+        });
+    });
+</script>
+
+<script type="text/javascript">
+
+    $(document).ready(function(){
+               $("#fam_add_more1").hide();
+             });
+             $(".fam_add_more1").click(function(){
+               $("#fam_add_more1").show();
+               $(".fam_add_more1").hide();
+             });
+             function fam_add_more_hide1(){
+               //alert();
+               $(".fam_add_more1").show();
+               $("#fam_add_more1").hide();
+             }
+
+</script>
+<script type="text/javascript">
+    function fun1(event){
+    a = document.getElementById("countryone").value;
+    <!--document.getElementById("res").innerHTML=a;-->
+    c = {{ country|safe }};
+    position =c.indexOf(a);
+    <!--document.getElementById("res1").innerHTML=position;-->
+    stat = {{ states|safe }};
+    ttt = stat[position].states;
+    tt = "<select>";
+    for (i=0;i<ttt.length;i++){
+       tt += "<option>"+ttt[i].name+"</option>";
+    }
+         tt+="</select>";
+          document.getElementById("res2").innerHTML=tt;
+    }
+    
+    </script>
+    <script type="text/javascript">
+        function fun2(event){
+        a = document.getElementById("countrytwo").value;
+        <!--document.getElementById("res").innerHTML=a;-->
+        c = {{ country|safe }};
+        position =c.indexOf(a);
+        <!--document.getElementById("res1").innerHTML=position;-->
+        stat = {{ states|safe }};
+        ttt = stat[position].states;
+        tt = "<select>";
+        for (i=0;i<ttt.length;i++){
+           tt += "<option>"+ttt[i].name+"</option>";
+        }
+             tt+="</select>";
+              document.getElementById("res3").innerHTML=tt;
+        }
+        
+        </script>
+    
+</body>
+</html>

@@ -1,0 +1,64 @@
+<html lang="en">
+    {% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <title>Upload Yours</title>
+    <link rel="stylesheet" href="https://jqueryvalidation.org/files/demo/site-demos.css">
+    <script src="{% static 'js/jquery.MultiFile.js' %}"></script>
+</head>
+<body>
+<form method="POST" enctype="multipart/form-data" id="formid">
+    {% csrf_token %}
+    <label>FullName:</label>
+    <input type="text" name="fullname" id="fullname" ><br>
+        <label>Date of Marriage:</label>
+    <input type="date" name="date_of_marriage" ><br>
+        <label>Your Words about Marriyo:</label>
+    <textarea name="words_about_marrio" ></textarea><br>
+        <label>Upload Your Weeding Photos:</label<link rel="stylesheet" href="https://jqueryvalidation.org/files/demo/site-demos.css">>
+    <input type="file" name="marriage_photos" maxlength="3" multiple ><br>
+    <button type="submit" id="sub" onclick="fun1()" value="submit">submit</button>
+</form>
+<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+
+<p id="res"></p>
+<script>
+    a={{ name | safe}};
+    name=a[0].fields.name
+    document.getElementById("res").innerHTML=a[0].fields.gender;
+    function submitForm(event){
+    fullname=document.getElementById("fullname").value;
+    if (fullname == name){
+         document.getElementById("fullname").value=fullname;
+    }
+    else{
+        document.getElementById("fullname").value="Please enter your correct name";
+        event.preventDefault();
+    }
+    }
+    document.getElementById("formid").addEventListener('submit', submitForm);
+
+</script>
+<script>
+     const maxImages = 3; 
+    const minImages = 3// maximum length you want to allow
+const fileInput = document.querySelector('input[type="file"]');
+
+fileInput.addEventListener("change", function (event) {
+  const selectedFiles = event.target.files;
+  if (selectedFiles.length > maxImages) {
+    alert(`Please select a maximum of ${maxImages} images.`);
+    fileInput.value = ''; // clear the selected files
+  }
+  else if (selectedFiles.length < minImages) {
+    alert(`Please select a minimum of ${maxImages} images.`);
+    fileInput.value = ''; // clear the selected files
+  }
+});
+
+</script>
+</body>
+</html>

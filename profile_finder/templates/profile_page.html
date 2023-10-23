@@ -1,0 +1,2674 @@
+<html>
+
+<head>
+  <title></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+    <META HTTP-EQUIV="Expires" CONTENT="-1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://jqueryvalidation.org/files/demo/site-demos.css">
+  <link rel="stylesheet" href="/media/css/style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+    integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+    button.gallerydelete {
+      display: contents;
+  }
+  </style>
+</head>
+
+<body onLoad=" LoadOnce()">
+
+  {% include 'header.html' %}
+
+  {% include 'menu_header.html' %}
+
+  <section class="py-4 prof_page_sec1">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-3">
+          <!-- <div class="card p-5">
+              <div class="m-auto">
+                <img src="{{profile_pic}}" class="img-fluid img-rounded profile_im mb-3" style="border-radius: 50%;">
+                {% for key in mydata %}
+                  {% if key.profileforwho == "myself"%}
+                  <p class="text-center mb-2"><b>{{ key.name }}</b></p>
+                    
+                  {% else %}
+                  <p class="text-center mb-2"><b>{{ key.nameo }}</b></p>
+                    
+                  {% endif %}
+                    {% comment %} <p class="text-center mb-2"><b>{{ key.email }}</b></p> {% endcomment %}
+                    <p class="text-center proid">ID : {{ key.code }}</p>
+                    <div class="prof_page_sec2 my-3">
+                      {% if key.contact_facebookurl != "" %}
+                        
+                            <a href="{{ key.contact_facebookurl }}" target="_blank" class="text-decoration-none ps-1 pe-1">
+                              <i class="fa fa-facebook"></i>
+                            </a>
+                        
+                      {% endif %}
+                      {% if key.contact_linkurl != "" %}
+                        
+                            <a href="{{ key.contact_linkurl }}" target="_blank" class="text-decoration-none ps-1 pe-1">
+                              <i class="fa fa-linkedin" aria-hidden="true"></i>
+                            </a>
+                        
+                      {% endif %}
+                      {% if key.contact_instagramurl != "" %}
+                        
+                            <a href="{{ key.contact_instagramurl }}" target="_blank" class="text-decoration-none ps-1 pe-1">
+                              <i class="fa fa-instagram" aria-hidden="true"></i>
+                            </a>
+                        
+                      {% endif %}
+
+                      {% if key.contact_youtubeurl != "" %}
+                      
+                            <a href="{{ key.contact_youtubeurl }}" target="_blank" class="text-decoration-none ps-1 pe-1">
+                              <i class="fa fa-youtube" aria-hidden="true"></i>
+
+                            </a>
+                        
+                      {% endif %}
+                      {% if key.contact_twitterurl != "" %}
+                        
+                            <a href="{{ key.contact_twitterurl }}" target="_blank" class="text-decoration-none ps-1 pe-1">
+                              <i class="fa fa-twitter" aria-hidden="true"></i>
+                            </a>
+                        
+                      {% endif %}
+                      {% if key.contact_websiteurl != "" %}
+                        
+                            <a href="{{ key.contact_websiteurl }}" target="_blank" class="text-decoration-none ps-1 pe-1">
+                              <i class="fa fa-globe" aria-hidden="true"></i>
+                            </a>
+                      
+                      {% endif %}
+
+                      
+                          </div>
+                    
+                {% endfor %}
+              </div>
+            </div> -->
+
+          <div class="card prof_page_shadow">
+
+            <div class="prof_page_sec2">
+
+              <img src="{{profile_pic}}" class="img-fluid img-rounded profile_im my-3" data-bs-toggle="modal"
+              data-bs-target="#profile_picture">
+              {% for key in mydata %}
+              {% comment %} {% if key.profileforwho == "myself"%}
+              <p class="text-center mb-2"><b>{{ key.name }}</b></p>
+
+              {% else %}
+              <p class="text-center mb-2"><b>{{ key.nameo }}</b></p>
+
+              {% endif %} {% endcomment %}
+              <p class="text-center mb-2"><b>{{ key.name }}</b></p>
+
+              {% comment %} <p class="text-center mb-2"><b>{{ key.email }}</b></p> {% endcomment %}
+              <p class="text-center proid">ID : {{ key.uid }}</p>
+
+            </div>
+            <div class="my-3 prof_page_sec3">
+              {% if key.contact_facebookurl != "" %}
+
+              <a href="{{ key.contact_facebookurl }}" target="_blank">
+                <i class="fa fa-facebook"></i>
+              </a>
+
+
+              {% endif %}
+
+              {% if key.contact_linkurl != "" %}
+
+              <a href="{{ key.contact_linkurl }}" target="_blank">
+                <i class="fa fa-linkedin" aria-hidden="true"></i>
+              </a>
+
+              {% endif %}
+
+              {% if key.contact_instagramurl != "" %}
+
+              <a href="{{ key.contact_instagramurl }}" target="_blank">
+                <i class="fa fa-instagram" aria-hidden="true"></i>
+              </a>
+
+              {% endif %}
+
+              {% if key.contact_youtubeurl != "" %}
+
+              <a href="{{ key.contact_youtubeurl }}" target="_blank">
+                <i class="fa fa-youtube" aria-hidden="true"></i>
+
+              </a>
+
+              {% endif %}
+
+              {% if key.contact_twitterurl != "" %}
+
+              <a href="{{ key.contact_twitterurl }}" target="_blank">
+                <i class="fa fa-twitter" aria-hidden="true"></i>
+              </a>
+
+              {% endif %}
+
+              {% if key.contact_websiteurl != "" %}
+
+              <a href="{{ key.contact_websiteurl }}" target="_blank">
+                <i class="fa fa-globe" aria-hidden="true"></i>
+              </a>
+
+              {% endif %}
+
+            </div>
+
+            <div class="prof_page_sec4 my-4">
+
+              <button class="btn"> <i class="fas fa-share-alt"></i>Share Profile</button>
+
+            </div>
+
+
+            {% endfor %}
+
+          </div>
+
+          <div class="modal" id="profile_picture">
+            <div class="modal-dialog">
+              <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+
+                  <div class="prof_page_model">
+                    <h4>Profile Picture<h4>
+                  </div>
+                </div>
+                <form method="POST" enctype="multipart/form-data">
+                  {% csrf_token %}
+                  <!-- Modal body -->
+                  <div class="modal-body">
+
+                    <div class="row your_interest">
+                      {% for key in mydata %}
+                      <div class="file-drop-area" id="capture-btn">
+                        <!-- <span class="choose-file-button">Choose files</span> -->
+                        
+                          <!-- <img src="{{ key.profile_picture }}" class="m-auto img-fluid"
+                            style="border-radius:20px;width:40%;"> -->
+                          <img src="{{key.profile_picture}}" class="img-fluid" alt="headsize">
+                        
+                        <p class="file-message">Drag Or Click Here To Upload Your ID</p>
+                        <input class="file-input" type="file" name="profile_picture" 
+                        accept=".png,.jpg,.jpeg,.pdf,.doc,.docx">
+                        {% comment %} accept=".png,.jpg,.jpeg,.pdf,.doc,.docx"> {% endcomment %}
+                      </div>
+
+
+                      {% endfor %}
+                    </div>
+                  </div>
+
+                  <!-- Modal footer -->
+
+                  <!-- <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                    <button id="take-photo-btn" name="selfie_photo" type="su"
+                      class="mt-3 btn border pt-2 pb-2">Submit</button>
+                    {% comment %} <button type="submit" name="food_taste_edit" class="btn btn-primary pt-2 pb-2"
+                      style="width:100px;">Save</button> {% endcomment %}
+                  </div> -->
+
+                  <div class="modal-footer prof_page_btn1">
+                    <button type="button" class="btn prof_btns" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn prof_btns">Save</button>
+                  </div>
+
+                </form>
+
+              </div>
+            </div>
+          </div>
+
+
+          <div class="card my-5 prof_page_shadow">
+            <div class="prof_page_sec5">
+              <img src="/media/images/ref_frnd.png" class="my-3">
+              <h3>Refer a Friend</h3>
+              <h5>And you can earn 1 Coin</h5>
+
+              <button class="btn my-3">Refer Friend now</button>
+            </div>
+          </div>
+
+          <div class="card my-5 p-2 prof_page_shadow">
+
+            <div class="prof_page_sec6 p-4">
+              <img src="/media/images/coin.png" class="my-2">
+              <h3>3 Coins</h3>
+              <h5 class="py-2">Total Coins earn from refer a friend</h5>
+
+              <button class="btn my-2">View details</button>
+            </div>
+
+          </div>
+
+
+
+          <div class="card mt-3 prof_page_shadow py-3">
+            <div class="row ms-0 me-0 border-bott">
+              <div class="col-md-8 pe-0 prof_page_sec7">
+                <p align="left" class="pt-2 ps-3 mb-0 keep">Profile Tagline</p>
+                {% for key in mydata %}
+                <p class="ps-3" style="color:blueviolet">
+
+                  {{ key.profile_tag }}
+                </p>
+                {% endfor %}
+              </div>
+              <div class="col-md-4">
+                <button type="button" class="btn pt-2 pb-2" data-bs-toggle="modal" data-bs-target="#myModalprofiletag">
+                  <span><i class="fas fa-pen prof_page_editico"></i></span>Edit
+                </button>
+                <div class="modal" id="myModalprofiletag">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+
+                      <!-- Modal Header -->
+                      <div class="modal-header  border-0">
+                        <h4 class="modal-title">Profile Tag</h4>
+
+                      </div>
+                      <form method="POST" enctype="multipart/form-data" >
+                        {% csrf_token %}
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                          {% for key in mydata %}
+
+                          <input type="text" value="{{ key.profile_tag }}" style="font-size:1em;"
+                            class="keep form-control my-3 p-3" name="profile_tag" id="profile_tag">
+                          {% endfor %}
+
+                        </div>
+
+
+                        <!-- Modal footer -->
+                        <div class="modal-footer prof_page_btn1">
+                          <button type="button" class="btn prof_btns" data-bs-dismiss="modal">Cancel</button>
+                          <button type="submit" class="btn prof_btns" name="profile_tag_button">Save</button>
+                        </div>
+                      </form>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="border-bott">
+              <ul class="about_profile_page pt-3 prof_page_sec9">
+                <li><a href="#about_me">About Me</a></li>
+                <li><a href="#contact_details">Contact Details</a></li>
+                <li><a href="#general_details">General Details</a></li>
+                <li><a href="#education_details">Educations</a></li>
+                <li><a href="#work_experience">Work Experience</a></li>
+              </ul>
+            </div>
+
+            <div class="border-bott prof_page_sec11">
+              <h6 class="pt-3 ps-3 mb-3">Hightlight Profile</h6>
+              <p class="keep ps-3 float-left me-2">
+                Make your Profile highlight
+              <div class="form-check form-switch mb-4">
+                <label class="form-check-label px-4" for="switchonoff"> </label>
+
+                <input class="form-check-input ms-2" type="checkbox" role="switch" id="switchonoff">
+              </div>
+              </p>
+            </div>
+
+            <div class="row ms-0 me-0 border-bott">
+              <div class="prof_page_sec10">
+                <h6 class="px-1">Profile Visibility</h6>
+                <i class="far fa-eye px-5"></i>
+              </div>
+              <div class="row">
+                <div class="prof_page_sec12">
+                  <span>
+                    {% for key in mydata %}
+                    {{ key.profile_visibility }}
+                    {% endfor %}
+                  </span>
+                  <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#myModalprofilevisibility">
+                    <i class="fas fa-pen prof_page_editico"></i>Edit
+                  </button>
+                </div>
+                <div class="col-md-4">
+
+                  <div class="modal" id="myModalprofilevisibility">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+
+                        <!-- Modal Header -->
+                        <div class="modal-header border-0">
+                          <h4 class="modal-title">Profile Visibility</h4>
+
+                        </div>
+                        <form method="POST">
+                          {% csrf_token %}
+                          <!-- Modal body -->
+                          <div class="modal-body">
+                            {% for key in mydata %}
+
+                            <input type="text" value="{{ key.profile_visibility }}" style="font-size:1em;"
+                              class="keep form-control my-3 p-3" name="profile_visibility" id="profile_tag">
+                            {% endfor %}
+
+                          </div>
+
+                          <!-- Modal footer -->
+                          <div class="modal-footer prof_page_btn1">
+                            <button type="button" class="btn prof_btns" data-bs-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn prof_btns">Save</button>
+                          </div>
+
+                        </form>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="py-5">
+
+          </div>
+        </div>
+
+        <div class="col-md-12 col-lg-9">
+          <div id="accordion">
+
+            <div class="card" id="about_me">
+              <div class="card-header bg-white prof_page_cardbord py-3">
+                {% comment %} <a class="btn w-100" data-bs-toggle="collapse" href="#collapseOne"> {% endcomment %}
+                  <p class="float-left w-50 text-start mb-0"><b>About Me</b></p>
+                  <p class="float-left w-50 text-end mb-0">
+                    <button type="button" class="btn pt-0 pb-0" data-bs-toggle="modal" data-bs-target="#myModal">
+                      <i class="fas fa-pen prof_page_editico px-2"></i>Edit
+                    </button>
+                  </p>
+                  {% comment %}
+                </a> {% endcomment %}
+              </div>
+              <div id="collapseOne" class="collapse show" data-bs-parent="#accordion">
+                <div class="card-body prof_page_text">
+                  {% for key in mydata %}
+                  <p class="keep">{{ key.about_candidate }}</p>
+                  {% endfor %}
+                </div>
+              </div>
+              <!-- The Modal -->
+              <div class="modal" id="myModal">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                      <div class="prof_page_model">
+                        <div>
+                          <h4>About Me</h4>
+                        </div>
+                        <div>
+                          <h6>Write a Profile Summary on the Company (minimum 30 and maximum 1,800 characters)</h6>
+                        </div>
+                      </div>
+
+                    </div>
+                    <form method="POST">
+                      {% csrf_token %}
+                      <!-- Modal body -->
+                      <div class="modal-body">
+                        {% for key in mydata %}
+                        <textarea class="keep form-control my-3" rows="8" name="about_candidate"
+                          id="family_about_candidate">{{ key.about_candidate }}</textarea>
+                        {% endfor %}
+                    
+                      </div>
+
+                      <!-- Modal footer -->
+
+                      <div class="modal-footer prof_page_btn1">
+                        <button type="button" class="btn prof_btns" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn prof_btns" id="speed">Save</button>
+                      </div>
+
+                    </form>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="card mt-2 ">
+              <div class="card-header  bg-white prof_page_cardbord py-3">
+                {% comment %} <a class="btn w-100" data-bs-toggle="collapse" href="#collapseTwo"> {% endcomment %}
+                  <p class="float-left w-50 text-start mb-0"><b>Current Status</b></p>
+                  <p class="float-left w-50 text-end mb-0">
+                    <button type="button" class="btn pt-0 pb-0" data-bs-toggle="modal" data-bs-target="#myModal1">
+                      <i class="fas fa-pen prof_page_editico"></i> Edit
+                    </button>
+                  </p>
+                  {% comment %}
+                </a> {% endcomment %}
+              </div>
+              <div id="collapseTwo" class="collapse show" data-bs-parent="#accordion">
+                <div class="card-body prof_page_text">
+                  
+                  {% for key in mydata %}
+                  <p class="keep">{{ key.current_status }}</p>
+                  {% endfor %}
+                </div>
+              </div>
+              <div class="modal" id="myModal1">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                      <div class="prof_page_model">
+                        <h4 class="modal-title">Current Status</h4>
+                      </div>
+                    </div>
+                    <form method="POST">
+                      {% csrf_token %}
+                      <!-- Modal body -->
+                      <div class="modal-body">
+                        {% for key in mydata %}
+                        <textarea class="keep form-control" rows="8" name="current_status"
+                          id="family_current_status">{{ key.current_status }}</textarea>
+                        {% endfor %}
+
+                      </div>
+
+                      <!-- Modal footer -->
+                      <!-- style="background-color:#F5F5F5; -->
+                      <div class="modal-footer prof_page_btn1">
+                        <button type="button" class="btn prof_btns" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn prof_btns">Save</button>
+                      </div>
+
+                    </form>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row" id="contact_details">
+              <div class="col-md-6">
+                <div class="card mt-2">
+                  <div class="card-header bg-white prof_page_cardbord py-3 ">
+                    {% comment %} <a class="btn w-100" data-bs-toggle="collapse" href="#collapseThree"> {% endcomment %}
+                      <p class="float-left w-50 text-start mb-0"><b>Contact Details</b></p>
+                      <p class="float-left w-50 text-end mb-0">
+                        <button type="button" class="btn pt-0 pb-0" data-bs-toggle="modal" data-bs-target="#myModal2">
+                          <i class="fas fa-pen prof_page_editico"></i> Edit
+                        </button>
+                      </p>
+                      {% comment %}
+                    </a> {% endcomment %}
+                  </div>
+                  <div id="collapseThree" class="collapse show" data-bs-parent="#accordion">
+                    <div class="card-body prof_page_text1">
+                      {% for key in mydata %}
+                      {% comment %} {% if key.profileforwho == "myself"%}
+                      <p class="keep">Country : {{ key.address }}</p>
+
+
+                      {% else %}
+                      <p class="keep">{{ key.addresso }}</p> {% endcomment %}
+                      <p class="keep">Country : {{ key.address }}</p> 
+
+                      {% comment %} {% endif %} {% endcomment %}
+                      <p class="keep">Phone number : {{ key.primary_phone_number }}</p>
+                      <p class="keep">Email : {{ key.primary_email }}</p>
+                      {% endfor %}
+                    </div>
+                    <div class="modal" id="myModal2">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+
+                          <!-- Modal Header -->
+                          <div class="modal-header">
+                            <div class="prof_page_model">
+                              <h4>Contact Details</h4>
+                            </div>
+
+
+                          </div>
+                          <form method="POST">
+                            {% csrf_token %}
+                            <!-- Modal body -->
+                            <div class="modal-body prof_page_form2">
+                              {% for key in mydata %}
+                              {% comment %} {% if key.profileforwho == "myself"%}
+                              <label style="font-size:1em;">Address<span>*</span></label>
+                              <textarea class="keep form-control my-3 p-3" style="font-size:1em;" name="address"
+                                rows="4">{{ key.address }}</textarea>
+
+
+                              {% else %}
+                              <label style="font-size:1em;">Address<span>*</span></label>
+                              <textarea class="keep form-control my-3 p-3" style="font-size:1em;" rows="4"
+                                name="addresso">{{ key.addresso }}</textarea> {% endcomment %}
+                                <textarea class="keep form-control my-3 p-3" style="font-size:1em;" rows="4"
+                                name="address">{{ key.address }}</textarea> 
+
+                              {% comment %} {% endif %} {% endcomment %}
+                              <label style="font-size:1em;">Phone Number<span>*</span></label>
+                              <input style="font-size:1em;" type="number" class="keep form-control my-3 p-3"
+                                name="primary_phone_number" value="{{ key.primary_phone_number }}">
+                              <label style="font-size:1em;">Email<span>*</span></label>
+                              <input style="font-size:1em;" type="email" class="keep form-control my-3 p-3"
+                                name="primary_email" value="{{ key.primary_email }}">
+                              {% endfor %}
+
+                            </div>
+
+                            <!-- Modal footer -->
+
+
+                            <div class="modal-footer prof_page_btn1">
+                              <button type="button" class="btn prof_btns" data-bs-dismiss="modal">Cancel</button>
+                              <button type="submit" class="btn prof_btns">Save</button>
+                            </div>
+
+                          </form>
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="card mt-2">
+                  <div class="card-header bg-white prof_page_cardbord py-3">
+                    {% comment %} <a class="btn w-100" data-bs-toggle="collapse" href="#collapseThree"> {% endcomment %}
+                      <p class="float-left w-50 text-start mb-0"><b>Other Details</b></p>
+                      <p class="float-left w-50 text-end mb-0">
+                        <button type="button" class="btn pt-0 pb-0" data-bs-toggle="modal"
+                          data-bs-target="#myModalother">
+                          <i class="fas fa-pen prof_page_editico"></i> Edit
+                        </button>
+                      </p>
+                      {% comment %}
+                    </a> {% endcomment %}
+                  </div>
+                  <div id="collapseThree" class="collapse show" data-bs-parent="#accordion">
+                    <div class="card-body prof_page_text1">
+                      {% for key in mydata %}
+                      <p class="keep"><i class="far fa-envelope"></i>{{ key.contact_email }}</p>
+                      <p class="keep"><i class="fal fa-mobile"></i></i>{{ key.contact_phone }}</p>
+                      <p class="keep"><i class="fab fa-whatsapp"></i>{{ key.whatsapp }}</p>
+
+                      {% endfor %}
+                    </div>
+                    <div class="modal" id="myModalother">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+
+                          <!-- Modal Header -->
+                          <div class="modal-header ">
+
+                            <div class="prof_page_model">
+                              <h4>Other Details</h4>
+                            </div>
+
+                          </div>
+                          <form method="POST">
+                            {% csrf_token %}
+                            <!-- Modal body -->
+                            <div class="modal-body prof_page_form2">
+                              {% for key in mydata %}
+
+                              <label style="font-size:1em;">Email<span>*</span></label>
+                              <input type="email" style="font-size:1em;" class="keep form-control my-3 p-3"
+                                name="contact_email" value="{{ key.contact_email }}">
+                              <label style="font-size:1em;">Phone Number<span>*</span></label>
+                              <input type="number" style="font-size:1em;" class="keep form-control my-3 p-3"
+                                name="contact_phone" value="{{ key.contact_phone }}">
+                              <label style="font-size:1em;">Whatsapp<span>*</span></label>
+                              <input type="number" style="font-size:1em;" class="keep form-control my-3 p-3"
+                                name="whatsapp" value="{{ key.whatsapp }}">
+                              {% endfor %}
+
+                            </div>
+
+                            <!-- Modal footer -->
+
+                            <div class="modal-footer prof_page_btn1">
+                              <button type="button" class="btn prof_btns" data-bs-dismiss="modal">Cancel</button>
+                              <button type="submit" class="btn prof_btns">Save</button>
+                            </div>
+
+                          </form>
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+            <div class="card mt-2" id="general_details">
+              <div class="card-header  bg-white prof_page_cardbord py-3">
+                {% comment %} <a class="btn w-100" data-bs-toggle="collapse" href="#collapseTwo"> {% endcomment %}
+                  <p class="float-left w-50 text-start mb-0"><b>General Details</b></p>
+                  <p class="float-left w-50 text-end mb-0">
+                    <button type="button" class="btn pt-0 pb-0" data-bs-toggle="modal" data-bs-target="#myModalgeneral">
+                      <i class="fas fa-pen prof_page_editico"></i>Edit
+                    </button>
+                  </p>
+                  {% comment %}
+                </a> {% endcomment %}
+              </div>
+              <div id="collapseTwo" class="collapse show" data-bs-parent="#accordion">
+                <div class="card-body">
+                  <div class="row">
+                    {% for key in mydata %}
+                    <div class="col-md-4 mb-3">
+                      <div class="border  prof_page_bord p-3" style="border-radius:8px;">
+                        <p class="keep">Height (cm)</p>
+                        <b>{{ key.height }}</b>
+                      </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                      <div class="border p-3 prof_page_bord" style="border-radius:8px;">
+                        <p class="keep">weight</p>
+                        <b>{{ key.weight }}</b>
+                      </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                      <div class="border p-3 prof_page_bord" style="border-radius:8px;">
+                        <p class="keep">Age</p>
+                        <b>{{ key.age }}</b>
+                      </div>
+                    </div>
+                    <div class="col-md-4 mb-3 prof_page_bord">
+                      <div class="border p-3" style="border-radius:8px;">
+                        <p class="keep">Blood Type</p>
+                        <b>{{ key.blood_group }}</b>
+                      </div>
+                    </div>
+                    <div class="col-md-4 mb-3 prof_page_bord">
+                      <div class="border p-3" style="border-radius:8px;">
+                        <p class="keep">Martial Status</p>
+                        <b>{{ key.marital_status }}</b>
+                      </div>
+                    </div>
+                    <div class="col-md-4 mb-3 prof_page_bord">
+                      <div class="border p-3" style="border-radius:8px;">
+                        <p class="keep">Religion</p>
+                        <b>{{ key.religion }}</b>
+                      </div>
+                    </div>
+                    <div class="col-md-4 mb-3 prof_page_bord">
+                      <div class="border p-3" style="border-radius:8px;">
+                        <p class="keep">Email</p>
+                        <b>{{ key.primary_email }}</b>
+                      </div>
+                    </div>
+                    <div class="col-md-4 mb- prof_page_bord3">
+                      <div class="border p-3" style="border-radius:8px;">
+                        <p class="keep">Phone</p>
+                        <b>{{ key.primary_phone_number }}</b>
+                      </div>
+                    </div>
+                    {% endfor %}
+                    {% for key in education %}
+                    <div class="col-md-4 mb-3 prof_page_bord">
+                      <div class="border p-3" style="border-radius:8px;">
+                        <p class="keep">Education & Qualification</p>
+                        <b>{{ key.education_school_0 }}</b>
+                      </div>
+                    </div>
+                    {% endfor %}
+                    {% for key in working %}
+                    <div class="col-md-4 mb-3 prof_page_bord">
+                      <div class="border p-3" style="border-radius:8px;">
+                        <p class="keep">Profession</p>
+                        <b>{{ key.profession_0 }}</b>
+                      </div>
+                    </div>
+                    {% endfor %}
+                    {% for key in mydata %}
+                    <div class="col-md-4 mb-3 prof_page_bord">
+                      <div class="border p-3" style="border-radius:8px;">
+                        <p class="keep">Orphan</p>
+                        <b>{{ key.orphan }}</b>
+                      </div>
+                    </div>
+                    {% endfor %}
+                  </div>
+                </div>
+              </div>
+              <div class="modal" id="myModalgeneral">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+
+                      <div class="prof_page_model">
+                        <h4>General Details</h4>
+                      </div>
+
+
+                    </div>
+                    <form method="POST">
+                      {% csrf_token %}
+                      <!-- Modal body -->
+                      <div class="modal-body prof_page_form2">
+                        {% for key in mydata %}
+                        <div class="form-group mb-3">
+                          <label style="font-size:1em;">Height (cm)<span>*</span></label>
+                          <input type="number" style="font-size:1em;" name="height" class="form-control my-3  p-3"
+                            value="{{ key.height }}">
+                        </div>
+                        <div class="form-group mb-3">
+                          <label style="font-size:1em;">Weight (kg)<span>*</span></label>
+                          <input type="number" style="font-size:1em;" name="weight" class="form-control  my-3  p-3"
+                            value="{{ key.weight }}">
+                        </div>
+                        <div class="form-group mb-3">
+                          <label style="font-size:1em;">Age<span>*</span></label>
+                          <input type="number" style="font-size:1em;" name="age" class="form-control  my-3  p-3"
+                            value="{{ key.age }}">
+                        </div>
+                        <div class="form-group mb-3">
+                          <label style="font-size:1em;">Blood Type<span>*</span></label>
+                          <input type="text" style="font-size:1em;" name="blood_group" class="form-control  my-3  p-3"
+                            value="{{ key.blood_group }}">
+                        </div>
+                        <div class="form-group mb-3">
+                          <label style="font-size:1em;">Martial Status<span>*</span></label>
+                          <input type="text" style="font-size:1em;" name="marital_status"
+                            class="form-control  my-3  p-3" value="{{ key.marital_status }}">
+                        </div>
+                        <div class="form-group mb-3">
+                          <label style="font-size:1em;">Religion<span>*</span></label>
+                          <input type="text" style="font-size:1em;" name="religion" class="form-control  my-3  p-3"
+                            value="{{ key.religion }}">
+                        </div>
+                        <div class="form-group mb-3">
+                          <label style="font-size:1em;">Email<span>*</span></label>
+                          <input type="text" style="font-size:1em;" name="primary_email" class="form-control  my-3  p-3"
+                            value="{{ key.primary_email }}">
+                        </div>
+                        <div class="form-group mb-3">
+                          <label style="font-size:1em;">Phone<span>*</span></label>
+                          <input type="text" style="font-size:1em;" name="primary_phone_number" class="form-control  my-3  p-3"
+                            value="{{ key.primary_phone_number }}">
+                        </div>
+                        <div class="form-group mb-3">
+                          <label style="font-size:1em;">Education & Qualification<span>*</span></label>
+                          <input type="text" style="font-size:1em;" name="education_school" class="form-control  my-3  p-3"
+                            value="{{ key.education_school }}">
+                        </div>
+                        <div class="form-group mb-3">
+                          <label style="font-size:1em;">Profession<span>*</span></label>
+                          <input type="text" name="profession" style="font-size:1em;" class="form-control  my-3  p-3"
+                            value="{{ key.profession }}">
+                        </div>
+                        <div class="form-group px-4">
+                          <label style="font-size:1em;" class="p-3">Orphan<span>*</span></label>
+                          <div class="row">
+                            {% if key.orphan == "YES"%}
+                            <div class="form-check col-3">
+                              <input checked class="form-check-input" type="radio" name="orphan" id="orphan"
+                                value="YES">
+                              <label class="form-check-label" for="exampleRadios1">
+                                Yes
+                              </label>
+                            </div>
+                            <div class="form-check col-3">
+                              <input class="form-check-input" type="radio" name="orphan" id="orphan" value="NO">
+                              <label class="form-check-label" for="exampleRadios1">
+                                No
+                              </label>
+                            </div>
+
+                            {% else %}
+                            <div class="form-check col-3">
+                              <input class="form-check-input" type="radio" name="orphan" id="orphan" value="YES">
+                              <label class="form-check-label" for="exampleRadios1">
+                                yes
+                              </label>
+                            </div>
+                            <div class="form-check col-3">
+                              <input checked class="form-check-input" type="radio" name="orphan" id="orphan" value="NO">
+                              <label class="form-check-label" for="exampleRadios1">
+                                No
+                              </label>
+                            </div>
+
+                            {% endif %}
+
+                          </div>
+                        </div>
+                        {% endfor %}
+
+                      </div>
+
+                      <!-- Modal footer -->
+
+
+                      <div class="modal-footer prof_page_btn1">
+                        <button type="button" class="btn prof_btns" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn prof_btns">Save</button>
+                      </div>
+                    </form>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="card mt-2">
+              <div class="card-header bg-white prof_page_cardbord py-3">
+                {% comment %} <a class="btn w-100" data-bs-toggle="collapse" href="#collapseTwo"> {% endcomment %}
+                  <p class="float-left w-50 text-start mb-0"><b>Family Details</b></p>
+                  <p class="float-left w-50 text-end mb-0">
+                    <button type="button" class="btn pt-0 pb-0" data-bs-toggle="modal" data-bs-target="#myModalfamily">
+                      <i class="fas fa-pen prof_page_editico"></i>Edit
+                    </button>
+                  </p>
+                  {% comment %}
+                </a> {% endcomment %}
+              </div>
+              <div id="collapseTwo" class="collapse show" data-bs-parent="#accordion">
+                <div class="card-body">
+                  <div class="row">
+                    {% for key in mydata %}
+                    <div class="col-md-4 mb-3">
+                      <div class="border p-3 prof_page_bord" style="border-radius:8px;">
+                        <p class="keep">Father Name</p>
+                        <b>{{ key.father_name }}</b>
+                      </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                      <div class="border p-3 prof_page_bord" style="border-radius:8px;">
+                        <p class="keep">Father Native Place</p>
+                        <b>{{ key.father_country }}</b>
+                      </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                      <div class="border p-3 prof_page_bord" style="border-radius:8px;">
+                        <p class="keep">Father Job</p>
+                        <b>{{ key.father_job }}</b>
+                      </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                      <div class="border p-3 prof_page_bord" style="border-radius:8px;">
+                        <p class="keep">Mother Name</p>
+                        <b>{{ key.mother_name }}</b>
+                      </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                      <div class="border p-3 prof_page_bord" style="border-radius:8px;">
+                        <p class="keep">Mother Native Place</p>
+                        <b> {{ key.mother_country }}</b>
+                      </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                      <div class="border p-3 prof_page_bord" style="border-radius:8px;">
+                        <p class="keep">Mother Job</p>
+                        <b>{{ key.mother_job }}</b>
+                      </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                      <div class="border p-3 prof_page_bord" style="border-radius:8px;">
+                        <p class="keep">Father Family Name</p>
+                        <b>{{ key.father_family_name }}</b>
+                      </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                      <div class="border p-3 prof_page_bord" style="border-radius:8px;">
+                        <p class="keep">Mother Family Name</p>
+                        <b>{{ key.mother_family_name }}</b>
+                      </div>
+                    </div>
+
+                    {% endfor %}
+                  </div>
+                </div>
+              </div>
+              <div class="modal" id="myModalfamily">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                      <div class="prof_page_model">
+                        <h4 class="modal-title">Family Details</h4>
+                      </div>
+
+                    </div>
+                    <form method="POST">
+                      {% csrf_token %}
+                      <!-- Modal body -->
+                      <div class="modal-body prof_page_form2">
+                        {% for key in mydata %}
+                        <div class="form-group mb-3">
+                          <label style="font-size:1em;">Father Name<span>*</span></label>
+                          <input type="text" name="father_name" class="form-control my-3 p-3"
+                            value="{{ key.father_name }}">
+                        </div>
+                        <div class="form-group mb-3">
+                          <label style="font-size:1em;">Father Native Place<span>*</span></label>
+                          <input type="text" name="father_country" class="form-control my-3 p-3"
+                            value="{{ key.father_country }}">
+                        </div>
+                        <div class="form-group mb-3">
+                          <label style="font-size:1em;">Father Job<span>*</span></label>
+                          <input type="text" name="father_job" class="form-control my-3 p-3"
+                            value="{{ key.father_job }}">
+                        </div>
+                        <div class="form-group mb-3">
+                          <label style="font-size:1em;">Mother Name<span>*</span></label>
+                          <input type="text" name="mother_name" class="form-control my-3 p-3"
+                            value="{{ key.mother_name }}">
+                        </div>
+                        <div class="form-group mb-3">
+                          <label style="font-size:1em;">Mother Native Place<span>*</span></label>
+                          <input type="text" name="mother_country" class="form-control my-3 p-3"
+                            value="{{ key.mother_country }}">
+                        </div>
+                        <div class="form-group mb-3">
+                          <label style="font-size:1em;">Mother Job<span>*</span></label>
+                          <input type="text" name="mother_job" class="form-control my-3 p-3"
+                            value="{{ key.mother_job }}">
+                        </div>
+                        <div class="form-group mb-3">
+                          <label style="font-size:1em;">Father Family Name<span>*</span></label>
+                          <input type="text" name="father_family_name" class="form-control my-3 p-3"
+                            value="{{ key.father_family_name }}">
+                        </div>
+                        <div class="form-group mb-3">
+                          <label style="font-size:1em;">Mother Family Name<span>*</span></label>
+                          <input type="text" name="mother_family_name" class="form-control my-3 p-3"
+                            value="{{ key.mother_family_name }}">
+                        </div>
+                        {% endfor %}
+
+                      </div>
+
+                      <!-- Modal footer -->
+
+                      <div class="modal-footer prof_page_btn1">
+                        <button type="button" class="btn prof_btns" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn prof_btns" >Save</button>
+                      </div>
+                    </form>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="card mt-2">
+              <div class="card-header bg-white prof_page_cardbord py-3 ">
+                {% comment %} <a class="btn w-100" data-bs-toggle="collapse" href="#collapseTwo"> {% endcomment %}
+                  <p class="float-left w-50 text-start mb-0"><b>Sibling's Details</b></p>
+                  <p class="float-left w-50 text-end mb-0">
+                    <button type="button" class="btn pt-0 pb-0" data-bs-toggle="modal" data-bs-target="#myModalsibling">
+                      <i class="fas fa-pen prof_page_editico"></i>Edit
+                    </button>
+                  </p>
+                  {% comment %}
+                </a> {% endcomment %}
+              </div>
+              <div id="collapseTwo" class="collapse show" data-bs-parent="#accordion">
+                <div class="card-body">
+
+                  {% for key in sibling %}
+                  <div class="row border py-3 my-3 prof_page_bord mx-3" style="border-radius:8px;">
+                    <div class="col-md-4">
+                      <div class=" p-3 ">
+                        <p class="keep">Name</p>
+                        <b>{{ key.sibling_name_0 }}</b>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class=" p-3">
+                        <p class="keep">Type Of Relation</p>
+                        <b>{{ key.sibling_relation_0 }}</b>
+                      </div>
+                    </div>
+                    <div class="col-md-4 ">
+                      <div class=" p-3">
+                        <p class="keep">Jobs</p>
+                        <b>{{ key.sibling_occupation_0 }}</b>
+                      </div>
+                    </div>
+                 {% if key.sibling_name_1%}
+                    <div class="col-md-4">
+                      <div class=" p-3">
+                        <p class="keep">Name</p>
+                        <b>{{ key.sibling_name_1 }}</b>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class=" p-3">
+                        <p class="keep">Type Of Relation</p>
+                        <b>{{ key.sibling_relation_1 }}</b>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="p-3">
+                        <p class="keep">Job</p>
+                        <b>{{ key.sibling_occupation_1 }}</b>
+                      </div>
+                    </div>
+
+                    {% else %} 
+                  </div>
+                  <div class="mt-2 prof_page_bord1 mx-3 add_more1">
+                    <button type="button" class="btn w-100 text-center" ><i
+                        class="fas fa-plus-circle "></i>Add More</button>
+                  </div>
+                  <div class="row" id="add_more1">
+                    <form method="POST" class="row ">
+                      {% csrf_token %}
+                      <div class="col-md-4 prof_page_form1">
+                        <div class="p-3">
+                          <label class=" mb-0 form-label py-2" style="color:#6E717A;">Name</label>
+                          <input type="text" name="sibling_nameadd" class="form-control">
+                        </div>
+                      </div>
+                      <div class="col-md-4 prof_page_form1">
+                        <div class=" p-3">
+                          <label class=" mb-0 form-label  py-2" style="color:#6E717A;">Type Of Relation</label>
+                          <select name="sibling_relation" class="form-control">
+                            <option>Select</otpion>
+                            <option value="Brother">Brother</option>
+                            <option value="Sister">Sister</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-md-4 prof_page_form1">
+                        <div class="p-3">
+                          <label class=" mb-0 form-label  py-2" style="color:#6E717A;">Job</label>
+                          <input type="text" name="sibling_occupation" class="form-control">
+                        </div>
+                      </div>
+
+                      <div class="col-md-4 prof_page_btn pl-5">
+                        <button type="button" id="cancel" class="btn prof_btns" onclick="add_more_hide1()" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn prof_btns">Save</button>
+                      </div>
+                    </form>
+                    {% endif %}
+                  </div>
+                  {% endfor %}
+
+
+
+
+
+
+                </div>
+              </div>
+            </div>
+            <div class="modal" id="myModalsibling">
+              <div class="modal-dialog">
+                <div class="modal-content">
+
+                  <!-- Modal Header -->
+                  <div class="modal-header prof_page_model">
+                    <div>
+                      <h4>Sibling Details</h4>
+                    </div>
+
+                  </div>
+                  <form method="POST">
+                    {% csrf_token %}
+                    <!-- Modal body -->
+                    <div class="modal-body prof_page_form2">
+                      {% for key in sibling %}
+                      <div class="form-group mb-3">
+                        <label style="font-size:1em;">Name<span>*</span></label>
+                        <input type="text" name="sibling_nameedit" class="form-control my-3 p-3"
+                          value="{{ key.sibling_name_0 }}">
+                      </div>
+                      <div class="form-group mb-3">
+                        <label style="font-size:1em;">Type Of Relation<span>*</span></label>
+                        <input type="text" name="sibling_relation" class="form-control my-3 p-3"
+                          value="{{ key.sibling_relation_0 }}">
+                      </div>
+                      <div class="form-group mb-3">
+                        <label style="font-size:1em;">Job<span>*</span></label>
+                        <input type="text" name="sibling_occupation" class="form-control my-3 p-3"
+                          value="{{ key.sibling_occupation_0 }}">
+                      </div>
+                      {% if key.sibling_name_1%}
+                      <div class="form-group mb-3">
+                        <label style="font-size:1em;">Name<span>*</span></label>
+                        <input type="text" name="sibling_nameedit" class="form-control my-3 p-3"
+                          value="{{ key.sibling_name_1 }}">
+                      </div>
+                      <div class="form-group mb-3">
+                        <label style="font-size:1em;">Type Of Relation<span>*</span></label>
+                        <input type="text" name="sibling_relation" class="form-control my-3 p-3"
+                          value="{{ key.sibling_relation_1 }}">
+                      </div>
+                      <div class="form-group mb-3">
+                        <label style="font-size:1em;">Job<span>*</span></label>
+                        <input type="text" name="sibling_occupation" class="form-control my-3 p-3"
+                          value="{{ key.sibling_occupation_1 }}">
+                      </div>
+                     {% endif %}
+                      {% endfor %}
+
+                    </div>
+
+                    <!-- Modal footer -->
+
+
+                    <div class="modal-footer prof_page_btn1">
+                      <button type="button" class="btn prof_btns" data-bs-dismiss="modal">Cancel</button>
+                      <button type="submit" class="btn prof_btns">Save</button>
+                    </div>
+                  </form>
+
+                </div>
+              </div>
+            </div>
+
+
+
+
+            <div class="card mt-2 " id="education_details">
+              <div class="card-header bg-white prof_page_cardbord py-3 ">
+                {% comment %} <a class="btn w-100" data-bs-toggle="collapse" href="#collapseTwo"> {% endcomment %}
+                  <p class="float-left w-50 text-start mb-0"><b>Educations</b></p>
+                  <p class="float-left w-50 text-end mb-0">
+                    <button type="button" class="btn pt-0 pb-0" data-bs-toggle="modal"
+                      data-bs-target="#myModaleducation">
+                      <i class="fas fa-pen prof_page_editico"></i>Edit
+                    </button>
+                  </p>
+                  {% comment %}
+                </a> {% endcomment %}
+              </div>
+              <div id="collapseTwo" class="collapse show" data-bs-parent="#accordion">
+                <div class="card-body border-0">
+
+                  {% for key in education %}
+                  <div class="row  prof_page_bord" style="border-radius:8px;">
+                    <div class="col-md-4">
+                      <div class=" p-3">
+                        <p class="keep">School Name</p>
+                        <p class="prof_edu" style="color:black;">{{ key.education_school_0 }}</p>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class=" p-3">
+                        <p class="keep">School Year</p>
+                        <p class="prof_edu" style="color:black;">{{ key.education_year_0 }}</p>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="p-3">
+                        <p class="keep">Course/Degree</p>
+                        <p class="prof_edu" style="color:black;">{{ key.education_course_0 }}</p>
+                      </div>
+                    </div>
+                    {% if key.education_school_1  %}
+                    <div class="col-md-4">
+                      <div class=" p-3">
+
+                        <p class="prof_edu" style="color:black;">{{ key.education_school_1 }}</p>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class=" p-3">
+
+                        <p class="prof_edu " style="color:black;">{{ key.education_year_1 }}</p>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="p-3">
+
+                        <p class="prof_edu" style="color:black;">{{ key.education_course_1 }}</p>
+                      </div>
+                    </div>
+                   {% else %}
+                    <div class="mt-2 prof_page_bord1 add_more2">
+                      <button type="button" class="btn w-100 text-center" data-bs-toggle="modal"><i
+                          class="fas fa-plus-circle"></i>Add More</button>
+                    </div>
+
+                  
+                  </div>
+                  <div class=" row" id="add_more2">
+                    <form method="POST" class="row">
+                      {% csrf_token %}
+                      <div class="col-md-4">
+                        <div class="p-3">
+                          <label class=" mb-0 form-label" style="color:#6E717A;">School Name</label>
+                          <input type="text" name="education_schooladd" class="form-control">
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class=" p-3">
+                          <label class="mb-0 form-label" style="color:#6E717A;">School year</label>
+                          <input type="text" name="education_year" class="form-control">
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="p-3">
+                          <label class="mb-0 form-label" style="color:#6E717A;">Course/Degree</label>
+                          <input type="text" name="education_course" class="form-control">
+                        </div>
+                      </div>
+
+                      <div class="col-md-4 prof_page_btn pl-5">
+                        <button type="button" id="cancel" class="btn prof_btns" onclick="add_more_hide2()" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn prof_btns">Save</button>
+                      </div>
+                    </form>
+                {% endif %}
+                  </div>
+                  {% endfor %}
+                </div>
+              </div>
+            </div>
+            <div class="modal" id="myModaleducation">
+              <div class="modal-dialog">
+                <div class="modal-content">
+
+                  <!-- Modal Header -->
+                  <div class="modal-header">
+                    <div class="prof_page_model">
+                      <h4>Educations</h4>
+                    </div>
+
+                  </div>
+                  <form method="POST">
+                    {% csrf_token %}
+                    <!-- Modal body -->
+                    <div class="modal-body prof_page_form2">
+                      {% for key in education %}
+                      <div class="form-group mb-3">
+                        <label style="font-size:1em;">School Name<span>*</span></label>
+                        <input type="text" name="education_schooledit" class="form-control my-3 p-3" value="{{ key.education_school_0 }}">
+                      </div>
+                      <div class="form-group mb-3">
+                        <label style="font-size:1em;">Year<span>*</span></label>
+                        <input type="text" name="education_year" class="form-control my-3 p-3"
+                          value="{{ key.education_year_0 }}">
+                      </div>
+                      <div class="form-group mb-3">
+                        <label style="font-size:1em;">Course/Degree<span>*</span></label>
+                        <input type="text" name="education_course" class="form-control my-3 p-3" value="{{ key.education_course_0 }}">
+                      </div>
+                      {% if education_school_1 %}
+                      <div class="form-group mb-3">
+                        <label style="font-size:1em;"> School Name<span>*</span></label>
+                        <input type="text" name="education_schooledit" class="form-control my-3 p-3" value="{{ key.education_school_1 }}">
+                      </div>
+                      <div class="form-group mb-3">
+                        <label style="font-size:1em;">Year<span>*</span></label>
+                        <input type="text" name="education_year" class="form-control my-3 p-3"
+                          value="{{ key.education_year_1 }}">
+                      </div>
+                      <div class="form-group mb-3">
+                        <label style="font-size:1em;">Course/Degree<span>*</span></label>
+                        <input type="text" name="education_course" class="form-control my-3 p-3" value="{{ key.education_course_1 }}">
+                      </div>
+                       {%endif%}
+                      {% endfor %}
+
+                    </div>
+
+                    <!-- Modal footer -->
+
+                    <div class="modal-footer prof_page_btn1">
+                      <button type="button" class="btn prof_btns" data-bs-dismiss="modal">Cancel</button>
+                      <button type="submit" class="btn prof_btns">Save</button>
+                    </div>
+                  </form>
+
+                </div>
+              </div>
+            </div>
+
+
+
+
+
+            <div class="card mt-2" id="work_experience">
+              <div class="card-header bg-white prof_page_cardbord py-3 ">
+                {% comment %} <a class="btn w-100" data-bs-toggle="collapse" href="#collapseTwo"> {% endcomment %}
+                  <p class="float-left w-50 text-start mb-0"><b>Work Experience</b></p>
+                  <p class="float-left w-50 text-end mb-0">
+                    <button type="button" class="btn pt-0 pb-0" data-bs-toggle="modal" data-bs-target="#myModalwork">
+                      <i class="fas fa-pen prof_page_editico"></i>Edit
+                    </button>
+                  </p>
+                  {% comment %}
+                </a> {% endcomment %}
+              </div>
+              <div id="collapseTwo" class="collapse show" data-bs-parent="#accordion">
+                <div class="card-body">
+
+                  {% for key in working %}
+                  <div class="row prof_page_bord" style="border-radius:8px;">
+                    <div class="col-md-4">
+                      <div class=" p-3">
+                        <p class="keep">Company Name</p>
+                        <p class="prof_edu" style="color:black;">{{ key.company_name_0 }}</p>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class=" p-3">
+                        <p class="keep">Position</p>
+                        <p class="prof_edu" style="color:black;">{{ key.position_0 }}</p>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="p-3">
+                        <p class="keep">Tenure (month)</p>
+                        <p class="prof_edu" style="color:black;">{{ key.salary_range_0 }}</p>
+                      </div>
+                    </div>
+                    {% comment %} {{ key }} {% endcomment %}
+                    {% if key.company_name_1%}
+                    <div class="col-md-4">
+                      <div class=" p-3">
+
+                        <p class="prof_edu" style="color:black;">{{ key.company_name_1 }}</p>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class=" p-3">
+
+                        <p class="prof_edu" style="color:black;">{{ key.position_1 }}</p>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="p-3">
+
+                        <p class="prof_edu" style="color:black;">{{ key.salary_range_1 }}</p>
+                      </div>
+                    </div>
+                    {% else %}
+                    <div class="mt-2 prof_page_bord1 add_more3" >
+                      <button type="button" class="btn w-100 text-center" data-bs-toggle="modal"><i
+                          class="fas fa-plus-circle"></i>Add More</button>
+                    </div>
+                    
+                  </div>
+
+
+                  <div class="row" id="add_more3">
+                    <form method="POST" class="row">
+                      {% csrf_token %}
+                      <div class="col-md-4">
+                        <div class="p-3">
+                          <label class="mb-0 form-label" style="color:#6E717A;">Company Name</label>
+                          <input type="text" name="company_nameadd" class="form-control">
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class=" p-3">
+                          <label class=" mb-0 form-label" style="color:#6E717A;">Position</label>
+                          <input type="text" name="position" class="form-control">
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="p-3">
+                          <label class=" mb-0 form-label" style="color:#6E717A;">Salary</label>
+                          <input type="text" name="salary_range" class="form-control">
+                        </div>
+
+                      </div>
+
+                      <div class="col-md-4 prof_page_btn pl-5">
+                        <button type="button" id="cancel" class="btn prof_btns" onclick="add_more_hide3()" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn prof_btns">Save</button>
+                      </div>
+                    </form>
+                  {% endif %}
+                  </div>
+                  {% endfor %}
+
+
+
+
+
+
+                </div>
+              </div>
+            </div>
+            <div class="modal" id="myModalwork">
+              <div class="modal-dialog">
+                <div class="modal-content">
+
+                  <!-- Modal Header -->
+                  <div class="modal-header">
+                    <div class="prof_page_model">
+                      <h4 class="modal-title">Work Experience</h4>
+                    </div>
+
+                  </div>
+                  <form method="POST">
+                    {% csrf_token %}
+                    <!-- Modal body -->
+                    <div class="modal-body prof_page_form2">
+                      {% for key in working %}
+                      <div class="form-group mb-3">
+                        <label style="font-size:1em;">Company Name<span>*</span></label>
+                        <input type="text" name="company_nameedit" class="form-control my-3 p-3"
+                          value="{{ key.company_name_0 }}">
+                      </div>
+                      <div class="form-group mb-3">
+                        <label style="font-size:1em;">Position<span>*</span></label>
+                        <input type="text" name="position" class="form-control my-3 p-3" value="{{ key.position_0 }}">
+                      </div>
+                      <div class="form-group mb-3">
+                        <label style="font-size:1em;">Salary<span>*</span></label>
+                        <input type="text" name="salary_range" class="form-control my-3 p-3"
+                          value="{{ key.salary_range_0 }}">
+                      </div>
+                      {% if key.company_name_1%}
+                      <div class="form-group mb-3">
+                        <label style="font-size:1em;">Company Name<span>*</span></label>
+                        <input type="text" name="company_nameedit" class="form-control my-3 p-3"
+                          value="{{ key.company_name_1 }}">
+                      </div>
+                      <div class="form-group mb-3">
+                        <label style="font-size:1em;">Position<span>*</span></label>
+                        <input type="text" name="position" class="form-control my-3 p-3" value="{{ key.position_1 }}">
+                      </div>
+                      <div class="form-group mb-3">
+                        <label style="font-size:1em;">Salary<span>*</span></label>
+                        <input type="text" name="salary_range" class="form-control my-3 p-3"
+                          value="{{ key.salary_range_1 }}">
+                      </div>
+                   {% endif %}
+                      {% endfor %}
+
+                    </div>
+
+                    <!-- Modal footer -->
+
+                    <div class="modal-footer prof_page_btn1">
+                      <button type="button" class="btn prof_btns" data-bs-dismiss="modal">Cancel</button>
+                      <button type="submit" class="btn prof_btns">Save</button>
+                    </div>
+                  </form>
+
+                </div>
+              </div>
+            </div>
+
+
+
+            <div class="card mt-2">
+              <div class="card-header bg-white prof_page_cardbord py-3">
+                {% comment %} <a class="btn w-100" data-bs-toggle="collapse" href="#collapseTwo"> {% endcomment %}
+                  <p class="float-left w-50 text-start mb-0"><b>My Interest</b></p>
+                  <p class="float-left w-50 text-end mb-0">
+                    <button type="button" class="btn pt-0 pb-0" data-bs-toggle="modal"
+                      data-bs-target="#myModalmyinterest">
+                      <i class="fas fa-pen prof_page_editico"></i>Edit
+                    </button>
+                  </p>
+                  {% comment %}
+                </a> {% endcomment %}
+              </div>
+              <div id="collapseTwo" class="collapse show" data-bs-parent="#accordion">
+                <div class="card-body">
+
+                  {% for key in mydata %}
+                  <div class="row " style="border-radius:8px;">
+                    <div class="col-md-12">
+                      <ul class="yourin" style="list-style:none;">
+
+
+
+
+                        {% for k in intrest %}
+                        <li style="display:inline;color: #7B61FF;font-weight:500;" class="py-3">{{ k.intrest }}</li>
+                        {% endfor %}
+
+                      </ul>
+                    </div>
+
+
+                  </div>
+
+
+                  <div class="mt-2 prof_page_bord1">
+                    <button type="button" class="btn w-100 text-center" data-bs-toggle="modal"
+                      data-bs-target="#myModalmyinterest"><i class="fas fa-plus-circle"></i>Add More</button>
+                  </div>
+
+
+                </div>
+                {% endfor %}
+
+
+
+
+
+
+              </div>
+            </div>
+
+            <div class="modal" id="myModalmyinterest">
+              <div class="modal-dialog">
+                <div class="modal-content">
+
+                  <!-- Modal Header -->
+                  <div class="modal-header">
+
+                    <div class="prof_page_form2">
+                      <h4>My Interest</h4>
+                    </div>
+                  </div>
+                  <form method="POST">
+                    {% csrf_token %}
+                    <!-- Modal body -->
+                    <div class="modal-body prof_page_form3">
+
+                      <div class="row your_interest px-2 px-5">
+                        {% for i in interestlist %}
+
+                        {% if i in lengthyourinterest %}
+
+                        <div class="col-6 my-2">
+                          <div class="form-check" style="border-radius:10px;">
+                            <input class="form-check-input " checked type="checkbox" value="{{ i }}"
+                              name="your_intrest" id="your_interest0">
+                            <label class="form-check-label" for="defaultCheck1">
+                              {{ i }}
+                            </label>
+                          </div>
+                        </div>
+                        {% else %}
+
+                        <div class="col-6 my-2">
+                          <div class="form-check" style="border-radius:10px;">
+                            <input class="form-check-input" type="checkbox" value="{{ i }}" name="your_intrest"
+                              id="your_interest0">
+                            <label class="form-check-label " for="defaultCheck1">
+                              {{ i }}
+                            </label>
+                          </div>
+                        </div>
+                        {% endif %}
+                        {% endfor %}
+                      </div>
+                    </div>
+
+                    <!-- Modal footer -->
+
+                    <div class="modal-footer prof_page_btn1">
+                      <button type="button" class="btn prof_btns" data-bs-dismiss="modal">Cancel</button>
+                      <button type="submit" class="btn prof_btns">Save</button>
+                    </div>
+                  </form>
+
+                </div>
+              </div>
+            </div>
+
+
+
+
+
+
+            <div class="card mt-2 w-100">
+              <div class="card-header bg-white prof_page_cardbord py-3">
+                {% comment %} <a class="btn w-100" data-bs-toggle="collapse" href="#collapseTwo"> {% endcomment %}
+                  <p class="float-left w-50 text-start mb-0"><b>My Non-Interest</b></p>
+                  <p class="float-left w-50 text-end mb-0">
+                    <button type="button" class="btn pt-0 pb-0" data-bs-toggle="modal"
+                      data-bs-target="#myModalmynoninterest">
+                      <i class="fas fa-pen prof_page_editico"></i>Edit
+                    </button>
+                  </p>
+                  {% comment %}
+                </a> {% endcomment %}
+              </div>
+              <div id="collapseTwo" class="collapse show" data-bs-parent="#accordion">
+                <div class="card-body">
+
+                  {% for key in mydata %}
+                  <div class="row " style="border-radius:8px;">
+                    <div class="col-md-12">
+                      <ul class="yourin" style="list-style:none;">
+
+
+
+
+                        {% for k in non_intrest %}
+                        <li style="display:inline;color: #7B61FF;font-weight:500;" class="py-3">{{ k.non_intrest }}</li>
+                        {% endfor %}
+
+                      </ul>
+                    </div>
+
+
+                  </div>
+
+
+                  <div class="mt-2 prof_page_bord1">
+                    <button type="button" class="btn w-100 text-center" data-bs-toggle="modal"
+                      data-bs-target="#myModalmynoninterest"><i class="fas fa-plus-circle"></i>Add More</button>
+                  </div>
+
+
+                </div>
+                {% endfor %}
+
+
+
+
+
+
+              </div>
+            </div>
+          </div>
+          <div class="modal" id="myModalmynoninterest">
+            <div class="modal-dialog">
+              <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                  <div class="prof_page_form3">
+                    <h4 class="modal-title">My Non-Interest</h4>
+                  </div>
+
+                </div>
+                <form method="POST">
+                  {% csrf_token %}
+                  <!-- Modal body -->
+                  <div class="modal-body prof_page_form3">
+
+                    <div class="row your_interest px-2 px-5">
+                      {% for i in interestlist %}
+
+                      {% if i in lengthyournoninterest %}
+
+                      <div class="col-6 my-2">
+                        <div class="form-check">
+                          <input class="form-check-input" checked type="checkbox" value="{{ i }}" name="non_intrest"
+                            id="your_interest0">
+                          <label class="form-check-label" for="defaultCheck1">
+                            {{ i }}
+                          </label>
+                        </div>
+                      </div>
+                      {% else %}
+
+                      <div class="col-6 my-2">
+                        <div class="form-check">
+                          <input class="form-check-input" type="checkbox" value="{{ i }}" name="non_intrest"
+                            id="your_interest0">
+                          <label class="form-check-label" for="defaultCheck1">
+                            {{ i }}
+                          </label>
+                        </div>
+                      </div>
+                      {% endif %}
+                      {% endfor %}
+                    </div>
+                  </div>
+
+                  <!-- Modal footer -->
+
+                  <div class="modal-footer prof_page_btn1">
+                    <button type="button" class="btn prof_btns" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn prof_btns">Save</button>
+                  </div>
+                </form>
+
+              </div>
+            </div>
+          </div>
+
+
+
+
+
+          <div class="card mt-2 w-100">
+            <div class="card-header bg-white prof_page_cardbord py-3">
+              {% comment %} <a class="btn w-100" data-bs-toggle="collapse" href="#collapseTwo"> {% endcomment %}
+                <p class="float-left w-50 text-start mb-0"><b>Complexion</b></p>
+                <p class="float-left w-50 text-end mb-0">
+                  <button type="button" class="btn pt-0 pb-0" data-bs-toggle="modal"
+                    data-bs-target="#myModalmyComplexion">
+                    <i class="fas fa-pen prof_page_editico"></i>Edit
+                  </button>
+                </p>
+                {% comment %}
+              </a> {% endcomment %}
+            </div>
+            <div id="collapseTwo" class="collapse show" data-bs-parent="#accordion">
+              <div class="card-body">
+
+                {% for key in mydata %}
+                <div class="row " style="border-radius:8px;">
+                  <div class="col-md-12">
+                    <ul class="yourin" style="list-style:none;">
+
+
+
+
+                      {% for k in lengthcomplexion %}
+                      <li style="display:inline;color: #7B61FF;font-weight:500;" class="py-3">{{ k }}</li>
+                      {% endfor %}
+
+                    </ul>
+                  </div>
+
+
+                </div>
+
+                <div class="mt-2 prof_page_bord1">
+                  <button type="button" class="btn w-100 text-center" data-bs-toggle="modal"
+                    data-bs-target="#myModalmyComplexion"><i class="fas fa-plus-circle"></i>Add More</button>
+                </div>
+
+
+              </div>
+              {% endfor %}
+
+
+
+
+
+
+            </div>
+          </div>
+
+          <div class="modal" id="myModalmyComplexion">
+            <div class="modal-dialog">
+              <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                  <div class="prof_page_model">
+                    <h4>Complexion</h4>
+                  </div>
+
+                </div>
+                <form method="POST">
+                  {% csrf_token %}
+                  <!-- Modal body -->
+                  <div class="modal-body prof_page_form3">
+
+                    <div class="row your_interest px-2 px-5">
+                      {% for i in complexionlist %}
+
+                      {% if i in lengthcomplexion %}
+
+                      <div class="form-check col-6 my-2">
+                        <input class="form-check-input" checked type="checkbox" name="complexion" id="complexion"
+                          value="{{ i }}">
+                        <label class="form-check-label" for="exampleRadios1">
+                          {{ i }}
+                        </label>
+                      </div>
+                      {% else %}
+
+                      <div class="form-check col-6 my-2">
+                        <input class="form-check-input" type="checkbox" name="complexion" id="complexion"
+                          value="{{ i }}">
+                        <label class="form-check-label" for="exampleRadios1">
+                          {{ i }}
+                        </label>
+                      </div>
+                      {% endif %}
+                      {% endfor %}
+                    </div>
+                  </div>
+
+                  <!-- Modal footer -->
+
+                  <div class="modal-footer prof_page_btn1">
+                    <button type="button" class="btn prof_btns" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn prof_btns">Save</button>
+                  </div>
+                </form>
+
+              </div>
+            </div>
+          </div>
+
+
+
+          <div class="card mt-2 w-100">
+            <div class="card-header bg-white prof_page_cardbord py-3">
+              {% comment %} <a class="btn w-100" data-bs-toggle="collapse" href="#collapseTwo"> {% endcomment %}
+                <p class="float-left w-50 text-start mb-0"><b>Food Taste</b></p>
+                <p class="float-left w-50 text-end mb-0">
+                  <button type="button" class="btn pt-0 pb-0" data-bs-toggle="modal"
+                    data-bs-target="#myModalmyfoodtaste">
+                    <i class="fas fa-pen prof_page_editico"></i>Edit
+                  </button>
+                </p>
+                {% comment %}
+              </a> {% endcomment %}
+            </div>
+            <div id="collapseTwo" class="collapse show" data-bs-parent="#accordion">
+              <div class="card-body">
+
+                {% for key in mydata %}
+                <div class="row " style="border-radius:8px;">
+                  <div class="col-md-12">
+                    <ul class="yourin" style="list-style:none;">
+
+
+
+
+                      {% for k in lengthfood_taste %}
+                      <li style="display:inline;color: #7B61FF;font-weight:500;" class="py-3">{{ k }}</li>
+                      {% endfor %}
+
+                    </ul>
+                  </div>
+
+
+                </div>
+
+                <div class="mt-2 prof_page_bord1">
+                  <button type="button" class="btn w-100 text-center" data-bs-toggle="modal"
+                    data-bs-target="#myModalmyfoodtaste"><i class="fas fa-plus-circle"></i>Add More</button>
+                </div>
+
+
+              </div>
+              {% endfor %}
+
+
+
+
+
+
+            </div>
+          </div>
+
+          <div class="modal" id="myModalmyfoodtaste">
+            <div class="modal-dialog">
+              <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                  <div class="prof_page_model">
+                    <h4>Food Taste</h4>
+                  </div>
+
+                </div>
+                <form method="POST">
+                  {% csrf_token %}
+                  <!-- Modal body -->
+                  <div class="modal-body prof_page_form3">
+
+                    <div class="row your_interest px-2 px-5">
+                      {% for i in food_tastelist %}
+
+                      {% if i in lengthfood_taste %}
+
+                      <div class="form-check col-6 my-2">
+                        <input class="form-check-input" checked type="checkbox" name="food_taste"
+                          id="complexion" value="{{ i }}">
+                        <label class="form-check-label" for="exampleRadios1">
+                          {{ i }}
+                        </label>
+                      </div>
+                      {% else %}
+
+                      <div class="form-check col-6 my-2 ">
+                        <input class="form-check-input" type="checkbox" name="food_taste" id="complexion"
+                          value="{{ i }}">
+                        <label class="form-check-label" for="exampleRadios1">
+                          {{ i }}
+                        </label>
+                      </div>
+                      {% endif %}
+                      {% endfor %}
+                    </div>
+                  </div>
+
+                  <!-- Modal footer -->
+
+                  <div class="modal-footer prof_page_btn1 ">
+                    <button type="button" class="btn prof_btns" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn prof_btns">Save</button>
+                  </div>
+                </form>
+
+              </div>
+            </div>
+          </div>
+
+
+          <div class="row">
+            <div class="col-md-4">
+              <div class="card mt-2 w-100">
+                <div class="card-header  bg-white prof_page_cardbord py-3">
+                  {% comment %} <a class="btn w-100" data-bs-toggle="collapse" href="#collapseTwo"> {% endcomment %}
+                    <p class="float-left text-start mb-0" style="width:70%"><b>Head Size(Selfie)</b></p>
+                    <p class="float-left text-end mb-0" style="width:30%">
+                      <button type="button" class="btn pt-0 pb-0 ps-0 pe-0" data-bs-toggle="modal"
+                        data-bs-target="#myModalheadsize">
+                        <i class="fas fa-pen prof_page_editico"></i>Edit
+                      </button>
+                    </p>
+                    {% comment %}
+                  </a> {% endcomment %}
+                </div>
+                {% for key in mydata %}
+                <div id="collapseTwo" class="collapse show" data-bs-parent="#accordion">
+                  <div class="card-body">
+                    <img src="{{key.selfie}}" class="img-fluid" alt="headsize">
+                    <!-- {% for key in mydata %}
+                    <img src="{{ key.profile_picture }}" class="img-fluid" style="border-radius:5px;">
+                    {% endfor %} -->
+
+
+
+
+
+
+                  </div>
+                </div>
+                {% endfor %}
+
+                <div class="modal" id="myModalheadsize">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+
+                      <!-- Modal Header -->
+                      <div class="modal-header">
+
+                        <div class="prof_page_model">
+                          <h4>Head Size(Selfie)</h4>
+                        </div>
+                      </div>
+                      <form method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <!-- Modal body -->
+                        <div class="modal-body">
+
+                          <div class="row your_interest">
+                            {% for key in mydata %}
+                            <div class="file-drop-area" id="capture-btn">
+                              <!-- <span class="choose-file-button">Choose files</span> -->
+                              
+                                <!-- <img src="{{ key.profile_picture }}" class="m-auto img-fluid"
+                                  style="border-radius:20px;width:40%;"> -->
+                                <img src="{{key.selfie}}" class="img-fluid" alt="headsize">
+                              
+                              <p class="file-message">Drag Or Click Here To Upload Your ID</p>
+                              <input class="file-input" type="file" name="selfie" 
+                              accept=".png,.jpg,.jpeg,.pdf,.doc,.docx">
+                              {% comment %} accept=".png,.jpg,.jpeg,.pdf,.doc,.docx"> {% endcomment %}
+                            </div>
+
+
+                            {% endfor %}
+                          </div>
+                        </div>
+
+                        <!-- Modal footer -->
+
+                        <!-- <div class="modal-footer">
+                          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                          <button id="take-photo-btn" name="selfie_photo" type="su"
+                            class="mt-3 btn border pt-2 pb-2">Submit</button>
+                          {% comment %} <button type="submit" name="food_taste_edit" class="btn btn-primary pt-2 pb-2"
+                            style="width:100px;">Save</button> {% endcomment %}
+                        </div> -->
+
+                        <div class="modal-footer prof_page_btn1">
+                          <button type="button" class="btn prof_btns" data-bs-dismiss="modal">Cancel</button>
+                          <button type="submit" class="btn prof_btns">Save</button>
+                        </div>
+
+                      </form>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="col-md-4">
+              <div class="card mt-2 w-100">
+                <div class="card-header  bg-white prof_page_cardbord py-3">
+                  {% comment %} <a class="btn w-100" data-bs-toggle="collapse" href="#collapseTwo"> {% endcomment %}
+                    <p class="float-left text-start mb-0" style="width:70%"><b>Full Size</b></p>
+                    <p class="float-left text-end mb-0" style="width:30%">
+                      <button type="button" class="btn pt-0 pb-0 ps-0 pe-0" data-bs-toggle="modal"
+                        data-bs-target="#myModalfullsize">
+                        <i class="fas fa-pen prof_page_editico"></i>Edit
+                      </button>
+                    </p>
+                    {% comment %}
+                  </a> {% endcomment %}
+                </div>
+                {% for key in mydata %}
+                <div id="collapseTwo" class="collapse show" data-bs-parent="#accordion">
+                  <div class="prof_page_images py-5">
+
+                    <!-- {% for key in mydata %}
+                    <img src="{{ key.fullsize_img }}" class="img-fluid" style="border-radius:5px;">
+                    {% endfor %} -->
+
+                    <img src="{{key.full_size_image}}" class="img-fluid " alt="fullsiz">
+
+                  </div>
+                </div>
+{% endfor %}
+                <div class="modal" id="myModalfullsize">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+
+                      <!-- Modal Header -->
+                      <div class="modal-header">
+                        <h4 class="modal-title">Full Size</h4>
+
+                      </div>
+                      <form method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <!-- Modal body -->
+                        <div class="modal-body">
+
+                          <div class="row your_interest">
+                            {% for key in mydata %}
+                            <div class="file-drop-area mt-1 ms-auto me-auto" id="capture-btn">
+                              <!-- <span class="choose-file-button">Choose files</span> -->
+                             
+                                <!-- <img src="{{ key.fullsize_img }}" class="m-auto img-fluid"
+                                  style="border-radius:20px;width:40%;"> -->
+                                <img src="{{key.full_size_image}}" width="100%" height="100%">
+                            
+                           
+                              <p class="file-message py-3">Drag Or Click Here To Upload Your ID</p>
+                              <input class="file-input" type="file" name="full_size_image" 
+                              accept=".png,.jpg,.jpeg,.pdf,.doc,.docx">
+                            </div>
+
+
+                            {% endfor %}
+                          </div>
+                        </div>
+
+                        <!-- Modal footer -->
+                        <div class="modal-footer prof_page_btn1">
+                          <button type="button" class="btn prof_btns" data-bs-dismiss="modal">Cancel</button>
+                          <button type="submit" class="btn prof_btns">Save</button>
+                        </div>
+                        <!-- <div class="modal-footer">
+                          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                          <button type="submit" name="full_photo" class="btn btn-primary pt-2 pb-2"
+                            style="width:100px;">Save</button>
+                          {% comment %} <button type="submit" name="food_taste_edit" class="btn btn-primary pt-2 pb-2"
+                            style="width:100px;">Save</button> {% endcomment %}
+                        </div> -->
+                      </form>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="col-md-4">
+              <div class="card mt-2 w-100">
+                <div class="card-header  bg-white prof_page_cardbord py-3">
+                  {% comment %} <a class="btn w-100" data-bs-toggle="collapse" href="#collapseTwo"> {% endcomment %}
+                    <p class="float-left text-start mb-0" style="width:70%"><b>Family Group</b></p>
+                    <p class="float-left text-end mb-0" style="width:30%">
+                      <button type="button" class="btn pt-0 pb-0 ps-0 pe-0" data-bs-toggle="modal"
+                        data-bs-target="#myModalfamilyphoto">
+                        <i class="fas fa-pen prof_page_editico"></i>Edit
+                      </button>
+                    </p>
+                    {% comment %}
+                  </a> {% endcomment %}
+                </div>
+                {% for key in mydata %}
+                <div id="collapseTwo" class="collapse show" data-bs-parent="#accordion">
+                  <div class="card-body">
+                    <!-- 
+                    {% for key in mydata %}
+                    <img src="{{ key.family }}" class="img-fluid" style="border-radius:5px;">
+                    {% endfor %} -->
+
+                    <img src="{{key.family_image}}" class="img-fluid" alt="grouppic">
+
+
+
+
+
+                  </div>
+                </div>
+                {% endfor %}
+                <div class="modal" id="myModalfamilyphoto">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+
+                      <!-- Modal Header -->
+                      <div class="modal-header">
+                        <h4 class="modal-title">Family Group</h4>
+
+                      </div>
+                      <form method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <!-- Modal body -->
+                        <div class="modal-body">
+
+                          <div class="row your_interest">
+                            {% for key in mydata %}
+                            <div class="file-drop-area mt-1 ms-auto me-auto" id="capture-btn">
+                              <!-- <span class="choose-file-button">Choose files</span> -->
+                              
+                                <!-- <img src="{{ key.family }}" class="m-auto img-fluid"
+                                  style="border-radius:20px;width:40%;"> -->
+                                 
+                                <img src="{{key.family_image}}" alt="grouppic" width="100%" height="100%">
+                              
+                              <p class="file-message my-2">Drag Or Click Here To Upload Your ID</p>
+                              <input class="file-input" type="file" name="family" accept=".png,.jpg,.jpeg">
+                            </div>
+
+
+                            {% endfor %}
+                          </div>
+                        </div>
+
+                        <!-- Modal footer -->
+                        <div class="modal-footer prof_page_btn1">
+                          <button type="button" class="btn prof_btns" data-bs-dismiss="modal">Cancel</button>
+                          <button type="submit" class="btn prof_btns" name="family_photo">Save</button>
+                        </div>
+                        <!-- <div class="modal-footer">
+                          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                          <button type="submit" name="family_photo" class="btn btn-primary pt-2 pb-2"
+                            style="width:100px;">Save</button>
+                          {% comment %} <button type="submit" name="food_taste_edit" class="btn btn-primary pt-2 pb-2"
+                            style="width:100px;">Save</button> {% endcomment %}
+                        </div> -->
+                      </form>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="col-md-12">
+            <div class="card mt-2 w-100">
+              <div class="card-header  bg-white prof_page_cardbord py-3">
+                {% comment %} <a class="btn w-100" data-bs-toggle="collapse" href="#collapseTwo"> {% endcomment %}
+                  <p class="float-left text-start mb-0" style="width:70%"><b>Gallery</b></p>
+                  <p class="float-left text-end mb-0" style="width:30%">
+                    <button type="button" class="btn pt-0 pb-0 ps-0 pe-0" data-bs-toggle="modal"
+                      data-bs-target="#myModalgallery">
+                      <i class="fas fa-pen prof_page_editico"></i>Edit
+                    </button>
+                  </p>
+                  {% comment %}
+                </a> {% endcomment %}
+              </div>
+              <div id="collapseTwo" class="collapse show" data-bs-parent="#accordion">
+                <div class="card-body row ">
+
+                  <!-- {% for key in lengthgallery %}
+                  <div class="col-md-3">
+                    <img src="{{ key }}" class="img-fluid" style="border-radius:5px;">
+
+                  </div>
+                  {% endfor %} -->
+
+                  <div class="mx-2">
+                    <img src="{{profile_pic}}" class="img-fluid img-rounded profile_im my-3" data-bs-toggle="modal" style="
+                    width: 211px;
+                    height: 189px;
+                    object-fit: cover;
+                ">
+
+                    {% for key in lengthgallery %}
+                    <img src="{{key}}" class="prof_page_gall my-3 mx-2" alt="pic1">
+                    {% endfor %}
+
+                    {% comment %} <img src="/media/images/prof_pic5.png" class="prof_page_gall my-3 mx-2" alt="pic1">
+
+                    <img src="/media/images/prof_pic8.png" class="prof_page_gall my-3 mx-2" alt="pic1">
+
+                    <img src="/media/images/girl1.png" class="prof_page_gall my-3 mx-2" class="" alt="pic1">
+
+                    <img src="/media/images/prof_pic4.png" class="prof_page_gall my-3 mx-2" alt="pic1">
+
+                    <img src="/media/images/prof_pic2.png" class="prof_page_gall my-3 mx-2" alt="pic1">
+
+                    <img src="/media/images/prof_pic3.png" class="prof_page_gall my-3 mx-2" alt="pic1">
+
+                    <img src="/media/images/girl11.png" class="prof_page_gall my-3 mx-2" alt="pic1"> {% endcomment %}
+                  
+                  </div>
+                </div>
+              </div>
+
+              <div class="modal" id="myModalgallery">
+                <div class="modal-dialog modal-lg">
+                  <div class="modal-content">
+
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                      <h4 class="modal-title">Gallery</h4>
+
+                    </div>
+                    <form method="POST" enctype="multipart/form-data">
+                      {% csrf_token %}
+                      <!-- Modal body -->
+                      <div class="modal-body">
+
+                        <div class="row your_interest">
+
+                          <div class="col-lg-6 ">
+                            <div class="file-drop-area mt-1 py-5">
+                              <div class="p-5">
+                                <!-- <span class="choose-file-button">Choose files</span> -->
+
+
+                                <div class="prof_page_gallery">
+                                  <i class="fas fa-image"></i>
+
+                                </div>
+                                <br>
+                                <p class="text-center" style="font-size:0.8em;">Drag Or Click Here To Upload Your ID</p>
+                                <input class="file-input" type="file" name="gallery" multiple
+                                  accept=".png,.jpg,.jpeg,.pdf,.doc,.docx">
+
+                              </div>
+                            </div>
+
+                          </div>
+                          <div class="col-lg-6">
+                            <div class="row my-3">
+                              <!-- {% for key in lengthgallery %}
+
+                              <div class="col-md-4 pa">
+
+                                <div class="poabsol">
+                                  <img src="{{ key }}" class="img-fluid" style="border-radius:5px;">
+                                  {% comment %} <input type="text" name="gal[]" value="{{ key }}"> {% endcomment %}
+
+                                  <p id="del_{{ forloop.counter }}">delete</p>
+                                </div>
+                              </div>
+                              {% endfor %} -->
+
+                              <div class="prof_page_galpos1 my-4"> 
+
+
+                                {% for key in lengthgallery %}
+                                <div class="prof_page_galpos">
+                                  <img src="{{key}}" alt="pic1">
+                                  <button class="gallerydelete" type="submit" value="{{key}}" name="gallerydelete"><i class="fas fa-trash-alt"></i></button>
+                                </div>
+                                {% endfor %}
+                                {% comment %} <div class="prof_page_galpos">
+                                  <img src="/media/images/prof_pic5.png" alt="pic1">
+                                  <i class="fas fa-trash-alt"></i>
+                                </div>
+
+
+                                <div class="prof_page_galpos">
+                                  <img src="/media/images/prof_pic8.png" alt="pic1">
+                                  <i class="fas fa-trash-alt"></i>
+                                </div>
+
+                                <div class="prof_page_galpos">
+                                  <img src="/media/images/prof_pic2.png" alt="pic1">
+                                  <i class="fas fa-trash-alt"></i>
+                                </div> {% endcomment %}
+
+
+                                {% comment %} <div class="prof_page_galpos">
+                                  <img src="/media/images/prof_pic3.png" alt="pic1">
+                                  <i class="fas fa-trash-alt"></i>
+                                </div>
+
+
+                                <div class="prof_page_galpos">
+                                  <img src="/media/images/prof_pic4.png" alt="pic1">
+                                  <i class="fas fa-trash-alt"></i>
+                                </div> {% endcomment %}
+
+
+                              </div>
+                            </div>
+
+                          </div>
+
+                        </div>
+                      </div>
+
+                      <!-- Modal footer -->
+                      <div class="modal-footer prof_page_btn1">
+                        <button type="button" class="btn prof_btns" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn prof_btns">Save</button>
+                      </div>
+                      <!-- <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                        <button name="gallery_photo" style="width:100px;" type="submit"
+                          class="mt-3 btn border pt-2 pb-2">Submit</button>
+                        {% comment %} <button type="submit" name="food_taste_edit" class="btn btn-primary pt-2 pb-2"
+                          style="width:100px;">Save</button> {% endcomment %}
+                      </div> -->
+                    </form>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  {% include 'footer.html' %}
+
+  <script>
+    <!-- JavaScript -->
+    const captureBtn = document.getElementById('capture-btn');
+    //const switchCameraBtn = document.getElementById('switch-camera-btn');
+    //const flashBtn = document.getElementById('flash-btn');
+    const takePhotoBtn = document.getElementById('take-photo-btn');
+    const cameraStream = document.getElementById('camera-stream');
+    const photoCanvas = document.getElementById('photo-canvas');
+    const context = photoCanvas.getContext('2d');
+
+    let currentCamera = 'user';
+    let currentFlash = 'off';
+
+    // Add event listeners for camera controls
+    //   switchCameraBtn.addEventListener('click', () => {
+    //     currentCamera = currentCamera === 'user' ? 'environment' : 'user';
+    //     startCamera();
+    //   });
+
+    //   flashBtn.addEventListener('click', () => {
+    //     currentFlash = currentFlash === 'off' ? 'on' : 'off';
+    //     setFlash();
+    //   });
+
+    takePhotoBtn.addEventListener('click', () => {
+      $("video#camera-stream").hide();
+      //$("#photoCanvas").addClass("canpoab");
+      context.drawImage(cameraStream, 0, 0, photoCanvas.width, photoCanvas.height);
+      const imageData = photoCanvas.toDataURL('image/png');
+
+
+      saveImage(imageData);
+
+
+      //stopCamera();
+      const video = document.querySelector('video');
+
+      // A video's MediaStream object is available through its srcObject attribute
+      const mediaStream = video.srcObject;
+
+      // Through the MediaStream, you can get the MediaStreamTracks with getTracks():
+      const tracks = mediaStream.getTracks();
+
+      // Tracks are returned as an array, so if you know you only have one, you can stop it with:
+      tracks[0].stop();
+
+      // Or stop all like so:
+      tracks.forEach(track => track.stop())
+
+    });
+
+    // Add event listener for capture button
+    captureBtn.addEventListener('click', () => {
+      startCamera();
+    });
+
+    // Start the camera stream
+    function startCamera() {
+      const constraints = {
+        video: { facingMode: currentCamera },
+        audio: false
+      };
+
+      navigator.mediaDevices.getUserMedia(constraints)
+        .then(stream => {
+          cameraStream.srcObject = stream;
+          cameraStream.play();
+          setFlash();
+        })
+        .catch(error => console.log(error));
+    }
+
+    // Set the flash mode
+    function setFlash() {
+      const track = cameraStream.srcObject.getVideoTracks()[0];
+
+      if (track) {
+        const imageCapture = new ImageCapture(track);
+        const photoCapabilities = imageCapture.getPhotoCapabilities().then(capabilities => {
+          if (capabilities.fillLightMode.includes(currentFlash)) {
+            imageCapture.setOptions({ fillLightMode: currentFlash });
+            flashBtn.innerText = `Flash: ${currentFlash}`;
+          } else {
+            currentFlash = 'off';
+            flashBtn.innerText = `Flash: Off`;
+          }
+        });
+      }
+    }
+
+    // Save the image data to the server
+    // function saveImage(imageData) {
+    //   //alert(imageData);
+    //   alert($("input[name='csrfmiddlewaretoken']").val());
+    //   csrf_field= $("input[name='csrfmiddlewaretoken']").val();
+    //   const xhr = new XMLHttpRequest();
+    //   xhr.open('POST', '/selfie_upload');
+    //   xhr.setRequestHeader('Content-Type', 'application/json');
+    //   xhr.send(JSON.stringify({ image: imageData,csrfmiddlewaretoken:csrf_field}));
+    //   console.log()
+    // }
+
+
+    function saveImage(imageData) {
+      //imdata = imageData.split(',')[1];
+      imdata = imageData;
+      $("#profile_picture").val(imdata);
+      csrf_field = $("input[name='csrfmiddlewaretoken']").val();
+      // Convert the imageData to a Blob object
+      const blob = dataURItoBlob(imageData);
+
+      // Create a new FormData object and append the blob to it
+      // const formData = new FormData();
+      // formData.append('image', blob, 'selfie.png');
+      // formData.append('csrf_field',csrf_field);
+      //alert(formData['image']);
+      // Send a POST request to the Django view that handles image upload
+      // const xhr = new XMLHttpRequest();
+      // xhr.open('POST', '/selfie_upload');
+      //xhr.send(formData);
+      //xhr.send(`profile_picture=${imdata}`);
+      console.log(imdata);
+      $("form").submit();
+    }
+
+    // Helper function to convert a data URI to a Blob object
+    function dataURItoBlob(dataURI) {
+      const byteString = atob(dataURI.split(',')[1]);
+      const mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+      const ab = new ArrayBuffer(byteString.length);
+      const ia = new Uint8Array(ab);
+      for (let i = 0; i < byteString.length; i++) { ia[i] = byteString.charCodeAt(i); } return new Blob([ab], {
+        type:
+          mimeString
+      });
+    } </script>
+    {% for i in mydata %}
+    <script>
+      	 $(document).ready(function(){
+                $("#add_more1").hide();
+              });
+              $(".add_more1").click(function(){
+                $("#add_more1").show();
+                $(".add_more1").hide();
+              });
+              function add_more_hide1(){
+                //alert();
+                $(".add_more1").show();
+                $("#add_more1").hide();
+              }
+
+              $(document).ready(function(){
+                $("#add_more2").hide();
+              });
+              $(".add_more2").click(function(){
+                $("#add_more2").show();
+                $(".add_more2").hide();
+              });
+              function add_more_hide2(){
+                //alert();
+                $(".add_more2").show();
+                $("#add_more2").hide();
+              }
+              $(document).ready(function(){
+                $("#add_more3").hide();
+              });
+              $(".add_more3").click(function(){
+                $("#add_more3").show();
+                $(".add_more3").hide();
+              });
+              function add_more_hide3(){
+                //alert();
+                $(".add_more3").show();
+                $("#add_more3").hide();
+              }
+      imagepath = [];
+
+      $(".pa").each(function () {
+        cla = $(this).attr('class');
+        clas = cla.split(" ");
+
+        classva = "." + clas[1] + " .poabsol img";
+        imagepath.push($(classva).attr('src'));
+
+        $(this).click(function () {
+          cla = $(this).attr('class');
+          clas = cla.split(" ");
+
+          classva = "." + clas[0] + " img";
+          imagepath.pop($(classva).attr('src'));
+          $(this).hide();
+          show();
+        });
+      });
+      show();
+      function show() {
+        //alert(imagepath.length)
+        //for(i=0;i<imagepath.length;i++){
+        //alert(imagepath[i]);
+        //}
+        $("#myModalgallery form .modal-body .gal").html('<input type="text" style="display:none;" name="ga[]" value="' + imagepath + '">');
+
+      }
+
+      /* switch on/off */
+      var switchStatus = false;
+      $("#switchonoff").on('change', function () {
+        if ($(this).is(':checked')) {
+          switchStatus = $(this).is(':checked');
+
+        }
+        else {
+          switchStatus = $(this).is(':checked');
+
+        }
+       
+        if (switchStatus == true) {
+          window.location.href = "/highlight_profile/{{i.uid}}";
+        }
+        
+      });
+
+
+
+    </script>
+    {% endfor %}
+    <style>
+      div#myModalgallery div#capture-btn {
+        width: 50%;
+      }
+    </style>
+{% comment %} AJAX {% endcomment %}
+{% for i in mydata %}
+<script>
+  $(document).ready(function(){
+    $("#speed").click(function(){
+      $.ajax({
+        url:"/profile_page/{{i.uid}}",
+        cache:false,
+      });
+    });
+  });
+</script>
+{% endfor %}
+<script>
+
+  function reloadIt() {
+      if (window.location.href.substr(-2) !== "?r") {
+          window.location = window.location.href + "?r";
+      }
+  }
+  
+  setTimeout('reloadIt()', 500)();
+  
+  </script>
+</body>
+
+</html>

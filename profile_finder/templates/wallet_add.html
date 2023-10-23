@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Amount</title>
+	<link rel="stylesheet" type="text/css" href="/media/css/wallet_add.css">
+	<link rel="stylesheet" href="/media/css/style.css">
+	<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+    integrity="    sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+  <!-- BS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+    crossorigin="anonymous"></script>
+  <!-- over -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,100;9..40,200;9..40,500&family=Qwitcher+Grypen&family=Rubik+Pixels&display=swap" rel="stylesheet">
+
+</head>
+<body class="sub_sec1">
+	{% include 'header.html' %}
+
+	{% include 'menu_header.html' %}
+	<div class="set_amt_par1 my-4">
+
+		<div class="set_amt_chi1 my-4">
+
+			<h4 class="m-3">Add amount in your wallet</h4>
+
+			<div class="set_amt_price">
+
+				<ul>
+					<li>₹ 50</li>
+					<li>₹ 100</li>
+					<li>₹ 150</li>
+					<li>₹ 200</li>
+					<li>₹ 250</li>
+				</ul>
+				
+			</div>
+
+			<p class="m-3">or you can add custom Amount*</p>
+
+			<input type="text" name="amount" class="user_amt m-3" placeholder="₹00.00">
+
+			<h4 class="m-3">Payment Method</h4>
+
+			<div class="set_amt_payment m-3">
+				<label>
+                    <input type="radio" name="payment">
+                    <span class="packmark"></span>
+                    UPI
+                </label>
+
+                <label>
+                    <input type="radio" name="payment">
+                    <span class="packmark"></span>
+                    Credit / Debit / ATM Card
+                </label>  
+
+                <label>
+                    <input type="radio" name="payment">
+                    <span class="packmark"></span>
+                   Net Banking
+                </label>  
+
+                <label>
+                    <input type="radio" name="payment">
+                    <span class="packmark"></span>
+                    Wallet
+                </label>   
+			</div>
+
+			<button class="mx-3 mb-4 mt-1">Continue</button>
+
+         	
+ 
+			
+		</div>
+
+
+
+		<div  class="set_amt_chi2 my-4">
+			<h4 class="m-3">Wallet Amount</h4>
+
+			<p class="m-3">Summary</p>
+
+			<p class="mx-3 my-4">N/A</p>
+
+			<p class="mx-3 my-4">Total per year</p>
+
+			<h3 class="mx-3 my-4" >₹ <span style="font-family: 'DM Sans', sans-serif;">00.00</span></h3>
+
+			<div class="m-4 set_amt_bord" ></div>
+
+			<button >Pay ₹ 00.00</button>
+
+			<div class="set_amt_foot my-5 mx-3">
+				<div>
+					<img src="high_prof_icon2.png">
+				</div>
+				<div>
+					<p>This is a secure 128-SSL encrypted connection. 
+Read our terms of service and other policies here.</p>
+				</div>
+			</div>
+			
+		</div>
+		
+	</div>
+
+
+
+	{% include 'footer.html' %}
+
+</body>
+</html>

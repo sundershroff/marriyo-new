@@ -1,0 +1,1249 @@
+<html>
+    <head>
+        <title></title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://jqueryvalidation.org/files/demo/site-demos.css">
+        <link rel="stylesheet" href="/media/css/style.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+        <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="    sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
+        crossorigin="anonymous" />
+       
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+
+        <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    </head>
+    <body>
+      
+      {% include 'header.html' %}
+      <section class="Prim_det_sec">
+
+        <div class="container">
+      
+          <div class="row py-4">
+      
+            <div class="col-lg-12">
+              <div class="Prim_det_sec1">
+                <h3>Primary Details</h3>
+              </div>
+            </div>
+      
+          </div>
+      
+          <div class="row py-2">
+      
+            <div class="col-lg-12">
+              <div class="Prim_det_sec2">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+              </div>
+            </div>
+      
+          </div>
+             <!-- form -->
+          <form method="POST" enctype="multipart/form-data" class="Prim_det_form" id="myform">
+            {% csrf_token %}
+            <div class="row my-3 Prim_det_form1">
+               <div class="col-lg-4">
+                 <label class="py-3">Marital Status<span>*</span></label>
+                  
+                <select class="form-select" name="marital_status" id="marital_status">
+                  <option value="default">Select</option>
+                  <option value="Unmarried">Unmarried</option>
+                  <option value="Divorce">Divorce</option>
+                  <option value="Awaiting Divorce">Awaiting Divorce</option>
+                  <option value="Widow/Widower">Widow/Widower</option>
+                  <option value="Annulled">Annulled</option>
+                </select>
+               </div> 
+      
+                <div class="col-lg-4">
+                 <label class="py-3">Physical & Mental Status<span>*</span></label>
+                  
+                <select class="form-select" name="physical_mental_status">
+                  <option value="default">Select</option>
+                  <option value="Normal & Healthy">Normal & Healthy</option>
+                  <option value="Handicap">Handicap</option>
+                  <option value="All is Not Well">All is Not Well</option>
+                </select>
+               </div>
+      
+                <div class="col-lg-4">
+                 <label class="py-3">Email<span>*</span></label>
+                  <input type="email" name="primary_email" placeholder="Email" class="form-control">
+               </div>
+            
+          </div>
+          <div class="row Prim_det_form1">
+      
+      
+                <div class="col-lg-4">
+                 <label class="py-3">Phone Number<span>*</span></label>
+                  <input type="number" name="primary_phone_number" placeholder="+91" class="form-control">
+               </div>
+                <div class="col-lg-4">
+                 <label class="py-3">Date of Birth<span>*</span></label>
+                  <input type="date" name="dob" placeholder="Select" class="form-control">
+               </div>
+            
+          </div>
+      
+          <div class="row my-5">
+             
+                <div class="col-lg-6">
+      
+                  <div class="Prim_det_sec3 my-3">
+                    <h6>Why you should marry? please Explain in brief</h6>
+      
+                    <div class="Prim_det_bord1">
+                      <textarea class="form-control mt-2" name="why_marry"></textarea>
+                    </div>
+                  </div>
+                  
+                </div>
+      
+                <div class="col-lg-6">
+                  <div class="Prim_det_sec3 my-3">
+                    <h6>Non you are wIlling to marry what is the exact reason behind the decision?</h6>
+                    
+                    <div class="Prim_det_bord1">
+                      <textarea class="form-control mt-2" name="behind_decision"></textarea>
+                    </div>
+                  </div>
+                </div>
+       
+      
+          </div>
+      
+          <div class="row my-2">
+      
+            <div class="col-lg-12">
+      
+              <div class="Prim_det_cont1 pb-4">
+      
+                <h4>Educations</h4>
+                
+              </div>
+              
+            </div>
+            
+          </div>
+      
+          <div class="row my-3 Prim_det_form1">
+      
+            <div class="col-lg-4">
+              <label class="py-3">School<span>*</span></label>
+                  
+                <input type="text" class="form-select" name="education_school">
+            
+            </div>
+      
+              <div class="col-lg-4">
+              <label class="py-3">Years<span>*</span></label>
+                <input type="date" name="education_year" placeholder="Select" class="form-control">	
+                
+            </div>
+      
+              <div class="col-lg-4">
+              <label class="py-3">Course<span>*</span></label>
+                  
+                <input type="text" class="form-select" name="education_course">
+                  
+            </div>
+            
+          </div>
+      
+          <div class="row my-3 Prim_det_form1">
+            <div class="col-lg-4">
+              <label class="py-3">Major<span>*</span></label>
+                  
+                <input type="text" class="form-select" name="education_major">
+                
+            </div>
+          </div>
+      
+          <div id="prim_add_more">
+      
+            <div class="row my-3 Prim_det_form1">
+      
+            <div class="col-lg-4">
+              <label class="py-3">School<span>*</span></label>
+                  
+                <input type="text" class="form-select" name="education_school">
+                 
+            </div>
+      
+              <div class="col-lg-4">
+              <label class="py-3">Years<span>*</span></label>
+                <input type="date"  name="education_year" placeholder="Select" class="form-control">	
+                
+            </div>
+      
+              <div class="col-lg-4">
+              <label class="py-3">Course<span>*</span></label>
+                  
+                <input type="text" class="form-select" name="education_course">
+                  
+            </div>
+            
+          </div>
+      
+          <div class="row my-3 Prim_det_form1">
+            <div class="col-lg-4">
+              <label class="py-3">Major<span>*</span></label>
+                  
+                <input type="text" class="form-select"  name="education_major">
+                 
+            </div>
+          </div>
+      
+            <div class="Prim_det_sec4 mt-4">
+      
+                          <button type="button" onclick="prim_add_more_hide()" >Close</button>
+      
+              </div>
+          </div>
+      
+          <div class="row my-5">
+            <div class="col-lg-4">
+      
+              <div class="Prim_det_sec4">
+      
+                          <button type="button" class="prim_add_more">Add More</button>
+              </div>
+              
+            </div>
+          </div>
+      
+          <div class="row my-5 Prim_det_form1">
+      
+            <div class="col-lg-12">
+              
+                    <div class="Prim_det_sec5">
+                      <h4>Are you Working Non?</h4>
+                      
+                      <div class="Prim_det_checkbox my-4">
+      
+                        
+                        <label class="primdet-checkbox">
+                        <input type="radio"  value="yes" name="are_you_working_now">
+                          <span class="primcheckmark "></span>
+                          <span>Yes</span>
+                        </label>
+                        
+                     
+                        <label class="primdet-checkbox">
+                        <input type="radio"  value="No" name="are_you_working_now">
+                          <span class="primcheckmark"></span>
+                          <span>No</span>
+                        </label>
+      
+                        <label id="are_you_working_now-error" class="error" for="are_you_working_now" style="display: flex;align-self: baseline;position: relative;right: 30px;"></label>
+      
+                      </div>
+      
+                    </div>
+      
+            </div>
+            
+          </div>
+      
+          <div class="row my-5 Prim_det_form1">
+            
+            <div class="col-lg-4">
+              <label class="py-3">Company Name<span>*</span></label>
+                  
+                <input type="text" class="form-select" name="company_name">
+                  
+            </div>
+      
+      
+            <div class="col-lg-4">
+              <label class="py-3">Position<span>*</span></label>
+                  
+                <input type="text" class="form-select" name="position">
+               
+            </div>
+
+            <div class="col-lg-4">
+              <label class="py-3">Profession<span>*</span></label>
+                  
+                <input type="text" class="form-select" name="profession">
+                
+            </div>
+      
+      
+            <div class="col-lg-4">
+              <label class="py-3">Salary Range (Yearly)<span>*</span></label>
+                  
+                <select class="form-select" name="salary_range">
+                  <option value="default">Select</option>
+                  <option value="10k - 20K">10k - 20K</option>
+                  <option value="default">Select</option>
+                  <option value="default">Select</option>
+                  <option value="default">Select</option>
+                  <option value="default">Select</option>
+                  <option value="default">Select</option>
+                  <option value="default">Select</option>
+                  <option value="default">Select</option>
+                </select>
+                 
+            </div>
+          </div>
+      
+          <div id="prim_add_more1">
+      
+            <div class="row my-4 Prim_det_form1">
+            
+            <div class="col-lg-4">
+              <label class="py-3">Company Name<span>*</span></label>
+                  
+                <input type="text" class="form-select" name="company_name">
+              
+            </div>
+      
+      
+            <div class="col-lg-4">
+              <label class="py-3">Position<span>*</span></label>
+                  
+                <input type="text" class="form-select" name="position">
+                  
+            </div>
+            
+            <div class="col-lg-4">
+              <label class="py-3">Profession<span>*</span></label>
+                  
+                <input type="text" class="form-select" name="profession">
+                  
+            </div>
+      
+            <div class="col-lg-4">
+              <label class="py-3">Salary Range (Yearly)<span>*</span></label>
+                  
+                <input type="number" class="form-select" name="salary_range">
+               
+            </div>
+          </div>
+      
+          <div class="Prim_det_sec4 mt-4">
+      
+                          <button type="button" onclick="prim_add_more_hide1()" >Close</button>
+      
+              </div>
+          </div>
+      
+          <div class="row my-5">
+            <div class="col-lg-4">
+      
+              
+          <div class="Prim_det_sec4 mt-4">
+      
+                          <button type="button" class="prim_add_more1">Add more</button>
+      
+              </div>
+              
+            </div>
+          </div>
+      
+          <div class="row my-2 ">
+      
+            <div class="col-lg-12">
+      
+              <div class="Prim_det_cont1 pb-4">
+      
+                <h4>Your Interest?</h4>
+                <p>choose your closest one from the List.</p>
+                
+              </div>
+              
+            </div>
+            
+          </div>
+      
+          <div class="my-3">
+      
+            
+              <div class="Prim_det_sec7">
+      
+                <input type="checkbox" id="music1" value="Music"  name="your_intrest">
+                          <label for="music1">Music</label>
+      
+                          <input type="checkbox" id="travel1" value="Travel"  name="your_intrest">
+                          <label for="travel1">Travel</label>
+      
+                          <input type="checkbox" id="gaming1" value="Gaming"  name="your_intrest">
+                          <label for="gaming1">Gaming</label>
+      
+                <input type="checkbox" id="reading1" value="Reading"  name="your_intrest">
+                          <label for="reading1">Reading</label>
+      
+                  <input type="checkbox" id="photograph1" value="Photograph"  name="your_intrest">
+                          <label for="photograph1">Photograph</label>
+      
+                  <input type="checkbox" id="writing1" value="Writing"  name="your_intrest">
+                          <label for="writing1">Writing</label>
+      
+                          <input type="checkbox" id="sports1" value="Sports"  name="your_intrest">
+                          <label for="sports1">Sports</label>
+      
+                          <input type="checkbox" id="artist1" value="Artist"  name="your_intrest">
+                          <label for="artist1">Artist</label>
+      
+                          <input type="checkbox" id="singing1" value="Singing"  name="your_intrest">
+                          <label for="singing1">Singing</label>
+      
+                          <input type="checkbox" id="custom1" value="Custom"  name="your_intrest">
+                          <label for="custom1">Custom</label>
+      
+                          <input type="checkbox" id="dancer1" value="Dancer"  name="your_intrest">
+                          <label for="dancer1">Dancer</label>
+      
+                          <input type="checkbox" id="speaking1" value="Speaking"  name="your_intrest">
+                          <label for="speaking1">Speaking</label>
+                          
+                
+                {% comment %} <input type="checkbox" id="watchmovie1" value="Watch Movie<"  name="your_intrest">
+                          <label for="watchmovie1">Watch Movie</label> {% endcomment %}
+      
+              </div>
+              <label id="your_intrest-error" class="error" for="your_intrest" style="
+              visibility: visible;
+          "></label>
+      
+          </div>
+      
+      
+          <div class="row my-5">
+      
+            <div class="col-lg-12">
+      
+              <div class="Prim_det_cont1 pb-4">
+      
+                <h4>Non Interest?</h4>
+                <p>choose your closest one from the List.</p>
+                
+              </div>
+              
+            </div>
+            
+          </div>
+      
+          <div class="my-3">
+      
+            
+              <div class="Prim_det_sec7">
+      
+                <input type="checkbox" id="music2" value="Music" name="non_intrest">
+                          <label for="music2">Music</label>
+      
+                          <input type="checkbox" id="travel2" value="Travel"  name="non_intrest">
+                          <label for="travel2">Travel</label>
+      
+                          <input type="checkbox" id="gaming2" value="Gaming"  name="non_intrest">
+                          <label for="gaming2">Gaming</label>
+      
+                <input type="checkbox" id="reading2" value="Reading"  name="non_intrest">
+                          <label for="reading2">Reading</label>
+      
+                  <input type="checkbox" id="photograph2" value="Photograph"  name="non_intrest">
+                          <label for="photograph2">Photograph</label>
+      
+                  <input type="checkbox" id="writing2" value="Writing"  name="non_intrest">
+                          <label for="writing2">Writing</label>
+      
+                          <input type="checkbox" id="sports2" value="Sports"  name="non_intrest">
+                          <label for="sports2">Sports</label>
+      
+                          <input type="checkbox" id="artist2" value="Artist"  name="non_intrest">
+                          <label for="artist2">Artist</label>
+      
+                          <input type="checkbox" id="singing2" value="Singing"  name="non_intrest">
+                          <label for="singing2">Singing</label>
+      
+                          <input type="checkbox" id="custom2" value="Custom"  name="non_intrest">
+                          <label for="custom2">Custom</label>
+      
+                          <input type="checkbox" id="dancer2" value="Dancer"  name="non_intrest">
+                          <label for="dancer2">Dancer</label>
+      
+                          <input type="checkbox" id="speaking2" value="Speaking"  name="non_intrest">
+                          <label for="speaking2">Speaking</label>
+                
+                {% comment %} <input type="checkbox" id="watchmovie2" value="Watch Movie"  name="non_intrest">
+                          <label for="watchmovie2">Watch Movie</label> {% endcomment %}
+                          
+      
+              </div>
+              <label id="non_intrest-error" class="error" for="non_intrest" style="
+              visibility: visible;
+          "></label>
+      
+          </div>
+      
+          <div class="row my-5">
+      
+            <div class="col-lg-12">
+      
+              <div class="Prim_det_cont1 pb-4">
+      
+                <h4>Complexion</h4>
+                <p>choose your closest one from the List.</p>
+                
+              </div>
+              
+            </div>
+            
+          </div>
+      
+          <div class="my-3">
+      
+            <div class="Prim_det_sec7">
+      
+                <input type="checkbox" id="dark" value="Dark" name="complexion">
+                          <label for="dark">Dark</label>
+      
+                          <input type="checkbox" id="medium" value="Medium" name="complexion">
+                          <label for="medium">Medium</label>
+      
+                          <input type="checkbox" id="moderatefair" value="Moderate FaIr" name="complexion">
+                          <label for="moderatefair">Moderate FaIr</label>
+      
+                <input type="checkbox" id="fair" value="FaIr" name="complexion">
+                          <label for="fair">FaIr</label>
+      
+                  <input type="checkbox" id="veryfair" value="Very Fair" name="complexion">
+                          <label for="veryfair">Very Fair</label>
+      
+      
+              </div>
+              <label id="complexion-error" class="error" for="complexion" style="
+              visibility: visible;
+          "></label>
+      
+          </div>
+      
+          <div class="row my-5 Prim_det_form1">
+      
+            <div class="col-lg-12">
+      
+              <div class="Prim_det_cont1 pb-4">
+      
+                <h4>Food Taste</h4>
+                <p>What Is the opinion of your daily diet plan after marriage</p>
+                          
+                 <div class="Prim_det_radio my-4">
+                   <input class="form-check-input" type="radio"  value="Veg" name="food_taste" id="flexRadioDefault1" checked>
+                           <label class="form-check-label" for="flexRadioDefault1">
+                           Veg
+                           </label>
+      
+                           <input class="form-check-input" type="radio"  value="Non-veg" name="food_taste" id="flexRadioDefault1">
+                           <label class="form-check-label" for="flexRadioDefault1">
+                           Non-Veg
+                           </label>
+       
+                           <input class="form-check-input" type="radio"  value="Both" name="food_taste" id="flexRadioDefault1">
+                           <label class="form-check-label" for="flexRadioDefault1">
+                           Both
+                           </label>
+                 </div>
+               
+                
+              </div>
+              
+            </div>
+            
+          </div>
+      
+          <div class="my-3">
+      
+      
+            <div class="Prim_det_sec7">
+      
+                <input type="checkbox" id="sweet"  value="Sweezt" name="food_taste">
+                          <label for="sweet">Sweezt</label>
+      
+                          <input type="checkbox" id="bitter"  value="Bitter"  name="food_taste">
+                          <label for="bitter">Bitter</label>
+      
+                          <input type="checkbox" id="umamI"  value="UmamI" name="food_taste">
+                          <label for="umamI">UmamI</label>
+      
+                <input type="checkbox" id="salt"  value="Salt" name="food_taste">
+                          <label for="salt">Salt</label>
+      
+                  <input type="checkbox" id="sour"  value="Sour" name="food_taste">
+                          <label for="sour">Sour</label>
+                          
+                          <input type="checkbox" id="spicy"  value="Spicy" name="food_taste">
+                          <label for="spicy">Spicy</label>
+      
+              </div>
+             
+      
+          </div>
+          <label id="food_taste-error" class="error" for="food_taste" style="
+          visibility: visible;
+      "></label>
+      
+          <div class="row my-5">
+      
+            <div class="col-lg-12">
+      
+              <div class="Prim_det_cont1 pb-4">
+      
+                <h4>What Is the opinion of your daily diet plan after marriage?</h4>
+                  
+              </div>
+              
+            </div>
+            
+          </div>
+      
+          <div class="my-3">
+      
+            <div class="Prim_det_sec7">
+      
+                <input type="checkbox" id="selfcooking" value="Self Cooking"  name="daily_diet_plan">
+                          <label for="selfcooking">Self Cooking</label>
+      
+                          <input type="checkbox" id="made" value="Made"  name="daily_diet_plan">
+                          <label for="made">Made</label>
+      
+                          <input type="checkbox" id="SorO" value="Spouse or Others"  name="daily_diet_plan">
+                          <label for="SorO">Spouse or Others</label>
+      
+                <input type="checkbox" id="OfO" value="Order from Outside"  name="daily_diet_plan">
+                          <label for="OfO">Order from Outside</label>
+      
+                  <input type="checkbox" id="Bf&b" value="Buy frozen & bakerIes"  name="daily_diet_plan">
+                          <label for="Bf&b">Buy frozen & bakerIes</label>
+                          
+                  
+              </div>
+              
+      
+          </div>
+          <label id="daily_diet_plan-error" class="error" for="daily_diet_plan" style="
+              visibility: visible;
+          "></label>
+      
+          <div class="row my-5">
+      
+            <div class="col-lg-12">
+      
+              <div class="Prim_det_cont1 pb-4">
+      
+                <h4>Are you willing to carrying after marriage?</h4>
+                  
+              </div>
+              
+            </div>
+            
+          </div>
+      
+          <div class="my-3">
+      
+            
+              <div class="Prim_det_sec7">
+                <input type="radio" id="Yes1" value="yes" name="carriying_after_marriage">
+                          <label for="Yes1">Yes</label>
+                          
+                          <input type="radio" id="No1" value="No" name="carriying_after_marriage">
+                          <label for="No1">Non</label>
+              </div>
+              <label id="carriying_after_marriage-error" class="error" for="carriying_after_marriage" style="
+              visibility: visible;
+          "></label>
+      
+      
+          </div>
+      
+          <div class="row my-5">
+      
+            <div class="col-lg-12">
+      
+              <div class="Prim_det_cont1 pb-4">
+      
+                <h4>Are you use tobacco products?</h4>
+                  
+              </div>
+              
+            </div>
+            
+          </div>
+      
+          <div class="my-3">
+      
+            
+            <div class="Prim_det_sec7">
+                <input type="radio" id="Yes2" value="yes"  name="tobacco">
+                          <label for="Yes2">Yes</label>
+                          
+                          <input type="radio" id="No2" value="No"  name="tobacco">
+                          <label for="No2">Non</label>
+              </div>
+              <label id="tobacco-error" class="error" for="tobacco" style="
+              visibility: visible;
+          "></label>
+      
+          </div>
+      
+          <div class="row my-5">
+      
+            <div class="col-lg-12">
+      
+              <div class="Prim_det_cont1 pb-4">
+      
+                <h4>Are you consume alcohol products?</h4>
+                  
+              </div>
+              
+            </div>
+            
+          </div>
+      
+          <div class="my-3">
+      
+            
+            <div class="Prim_det_sec7">
+                <input type="radio" id="Yes3" value="yes"  name="alcohol">
+                          <label for="Yes3">Yes</label>
+                          
+                          <input type="radio" id="No3" value="No"  name="alcohol">
+                          <label for="No3">Non</label>
+              </div>
+              <label id="alcohol-error" class="error" for="alcohol" style="
+              visibility: visible;
+          "></label>
+      
+          </div>
+              
+              <div class="row my-5">
+      
+            <div class="col-lg-12">
+      
+              <div class="Prim_det_cont1 pb-4">
+      
+                <h4>Are you use Illegal drugs ever in your life?</h4>
+                  
+              </div>
+              
+            </div>
+            
+          </div>
+      
+          <div class="my-3">
+      
+            
+            <div class="Prim_det_sec7">
+                <input type="radio" id="Yes4" value="yes"  name="drugs">
+                          <label for="Yes4">Yes</label>
+                          
+                          <input type="radio" id="No4" value="No"  name="drugs">
+                          <label for="No4">Non</label>
+              </div>
+              <label id="drugs-error" class="error" for="drugs" style="
+              visibility: visible;
+          "></label>
+      
+          </div>
+      
+          <div class="row my-5">
+      
+            <div class="col-lg-12">
+      
+              <div class="Prim_det_cont1 pb-4">
+      
+                <h4>Do you have any Criminal offences for allegations in any country ever in your life?</h4>
+                  
+              </div>
+              
+            </div>
+            
+          </div>
+      
+          <div class="row my-3">
+      
+            
+              <div class="Prim_det_sec7">
+                <input type="radio" id="Yes5" value="yes"  name="criminal_offence">
+                          <label for="Yes5">Yes</label>
+                          
+                          <input type="radio" id="No5" value="No"  name="criminal_offence">
+                          <label for="No5">Non</label>
+              </div>
+              <label id="criminal_offence-error" class="error" for="criminal_offence" style="
+              visibility: visible;
+          "></label>
+      
+              <div class="col-lg-4">
+                <label class="py-3" style="color:#38437C;font-weight:500;">Country<span>*</span></label>
+                  
+                <select class="form-select" name="primary_country">
+                  <option value="default">Select</option>
+                  {% for j in all %}
+                  <option value="{{j.name}}">{{j.name}}</option>
+                  {% endfor %} 
+                </select>
+              </div>
+      
+          </div>
+      
+           <div class="row my-5">
+      
+            <div class="col-lg-12">
+      
+              <div class="Prim_det_cont1 pb-4">
+      
+                <h4>Gallery</h4>
+      
+                <p>The File should be accepted only .PNG, .JPEG, .MP4 format.</p>
+                  
+              </div>
+              
+            </div>
+            
+          </div>
+      
+          <div class="row my-5 Prim_det_form1">
+      
+            <div class="col-lg-6">
+      
+              <div class="Prim_det_label my-3">
+                <label>Head Size (Selfie)<span>*</span></label>
+              </div>
+      
+              
+      
+                <div class="file-drop-area mt-1" style="background-color:white;">
+
+                  <img src="/media/images/prim_det_img1.png" class="prim_det_img1">
+               
+                  <p class="file-message my-3">Click and capture your Selfie</p>
+  
+                  <input class="file-input" type="file" name="selfie" accept=".png,.jpg,.jpeg,.pdf,.doc,.docx">
+              </div>
+                
+              
+               
+            </div>
+            <div class="col-lg-6">
+                      <div class="Prim_det_label my-3">
+                <label>Full Size</label>
+              </div>
+              <div class="file-drop-area mt-1" style="background-color:white;">
+
+                <img src="/media/images/prim_det_img2.png" alt="" class="prim_det_img1">
+             
+                <p class="file-message my-3">Drag or Click here to Upload</p>
+
+                <input class="file-input" type="file" name="full_size_image" accept=".png,.jpg,.jpeg,.pdf,.doc,.docx">
+            </div>
+               
+            </div>
+            
+          </div>
+      
+          <div class="row my-3 Prim_det_form1">
+      
+            <div class="col-lg-6">
+      
+              <div class="Prim_det_label my-3">
+                <label>Family Group size</label>
+              </div>
+      
+              <div class="file-drop-area mt-1" style="background-color:white;">
+
+                <img src="/media/images/prim_det_img2.png" alt="" class="prim_det_img1">
+             
+                <p class="file-message my-3">Drag or Click here to Upload</p>
+
+                <input class="file-input" type="file" name="family_image" accept=".png,.jpg,.jpeg,.pdf,.doc,.docx">
+            </div>
+               
+            </div>
+      
+          </div>
+      
+          <div class="row my-5 Prim_det_form1">
+      
+            <div class="col-lg-6">
+      
+              <div class="Prim_det_label my-3">
+                <label>Gallery Photos</label>
+              </div>
+      
+              <div class="file-drop-area mt-1" style="background-color:white;">
+
+                <div class="prim_det_images">
+                  <img src="/media/images/prim_det_img3.png" alt="">
+                <img src="/media/images/prim_det_img3.png" alt="">
+                <img src="/media/images/prim_det_img3.png" alt="">
+                </div>
+             
+                <p class="file-message my-3">Click here and upload your gallery Items</p>
+
+                <input class="file-input" type="file" name="gallery" multiple accept=".png,.jpg,.jpeg,.pdf,.doc,.docx">
+            </div>
+               
+            </div>
+            <div class="col-lg-6">
+                      <div class="Prim_det_label my-3">
+                <label>Horoscope (Optional)</label>
+              </div>
+              <div class="file-drop-area mt-1" style="background-color:white;">
+
+                <img src="/media/images/prim_det_img2.png" alt="" class="prim_det_img1">
+             
+                <p class="file-message my-3">Drag Or Click Here To Upload Your ID</p>
+
+                <input class="file-input" type="file" value="empty" name="horoscope" >
+                <!-- accept=".png,.jpg,.jpeg,.pdf,.doc,.docx" -->
+            </div>
+               
+            </div>
+            
+          </div>
+      
+          <div class="row my-5">
+      
+            <div class="col-lg-4">
+      
+              <div class="Prim_det_cont3">
+                <h4 class="py-3">ProFile Tagline</h4>
+                <textarea class="form-control" name="profile_tag"></textarea>
+              </div>
+              
+            </div>
+      
+            <div class="col-lg-4">
+              <div class="Prim_det_cont3">
+                <h4 class="py-3">I would Like to treat my partner</h4>
+                          <textarea class="form-control" name="treet_mypartner"></textarea>
+      
+              </div>
+            </div>
+      
+            <div class="col-lg-4">
+              <div class="Prim_det_cont3">
+                <h4 class="py-3">I expect the treat from theIr side</h4>
+                           <textarea class="form-control" name="treet_their_side"></textarea>
+              </div>
+            </div>
+            
+          </div>
+      
+      
+          <div class="row my-5 Prim_det_form1">
+      
+            <div class="col-lg-6">
+      
+              <div class="Prim_det_qes my-3">
+      
+                <h4>Are you an orphan?</h4>
+      
+                <div class="Prim_det_radio my-4">
+                   <input class="form-check-input" type="radio" value="yes" name="orphan" id="orphan">
+                           <label class="form-check-label" for="orphan">
+                           Yes
+                           </label>
+      
+                           <input class="form-check-input" type="radio" value="No"  name="orphan" id="orphan">
+                           <label class="form-check-label" for="orphan">
+                           Non
+                           </label>
+                           <label id="orphan-error" class="error" for="orphan" ></label>
+
+                       </div>
+                
+              </div>
+              
+            </div>
+      
+            <div class="col-lg-6">
+      
+              <div class="Prim_det_qes my-3">
+      
+                <h4>Are you an Disable?</h4>
+      
+                <div class="Prim_det_radio my-4">
+                   <input class="form-check-input" type="radio" value="yes"  name="disable" id="flexRadioDefault1">
+                           <label class="form-check-label" for="flexRadioDefault1">
+                           Yes
+                           </label>
+      
+                           <input class="form-check-input" value="No"  type="radio" name="disable" id="flexRadioDefault1">
+                           <label class="form-check-label" for="flexRadioDefault1">
+                           Non
+                           </label>
+                           <label id="disable-error" class="error" for="disable" ></label>
+                           </div>
+      
+                           <div class="row Prim_det_form1">
+                             <div class="col-lg-8">
+                               <label class="my-3">Which organs<span>*</span></label>
+                               <input type="text" class="form-select" name="whichorgan">
+                               
+                             </div>
+                             
+                    </div>
+                
+              </div>
+              
+            </div>
+            
+          </div>
+      
+          <div class="row py-5">
+      
+            <div class="col-lg-12">
+              <div class="Prim_det_btns">
+                <button type="submit" onclick="fun1()">Go Next</button>
+              </div>
+            </div>
+            
+          </div>
+      
+      
+      
+          </form>
+          <!-- over -->
+        </div>
+      
+      </section>
+          {% include 'footer.html' %}
+          <script>
+            $("#primary_options_country").select2();
+            // just for the demos, avoids form submit
+            jQuery.validator.setDefaults({
+              debug: true,
+              success: "valid"
+            });
+            $.validator.addMethod("valueNotEquals", function(value, element, arg){
+              return arg !== value;
+            }, "Select Any One");
+            $( "#myform" ).validate({
+              rules: {
+                marital_status: {
+                  valueNotEquals: "default"
+                },
+                physical_mental_status: {
+                  // required: true
+                  valueNotEquals: "default"
+                },
+                primary_phone_number: {
+                  required: true,
+                  number: true,
+                  minlength : 10,
+                  maxlength : 12,
+                },
+                primary_email: {
+                  required: true,
+                
+                },
+                dob:{
+                  required : true,
+                },
+                why_marry:{
+                  required:true,
+                },
+                behind_decision:{
+                  required : true,
+                },
+                education_school:{
+                  required:true,
+                },
+                education_year:{
+                  required:true,
+                  // minlength:4,
+                  // maxlength:4,
+                  // number :true
+                },
+                education_course:{
+                  required:true,
+                },
+                education_major:{
+                  required:true,
+                },
+                your_interest_choose:{
+                  required:true,
+                },
+                are_you_working_now:{
+                  required:true,
+                },
+                company_name:{
+                  required:true,
+                },
+                position:{
+                  required:true,
+                },
+                profession:{
+                  required:true,
+                },
+                salary_range:{
+                  // required:true,
+                  valueNotEquals: "default"
+                },
+                your_intrest:{
+                  required: true,
+			            // minlength: 1
+                },
+                not_interest_choose:{
+                  required:true,
+                },
+                
+                non_intrest:{
+                  required: true,
+			            // minlength: 1
+                },
+                complexion:{
+                  required:true,
+                },
+                food_taste:{
+                  required:true,
+                },
+                daily_diet_plan:{
+                  required: true,
+			            // minlength: 1
+                },
+                carriying_after_marriage:{
+                  required:true,
+                },
+                tobacco:{
+                  required:true,
+                },
+                alcohol:{
+                  required:true,
+                },
+                drugs:{
+                  required:true,
+                },
+                criminal_offence:{
+                  required:true,
+                },
+                primary_country:{
+                  valueNotEquals: "default"
+                },
+                selfie:{
+                  required: true, 
+                  accept: "image/*",
+                },
+                full_size_image:{
+                  required: true, 
+                  accept: "image/*",
+                },
+                // horoscope:{
+                //   accept: "image/*",
+                // },
+                family_image:{
+                  required: true, 
+                  accept: "image/*",
+                },
+                gallery:{
+                  required: true, 
+                  accept: "image/*",
+                },
+                profile_tag:{
+                  required:true,
+                },
+                treet_mypartner:{
+                  required:true,
+                },
+                treet_their_side:{
+                  required:true,
+                },
+                orphan:{
+                  required:true,
+                },
+                disable:{
+                  required:true,
+                },
+                whichorgan:{
+                  required:true,
+                },
+                // food_taste:{
+                //   required: true,
+			          //   // minlength: 1
+                // }
+
+              },
+              submitHandler: function (form) {
+                    console.log('test');
+                    form.submit();
+                }
+            });
+            </script>
+          <style>
+            .bg-image-vertical {
+                position: relative;
+                overflow: hidden;
+                background-repeat: no-repeat;
+                background-position: right center;
+                background-size: auto 100%;
+                }
+
+                @media (min-width: 1025px) {
+                    .h-custom-2 {
+                        height: 100%;
+                    }
+                }
+            </style>
+<script>
+          $(document).ready(function(){
+            $("#prim_add_more").hide();
+          });
+          $(".prim_add_more").click(function(){
+            $("#prim_add_more").show();
+            $(".prim_add_more").hide();
+          });
+          function prim_add_more_hide(){
+            //alert();
+            $(".prim_add_more").show();
+            $("#prim_add_more").hide();
+          }
+
+          $(document).ready(function(){
+            $("#prim_add_more1").hide();
+          });
+          $(".prim_add_more1").click(function(){
+            $("#prim_add_more1").show();
+            $(".prim_add_more1").hide();
+          });
+          function prim_add_more_hide1(){
+            //alert();
+            $(".prim_add_more1").show();
+            $("#prim_add_more1").hide();
+          }
+</script>
+<script type="text/javascript">
+  function fun1(event){
+  a = document.getElementById("countryone").value;
+  <!--document.getElementById("res").innerHTML=a;-->
+  c = {{ country|safe }};
+  position =c.indexOf(a);
+  <!--document.getElementById("res1").innerHTML=position;-->
+  stat = {{ states|safe }};
+  ttt = stat[position].states;
+  tt = "<select>";
+  for (i=0;i<ttt.length;i++){
+     tt += "<option>"+ttt[i].name+"</option>";
+  }
+       tt+="</select>";
+        document.getElementById("res2").innerHTML=tt;
+  }
+  
+  </script>
+  <script>
+    function fun1(){
+      document.getElementById('your_intrest_error').innerHTML=" Choose any one";
+    }
+  </script>
+    </body>
+</html>

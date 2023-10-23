@@ -1,0 +1,343 @@
+<html>
+    <head>
+        <title></title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://jqueryvalidation.org/files/demo/site-demos.css">
+        <link rel="stylesheet" href="/media/css/style.css">
+        <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="    sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
+        crossorigin="anonymous" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+        <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    </head>
+    <body>
+        {% include 'header.html' %}    
+        <section  class="contact_det_sec">
+
+            <div class="container">
+   
+                <div class="row py-4">
+                    <div class="contact_det_sec1">
+                       <h3>Contact Details</h3>
+                   </div>
+                </div>
+   
+                <div class="row py-4">
+   
+               <div class="col-lg-12">
+                   <div class="contact_det_sec2">
+                       <div class="bar2"></div>
+                       <div class="bar2"></div>
+                       <div class="bar2"></div>
+                   </div>
+               </div>
+               
+           </div>
+           <!-- form -->
+           <form method="POST" action="#" class="contact_det_form" enctype="multipart/form-data" id="myform">
+            {% csrf_token %}
+           <div class="row py-3">
+   
+               <div class="col-lg-12">
+   
+                   <div class="contact_det_cont1 pb-4">
+   
+                       <h4>Address</h4>
+                       
+                   </div>
+                   
+               </div>
+               
+           </div>
+           <div class="row my-2">
+   
+               
+   
+               <div class="col-lg-4">
+                   <label class="py-3">Father’s Name<span>*</span></label>
+                     <input type="text"  placeholder="Name" class="form-control" name="contact_father_name">	
+                       
+               </div>
+   
+               <div class="col-lg-4">
+                   <label class="py-3">Street<span>*</span></label>
+                     <input type="text"  placeholder="Street" class="form-control" name="contact_father_street">	
+               </div>
+   
+                   <div class="col-lg-4">
+                   
+                   <label class="py-3">PO. BOX / Zip Code<span>*</span></label>
+                     <input type="text"  placeholder="Zip Code" class="form-control" name="contact_father_zipcode">	
+               </div>
+               
+           </div>
+   
+           <div class="row my-3">
+               <div class="col-lg-4">
+                   <label class="py-3">Country</label>
+                         
+                       <select class="form-select" id="countryone" name="contact_father_country" onchange="fun1.call(this,event)">
+                           <option value = "default">Select</option>
+                           {% for j in all %}
+                           <option value="{{j.name}}">{{j.name}}</option>
+                           {% endfor %} 
+                       </select>
+               </div>
+               <div class="col-lg-4">
+                   <label class="py-3">City</label>
+                         
+                       <!-- <input type="text" class="form-select" name="contact_father_city"> -->
+                       <select class="form-select" id="res2" name="contact_father_city">
+                        <option value="default">Select</option>
+                        <script>
+                          stat = {{ states|safe }};
+                      ttt = stat[0].states;
+                      for (i=0;i<ttt.length;i++){
+                         tt = ttt[i].name;
+                         document.write("<option value="tt">"+tt+"</option>");
+                      }
+                    </script>
+                    </select>
+                     
+               </div>
+           </div>
+   
+           <div class="row py-4">
+   
+               <div class="col-lg-12">
+   
+                   <div class="contact_det_cont1 pb-4">
+   
+                       <h4>Other Details</h4>
+                       
+                   </div>
+                   
+               </div>
+               
+           </div>
+           <div class="row my-2">
+   
+               
+   
+               <div class="col-lg-4">
+                   <label class="py-3">Father’s House Name<span>*</span></label>
+                     <input type="text"  placeholder="Enter" class="form-control" name="contact_father_housename">	
+                       
+               </div>
+   
+               <div class="col-lg-4">
+                   <label class="py-3">Mother’s House Name<span>*</span></label>
+                     <input type="text"  placeholder="Enter" class="form-control" name="contact_mother_housename">	
+               </div>
+   
+                   <div class="col-lg-4">
+                   
+                   <label class="py-3">Contact Email ID</label>
+                     <input type="email"  placeholder="Enter" class="form-control" name="contact_email">	
+               </div>
+               
+           </div>
+   
+           <div class="row my-3">
+               <div class="col-lg-4">
+                   <label class="py-3">Phone Number</label>
+                     <input type="number"  placeholder="+971" class="form-control" name="contact_phone">	
+               </div>
+               <div class="col-lg-4">
+                   <label class="py-3">Whatsapp Number</label>
+                     <input type="number"  placeholder="+971" class="form-control" name="whatsapp">	
+               </div>
+           </div>
+   
+           <div class="row py-4">
+   
+               <div class="col-lg-12">
+   
+                   <div class="contact_det_cont1 pb-4">
+   
+                       <h4>Social Media</h4>
+                       
+                   </div>
+                   
+               </div>
+               
+           </div>
+   
+           <div class="row my-2">
+              <div class="col-lg-4"> 
+                      
+                      <div class="contact_det_cont2">
+                          <i class="fab fa-facebook-square"></i>
+                          <input type="text" name="facebook" value="" placeholder="URL" class="form-control">
+                      </div>
+   
+              </div>
+              <div class="col-lg-4"> 
+                      
+                      <div class="contact_det_cont2">
+                          <i class="fab fa-linkedin"></i>
+                          <input type="text" name="linkedin" placeholder="URL" class="form-control">
+                      </div>
+   
+              </div>
+              <div class="col-lg-4"> 
+                      
+                      <div class="contact_det_cont2">
+                          <i class="fab fa-instagram"></i>
+                          <input type="text" name="instagram" placeholder="URL" class="form-control">
+                      </div>
+   
+              </div>
+           </div>
+               <div class="row my-4">
+              <div class="col-lg-4"> 
+                      
+                      <div class="contact_det_cont2">
+                          <i class="fab fa-youtube fa-xs" style="font-size:1.2em;"></i>
+                          <input type="text" name="youtube" placeholder="URL" class="form-control">
+                      </div>
+   
+              </div>
+              <div class="col-lg-4"> 
+                      
+                      <div class="contact_det_cont2">
+                          <i class="fab fa-twitter"></i>
+                          <input type="text" name="twitter" placeholder="URL" class="form-control">
+                      </div>
+   
+              </div>
+              <div class="col-lg-4"> 
+                      
+                      <div class="contact_det_cont2">
+                          <i class="far fa-globe-americas"></i>
+                          <input type="text" name="website" placeholder="URL" class="form-control">
+                      </div>
+   
+              </div>
+           </div>
+   
+           <div class="row py-5">
+   
+               <div class="col-lg-12">
+                   <div class="contact_det_btns">
+                       <a href="#">Back</a>
+                       <button type="submit">Go Next</button>
+                   </div>
+               </div>
+               
+           </div>
+   
+   
+         </form>
+                <!-- end -->
+       </div>
+   
+           
+           
+       </section>
+   
+{% include 'footer.html' %}
+<script>
+    jQuery.validator.setDefaults({
+        debug: true,
+        success: "valid"
+    });
+    $.validator.addMethod("valueNotEquals", function(value, element, arg){
+        return arg !== value;
+    }, "Select Any One");
+    $( "#myform" ).validate({
+        rules: {
+            contact_father_name:{
+                required : true,
+            },
+            contact_father_street:{
+                required:true,
+            },
+            contact_father_zipcode:{
+                required:true,
+                number:true,
+                minlength:6,
+                maxlength:6
+            },
+            contact_father_country:{
+                valueNotEquals: "default"
+            },
+            contact_father_city:{
+                valueNotEquals: "default"
+            },
+            contact_father_housename:{
+                required:true,
+            },
+            contact_mother_housename:{
+                required:true,
+            },
+            contact_email:{
+                required:true,
+            },
+            contact_phone:{
+                required:true,
+                number:true,
+                minlength:10,
+                maxlength:12
+            },
+            whatsapp:{
+                required:true,
+                number:true,
+                minlength:10,
+                maxlength:12
+            }
+        },
+        submitHandler: function (form) {
+            console.log('test');
+            form.submit();
+        }
+    });
+    $(document).ready(function(){
+        $("#contact_country").select2();
+        $("#contact_city").select2();
+    });
+
+
+    $("#contact_country").change(function(){
+        country = $("#contact_country").val();
+        //alert(country);
+        $.ajax({
+        type: "GET",
+        url: "ccstatelist/"+country,
+        }).done(function (data_json) {
+        var data = JSON.parse(data_json);
+        state = "";
+        for (let i = 0; i < data.length; i++) {
+            console.log(data[i].name);
+            state+="<option value='"+data[i].name+"'>"+data[i].name+"</option>";
+        }
+        $("#contact_city").append(state);
+        });
+    });
+</script>
+<script type="text/javascript">
+    function fun1(event){
+    a = document.getElementById("countryone").value;
+    <!--document.getElementById("res").innerHTML=a;-->
+    c = {{ country|safe }};
+    position =c.indexOf(a);
+    <!--document.getElementById("res1").innerHTML=position;-->
+    stat = {{ states|safe }};
+    ttt = stat[position].states;
+    tt = "<select>";
+    for (i=0;i<ttt.length;i++){
+       tt += "<option>"+ttt[i].name+"</option>";
+    }
+         tt+="</select>";
+          document.getElementById("res2").innerHTML=tt;
+    }
+    
+    </script>
+</body>
+</html>

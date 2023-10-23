@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Happy couples 1</title>
+</head>
+<body>
+
+          
+    {% include 'header.html' %}
+
+    {% include 'menu_header.html' %}
+<h1>Happy couples</h1>
+{% for i in key %}
+<p>{{i.fullname}}</p>
+<p>{{i.date_of_marriage}}</p>
+<p>{{i.words_about_marrio}}</p>
+{% endfor %}
+{% for j in image %}
+<img src="{{j.marriage_photos.url}}" width="20%" height="20%">
+{% endfor %}
+
+</body>
+</html>

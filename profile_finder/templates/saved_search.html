@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="/media/css/saved_search.css">
+	<link rel="stylesheet" href="/media/css/style.css">
+	<!-- BS -->
+
+ <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="    sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+	<!-- over -->
+	<title>Save Search</title>
+</head>
+<body>
+	{% include 'header.html' %}
+	{% include 'menu_header.html' %}
+<div class="save_search_sty">
+
+	<div class="container">
+
+	    <div class="row save_search_sec1 pt-4">
+
+	    	<div class="col-md-3 save_search_cont1">
+	    		<h4>Save Search</h4>
+	    		<h6><span>{{my_sav|length}}</span> Saved Preference Available</h6>
+	    	</div>
+			<div class="col-md-5">	    	
+
+			</div>
+			<div class="row col-md-4" style="justify-content: end;column-gap: 10px;">
+			<div class="col-md-6 save_search_cont2" style="display: contents;">
+	    		<a href="#" data-bs-toggle="modal" data-bs-target="#your_pref" style="
+				background: linear-gradient(118deg,blue,#b772b7 );
+				color: white;
+				border-color: white;
+			">ADD </a>
+	    	</div>
+	    	<div class="col-md-6 save_search_cont2" style="display: contents;">
+				<a href="#">Filter <i class="fas fa-filter"></i></a>
+	    	</div>
+	    	</div>
+	    </div>
+		<!-- The Modal -->
+<div class="modal" id="your_pref">
+	<div class="modal-dialog modal-lg">
+	  <div class="modal-content">
+  
+		<!-- Modal Header -->
+		
+		<form method="POST"  class="fill_det_forms" enctype="multipart/form-data" id="myform">
+			{% csrf_token %}
+			{% comment %} {{ form }} {% endcomment %}
+
+		<!-- Modal body -->
+		<div class="modal-body">
+				<div class="row">
+		
+				  <div class="col-lg-12">
+					<label class="py-3" >Tag Name<span>*</span></label>
+					<input type="text" placeholder="Enter Your Tag Line" name="tag" class="form-control">
+					
+				  </div>
+				  <div class="col-lg-6">
+		<br>
+					<input type="text" placeholder="Country" name="country" class="form-control" style="text-align: center;">
+				  </div>
+				  <div class="col-lg-6">
+		
+					<br>
+					<input type="text" placeholder="City" name="city" class="form-control" style="text-align: center;">
+				  
+				  </div>
+				  <div class="col-lg-12"><br>
+				       <div class="col-lg-12" style="
+					   display: flex;
+					   column-gap: 4%;">
+					     <label class="py-3">Age<span>*</span></label>
+					     <input type="number" style="width: 90px;" name="age" class="form-control">
+				      </div>
+				  </div>
+				  <div class="my-3">
+					<label class="py-3" for="dark">Skin</label>
+					<div class="Prim_det_sec7">
+						
+						<input type="checkbox" id="dark" value="Dark" name="complexion">
+								  <label for="dark">Dark</label>
+			  
+								  <input type="checkbox" id="medium" value="Medium" name="complexion">
+								  <label for="medium">Medium</label>
+			  
+								  <input type="checkbox" id="moderatefair" value="Moderate FaIr" name="complexion">
+								  <label for="moderatefair">Moderate FaIr</label>
+			  
+						<input type="checkbox" id="fair" value="FaIr" name="complexion">
+								  <label for="fair">FaIr</label>
+			  
+						  <input type="checkbox" id="veryfair" value="Very Fair" name="complexion">
+								  <label for="veryfair">Very Fair</label>
+			  
+			  
+					  </div>
+			  
+				  </div>
+				  <div class="col-lg-12">
+					<label class="py-3">Gender<span>*</span></label>
+					<select class="form-select" name="gender">
+					  <option value="">Select</option>
+					  <option value="male">Male</option>
+					  <option value="female">Female</option>
+					</select>
+				  </div>
+				  <div class="col-lg-12"><br>
+					<div class="col-lg-12" style="
+					display: flex;
+					column-gap: 4%;">
+					  <label class="py-3">Denomination<span>*</span></label>
+					  <select class="form-select" name="denomination">
+						<option value="">Select</option>
+						<option value="Hindu">Hindu</option>
+						<option value="christian">christian</option>
+						<option value="Muslim">Muslim</option>
+					  </select>
+				   </div>
+			   </div>
+				  </div>
+				 
+				  
+		</div>
+  
+		<!-- Modal footer -->
+		<!-- <div class="modal-footer"> -->
+			<div class="row" style="margin-bottom: 8px;">
+				<div class="col-md-2"></div>
+			<div class="col-md-4" style="text-align: center;">
+		  <button type="button" style="background: linear-gradient(118deg,blue,#b772b7 );
+		  color: white;
+		  border-color: white;" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
+		</div>
+		<div class="col-md-4" style="text-align: center;">
+		  <button type="submit" style="background: linear-gradient(118deg,blue,#b772b7 );
+		  color: white;
+		  border-color: white;" class="btn btn-danger" data-bs-dismiss="modal">Save</button>
+		</div>
+		<div class="col-md-2"></div>
+	</div>
+</form>
+	</div>
+	  <!-- </div> -->
+	</div>
+  </div>
+        <!-- over -->
+	    <!-- sec1 -->
+	    <div class="row">
+{% for i in my_sav %}
+	    	<div class="col-lg-12 mt-3">
+
+	    		<div class="save_search_sec2 p">
+
+	    			<div class="save_search_cont3">
+	    				<a href="#"> <i class="fas fa-folder-minus"></i></a>
+	    			</div>
+
+	    			<div class="save_search_cont4 p-2" style="
+					width: -webkit-fill-available;
+				">
+	    				<h4>{{i.tag}}</h4>
+	    				<p>20 Profiles</p>
+
+	    				<div class="row save_search_cont5" style="
+						display: flex;
+						row-gap: 27px;
+					">
+							<div class="col-md-4" style="
+							display: contents;
+						">
+	    					<a href="#" data-bs-toggle="modal" data-bs-target="#{{i.id}}_your_edit"  class="save_search_edit">Edit</a>
+						</div>
+						<div class="col-md-8" style="
+						display: contents;
+					">
+					{% for id in mydata %}
+	    				<a href="/saved_search_view_profile/{{id.uid}}/{{i.id}}" class="save_search_VP" style="
+						text-align: center;
+					">View Profile</a>
+					{% endfor %}
+						</div>
+	    				</div>
+	    			</div>
+					<form method="POST" style="display: contents;">
+						{% csrf_token %}
+					<div class="save_search_cont2" style="display: flow;align-self: center;width: -webkit-fill-available;text-align: center;">
+	    		<button type="submit" name="remove" value="{{i.id}}" style="display: contents;"><a style="
+				background: linear-gradient(118deg,blue,#b772b7 );
+				color: white;
+				border-color: white;
+			">REMOVE </a></button>
+	    	</div>
+		</form>
+	    			
+	    		</div>
+	    		
+	    	</div>
+			
+
+
+<div class="modal" id="{{i.id}}_your_edit">
+	<div class="modal-dialog modal-lg">
+	  <div class="modal-content">
+  
+		<!-- Modal Header -->
+		
+		<form method="POST"  class="fill_det_forms" enctype="multipart/form-data" id="myform">
+			{% csrf_token %}
+			{% comment %} {{ form }} {% endcomment %}
+
+		<!-- Modal body -->
+		<div class="modal-body">
+				<div class="row">
+		          <input type="text" value="{{i.id}}" name="id" style="visibility: hidden;">
+				  <div class="col-lg-12">
+					<label class="py-3" >Tag Name<span>*</span></label>
+					<input type="text" placeholder="Enter Your Tag Line" name="tag_edit" value="{{i.tag}}" class="form-control">
+					
+				  </div>
+				  <div class="col-lg-6">
+		<br>
+					<input type="text" placeholder="Country" name="country" class="form-control" value="{{i.country}}" style="text-align: center;">
+				  </div>
+				  <div class="col-lg-6">
+		
+					<br>
+					<input type="text" placeholder="City" name="city" class="form-control" value="{{i.city}}" style="text-align: center;">
+				  
+				  </div>
+				  <div class="col-lg-12"><br>
+				       <div class="col-lg-12" style="
+					   display: flex;
+					   column-gap: 4%;">
+					     <label class="py-3">Age<span>*</span></label>
+					     <input type="number" style="width: 90px;" name="age" value="{{i.age}}" class="form-control">
+				      </div>
+				  </div>
+				  <div class="my-3">
+					<label class="py-3" for="dark">Skin</label>
+					<div class="Prim_det_sec7">
+						
+						<input type="checkbox" id="dark" value="Dark"  name="complexion">
+								  <label for="dark">Dark</label>
+			  
+								  <input type="checkbox" id="medium" value="Medium" name="complexion">
+								  <label for="medium">Medium</label>
+			  
+								  <input type="checkbox" id="moderatefair" value="Moderate FaIr" name="complexion">
+								  <label for="moderatefair">Moderate FaIr</label>
+			  
+						<input type="checkbox" id="fair" value="FaIr" name="complexion">
+								  <label for="fair">FaIr</label>
+			  
+						  <input type="checkbox" id="veryfair" value="Very Fair" name="complexion">
+								  <label for="veryfair">Very Fair</label>
+			   
+			  
+					  </div>
+			  
+				  </div>
+				  <div class="col-lg-12">
+					<label class="py-3">Gender<span>*</span></label>
+					<select class="form-select"  name="gender">
+					  <option value="{{i.gender}}">{{i.gender}}</option>
+					  <option value="">select</option>
+					  <option value="male">Male</option>
+					  <option value="female">Female</option>
+					</select>
+				  </div>
+				  <div class="col-lg-12"><br>
+					<div class="col-lg-12" style="
+					display: flex;
+					column-gap: 4%;">
+					  <label class="py-3">Denomination<span>*</span></label>
+					  <select class="form-select"  name="denomination">
+						<option value="{{i.denomination}}">{{i.denomination}}</option>
+						<option value="">select</option>
+						<option value="Hindu">Hindu</option>
+						<option value="christian">christian</option>
+						<option value="Muslim">Muslim</option>
+					  </select>
+				   </div>
+			   </div>
+				  </div>
+				 
+				  
+		</div>
+  
+		<!-- Modal footer -->
+		<!-- <div class="modal-footer"> -->
+			<div class="row" style="margin-bottom: 8px;">
+				<div class="col-md-2"></div>
+			<div class="col-md-4" style="text-align: center;">
+		  <button type="button" style="background: linear-gradient(118deg,blue,#b772b7 );
+		  color: white;
+		  border-color: white;" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
+		</div>
+		<div class="col-md-4" style="text-align: center;">
+		  <button type="submit" style="background: linear-gradient(118deg,blue,#b772b7 );
+		  color: white;
+		  border-color: white;" class="btn btn-danger" data-bs-dismiss="modal">Save</button>
+		</div>
+		<div class="col-md-2"></div>
+	</div>
+</form>
+	</div>
+	  <!-- </div> -->
+	</div>
+  </div>
+
+
+
+	    	{% endfor %}
+	    </div>
+		<!-- over -->
+	</div>
+	
+</div>
+
+{% include 'footer.html' %}
+</body>
+</html>

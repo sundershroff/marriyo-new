@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="/media/css/match_list_person.css">
+  <link rel="stylesheet" href="/media/css/style.css">
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+    integrity="    sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+  <!-- BS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+    crossorigin="anonymous"></script>
+  <!-- over -->
+  <title></title>
+</head>
+
+<body>
+
+  {% comment %} <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+    data-bs-target="#match_list_person">click</button> {% endcomment %}
+    {% for key in neww %}
+  <div class="modal fade modal-xl" id="{{key.target}}" tabindex="-1" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header prof_personal_det">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Profile Details</h1>
+          <button type="button" data-bs-dismiss="modal" aria-label="Close"><i class="fas fa-times-circle"></i></button>
+        </div>
+        <div class="modal-body prof_personal_pos2">
+          <div class="row">
+
+            <div class="col-lg-6">
+
+              <div class="prof_personal_sec1">
+
+                <div class="prof_personal_det_img">
+                  <img src="{{key.profile_picture}}">
+                </div>
+
+                <div class="prof_personal_det_cont mx-4">
+
+                  <h6>ID:{{key.uid}}</h6>
+                  <h4>{{key.name}}</h4>
+                  <h6>{{key.address}}</h6>
+                  <h6 class="mb-3">{{key.profile_tag}}</h6>
+
+                  <button type="button" class="prof_personal_btn1 my-2" id="prof_sec1"><i class="far fa-hand-paper"
+                      style="color: #f2f2f3;"></i> Say HI</button>
+                  <button class="prof_personal_btn2 my-2"><i class="far fa-hand-paper"></i> HI Later</button>
+
+                </div>
+
+              </div>
+
+            </div>
+
+            <div class="col-lg-6">
+
+              <div class="prof_personal_sec2">
+
+                <div class="prof_personal_sec3">
+                  {% for key in mydata %}
+                  <h4>Need To Contact Her ?</h4>
+                  <h6>Click here to subscribe for more details</h6>
+                  <button class="my-3"><a class="subs" href="/package_matching/{{key.uid}}">SubscrIbe Now</a></button>
+{% endfor %}
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="row my-5">
+
+            <div class="container ">
+              <div class="card">
+                <h5 class="card-header bg-white py-3" style="font-weight:700;">About Me</h5>
+                <div class="card-body bg-white p-4" style="color:#6E717A;">
+
+
+                  <p class="card-text">{{ key.about_candidate }} </p>
+
+                  {% comment %} <p class="card-text">Lorem Ipsum Is simply dummy text of the printing and typesetting industry. Lorem
+                    Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took
+                    a galley of type and scrambled it to make a type specimen book. It has survived not only five
+                    centuries, </p> {% endcomment %}
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <div class="row my-3">
+
+            <div class="container ">
+              <div class="card">
+                <h5 class="card-header bg-white py-3" style="font-weight:700;">Current Status</h5>
+                <div class="card-body bg-white p-4" style="color:#6E717A;">
+
+
+                  <p class="card-text">{{ key.current_status }}</p>
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+          <!-- remain -->
+
+          <div class="row my-3">
+            <div class="container ">
+              <div class="card">
+                <h5 class="card-header bg-white py-3" style="font-weight:700;">General Details</h5>
+                <div class="card-body bg-white p-4">
+
+
+                  <div class="row">
+
+                    <div class="col-lg-4">
+
+                      <div class="prof_personal_chi1 px-3 py-3 my-2">
+                        <p>Height (cm)</p>
+
+                        <h5>{{ key.height }}</h5>
+                      </div>
+
+                    </div>
+
+                    <div class="col-lg-4">
+
+                      <div class="prof_personal_chi1 px-3 py-3 my-2">
+                        <p>Weight (cm)</p>
+                        <h5>{{ key.weight }}</h5>
+                      </div>
+
+                    </div>
+
+                    <div class="col-lg-4">
+                      <div class="prof_personal_chi1 px-3 py-3 my-2">
+                        <p>Age</p>
+                        <h5>{{ key.age }}</h5>
+                      </div>
+                    </div>
+
+
+                  </div>
+
+                  <div class="row my-3">
+
+                    <div class="col-lg-4">
+
+                      <div class="prof_personal_chi1 px-3 py-3 my-2">
+                        <p>Blood Type</p>
+
+                        <h5>{{ key.blood_group }}</h5>
+                      </div>
+
+                    </div>
+
+                    <div class="col-lg-4">
+
+                      <div class="prof_personal_chi1 px-3 py-3 my-2">
+                        <p>Martial Status</p>
+                        <h5>{{ key.marital_status }}</h5>
+                      </div>
+
+                    </div>
+
+                    <div class="col-lg-4">
+                      <div class="prof_personal_chi1 px-3 py-3 my-2">
+                        <p>Religion</p>
+                        <h5>{{ key.religion }}</h5>
+                      </div>
+                    </div>
+
+
+                  </div>
+                  <div class="row my-3">
+
+                    <div class="col-lg-4">
+
+                      <div class="prof_personal_chi1 px-3 py-3 my-2">
+                        <p>Email</p>
+
+                        <h5>{{ key.primary_email }}</h5>
+                      </div>
+
+                    </div>
+
+                    <div class="col-lg-4">
+
+                      <div class="prof_personal_chi1 px-3 py-3 my-2">
+                        <p>Phone</p>
+                        <h5>{{ key.primary_phone_number }}</h5>
+                      </div>
+
+                    </div>
+
+                    {% comment %} <div class="col-lg-4">
+                      <div class="prof_personal_chi1 px-3 py-3 my-2">
+                        <p>Education & Qualification</p>
+                        <h5>BMMS</h5>
+                      </div>
+                    </div> {% endcomment %}
+                    <div class="col-lg-4">
+
+                      <div class="prof_personal_chi1 px-3 py-3 my-2">
+                        <p>Orphan</p>
+                        <h5>{{ key.orphan }}</h5>
+                      </div>
+
+                    </div>
+
+                  </div>
+
+                  <div class="row my-3">
+
+                    {% comment %} <div class="col-lg-4">
+
+                      <div class="prof_personal_chi1 px-3 py-3 my-2">
+                        <p>Profession</p>
+
+                        <h5>right</h5>
+                      </div>
+
+                    </div> {% endcomment %}
+
+                  
+
+
+
+
+                  </div>
+
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <div class="row my-4">
+          <div class="container ">
+            <div class="card">
+              <h5 class="card-header bg-white py-3" style="font-weight:700;">Family Details</h5>
+              <div class="card-body bg-white p-4">
+  
+                 
+                  <div class="row">
+                    
+                    <div class="col-lg-4">
+
+                      <div class="prof_personal_chi2 px-3 py-3 my-2">
+                        <p>Father Name</p>
+
+                      <h5>{{ key.father_name }}</h5>
+                      </div>
+                      
+                    </div>
+
+                    <div class="col-lg-4">
+
+                      <div class="prof_personal_chi2 px-3 py-3 my-2">
+                        <p>Father Native Place</p>
+                        <h5>{{ key.father_country }}</h5>
+                      </div>
+                      
+                    </div>
+
+                    <div class="col-lg-4">
+                      <div class="prof_personal_chi2 px-3 py-3 my-2">
+                        <p>Father Job</p>
+                      <h5>{{ key.father_job }}</h5>
+                      </div>
+                    </div>
+
+                    
+                  </div>
+
+                   <div class="row my-3">
+                    
+                    <div class="col-lg-4">
+
+                      <div class="prof_personal_chi2 px-3 py-3 my-2">
+                        <p>Mother Name</p>
+
+                      <h5>{{ key.mother_name }}</h5>
+                      </div>
+                      
+                    </div>
+
+                    <div class="col-lg-4">
+
+                      <div class="prof_personal_chi2 px-3 py-3 my-2">
+                        <p>Mother Native Place</p>
+                      <h5>{{ key.mother_country }}</h5>
+                      </div>
+                      
+                    </div>
+
+                    <div class="col-lg-4">
+                      <div class="prof_personal_chi2 px-3 py-3 my-2">
+                        <p>Mother Job</p>
+                      <h5>{{ key.mother_job }}</h5>
+                      </div>
+                    </div>
+
+                    
+                  </div>
+                    <div class="row my-3">
+                    
+                    <div class="col-lg-4">
+
+                      <div class="prof_personal_chi2 px-3 py-3 my-2">
+                        <p>Father Family Name</p>
+
+                      <h5>{{ key.father_family_name }}</h5>
+                      </div>
+                      
+                    </div>
+
+                    <div class="col-lg-4">
+
+                      <div class="prof_personal_chi2 px-3 py-3 my-2">
+                        <p>Mother Family Name</p>
+                      <h5>{{ key.mother_family_name }}</h5>
+                      </div>
+                      
+                    </div>
+
+                    
+
+                    
+                  </div>
+
+                    
+
+                  </div>
+   
+            </div>
+            </div>
+         </div>
+
+         <div class=" row my-4">
+
+          <div class="container">
+
+            <div class="card">
+
+              <h5 class="card-header bg-white py-3" style="font-weight:700;">Sibling's Details</h5>
+
+              <div class="card-body bg-white p-4">
+
+                <div class="prof_personal_chi3">
+
+                  
+
+                    <div class="prof_personal_chi4">
+
+                      <div class="row px-3">
+
+                      <div class="col-lg-4 px-3 py-3 my-2">
+
+                      <p>Name</p>
+
+                      <h5>{{ key.sibling_name_0 }}</h5>
+                      {% if key.sibling_name_1%}
+                      <h5>{{ key.sibling_name_1 }}</h5>
+                      {% endif %}
+                      
+                    </div>
+
+                    <div class="col-lg-4 px-3 py-3 my-2">
+
+                      <p>Type Of Relation</p>
+
+                      <h5>{{ key.sibling_relation_0 }}</h5>
+                      {% if key.sibling_relation_1%}
+                      <h5>{{ key.sibling_relation_1 }}</h5>
+                      {% endif %}
+                      
+                    </div>
+
+                    <div class="col-lg-4 px-3 py-3 my-2">
+
+                      <p>Jobs</p>
+
+                      <h5>{{ key.sibling_occupation_0 }}
+                        {% if key.sibling_occupation_1%}
+                        <h5>{{ key.sibling_occupation_1 }}</h5>
+                        {% endif %}
+                      </div>
+                       
+                      
+                    </div>
+
+                     </div>
+                      
+                    </div>
+                    
+                 
+                  
+                </div>
+                
+              </div>
+              
+            </div>
+            
+          </div>
+
+         <div class="row my-4">
+
+          <div class="container">
+
+            <div class="card">
+
+              <h5 class="card-header bg-white py-3" style="font-weight:700;">Educations</h5>
+
+              <div class="card-body px-3 py-3 mx-3 prof_personal_chi5">
+
+                <div class="row">
+
+                  <div class="col-lg-4">
+
+                    <p>School Name</p>
+
+                    <h6 class="my-3">{{ key.education_school_0 }}</h6>
+
+                    {% if key.education_school_1%}
+                    <h6 class="my-3">{{ key.education_school_1 }}</h6>
+                    {% endif %}
+
+                  
+                    
+                  </div>
+
+                  <div class="col-lg-4">
+
+                    <p>School Year</p>
+
+                    <h6 class="my-3">{{ key.education_year_0 }}</h6>
+
+                    {% if key.education_year_1%}
+                    <h6 class="my-3">{{ key.education_year_1 }}</h6>
+                    {% endif %}
+
+                  
+                    
+                  </div>
+
+                  <div class="col-lg-4">
+
+                    <p>Course/Degree</p>
+
+                    <h6 class="my-3">{{ key.education_course_0 }}</h6>
+
+                    {% if key.education_course_1%}
+                    <h6 class="my-3">{{ key.education_course_1 }}</h6>
+                    {% endif %}
+
+                  
+                    
+                  </div>
+                  
+                </div>
+                <!-- over -->
+    
+      
+                
+              </div>
+              
+            </div>
+            
+          </div>
+           
+         </div>
+
+         <div class="row my-4">
+
+          <div class="container">
+
+            <div class="card">
+
+              <h5 class="card-header bg-white py-3" style="font-weight:700;">Work Experience</h5>
+
+              <div class="card-body px-3 py-3 mx-3 prof_personal_chi5">
+
+                <div class="row">
+
+                  <div class="col-lg-4">
+
+                    <p>Company Name</p>
+
+                    <h6 class="my-3">{{ key.company_name_0 }}</h6>
+                    {% if key.company_name_1%}
+                    <h6 class="my-3">{{ key.company_name_1 }}</h6>
+                    {% endif %}
+
+
+                  
+                    
+                  </div>
+
+                  <div class="col-lg-4">
+
+                    <p>Position</p>
+
+                    <h6 class="my-3">{{ key.position_0 }}</h6>
+                    {% if key.position_1%}
+                    <h6 class="my-3">{{ key.position_1 }}</h6>
+                    {% endif %}
+
+                  
+                    
+                  </div>
+
+                  <div class="col-lg-4">
+
+                    <p>Tenure (month)</p>
+
+                    <h6 class="my-3">{{ key.salary_range_0 }}</h6>
+                    {% if key.salary_range_1%}
+                    <h6 class="my-3">{{ key.salary_range_1 }}</h6>
+                    {% endif %}
+
+                  
+                    
+                  </div>
+                  
+                </div>
+                <!-- over -->
+               
+                
+              </div>
+              
+            </div>
+            
+          </div>
+           
+         </div>
+
+         <div class="row my-4">
+
+         <div class="container">
+
+          <div class="card">
+
+            <h5 class="card-header bg-white py-3" style="font-weight:700;">My Interest</h5>
+
+            <div class="card-body p-5">
+
+              <div class="prof_personal_par1">
+              {% if key.intrest_0 %}
+                <h6>{{key.intrest_0}}</h6>
+                {% endif %}
+              {% if key.intrest_1 %}
+                <h6>{{key.intrest_1}}</h6>
+                {% endif %}
+              {% if key.intrest_2 %}
+                <h6>{{key.intrest_2}}</h6>
+                {% endif %}
+                {% if key.intrest_3 %}
+                <h6>{{key.intrest_3}}</h6>
+                {% endif %}
+                {% if key.intrest_4 %}
+                <h6>{{key.intrest_4}}</h6>
+                {% endif %}
+                {% if key.intrest_5 %}
+                <h6>{{key.intrest_5}}</h6>
+                {% endif %}
+                {% if key.intrest_6 %}
+                <h6>{{key.intrest_6}}</h6>
+                {% endif %}
+                {% if key.intrest_7 %}
+                <h6>{{key.intrest_7}}</h6>
+                {% endif %}
+                {% if key.intrest_8 %}
+                <h6>{{key.intrest_8}}</h6>
+                {% endif %}
+                {% if key.intrest_9 %}
+                <h6>{{key.intrest_9}}</h6>
+                {% endif %}
+                {% if key.intrest_10 %}
+                <h6>{{key.intrest_10}}</h6>
+                {% endif %}
+                {% if key.intrest_11 %}
+                <h6>{{key.intrest_11}}</h6>
+                {% endif %}
+             
+                
+              </div>
+              
+            </div>
+            
+          </div>
+           
+         </div> 
+           
+         </div>
+
+            <div class="row my-4">
+
+         <div class="container">
+
+          <div class="card">
+
+            <h5 class="card-header bg-white py-3" style="font-weight:700;">My Non-Interest</h5>
+
+            <div class="card-body p-5">
+
+              <div class="prof_personal_par1">
+                {% if key.non_intrest_0 %}
+                <h6>{{key.non_intrest_0}}</h6>
+                {% endif %}
+              {% if key.non_intrest_1 %}
+                <h6>{{key.non_intrest_1}}</h6>
+                {% endif %}
+              {% if key.non_intrest_2 %}
+                <h6>{{key.non_intrest_2}}</h6>
+                {% endif %}
+                {% if key.non_intrest_3 %}
+                <h6>{{key.non_intrest_3}}</h6>
+                {% endif %}
+                {% if key.non_intrest_4 %}
+                <h6>{{key.non_intrest_4}}</h6>
+                {% endif %}
+                {% if key.non_intrest_5 %}
+                <h6>{{key.non_intrest_5}}</h6>
+                {% endif %}
+                {% if key.non_intrest_6 %}
+                <h6>{{key.non_intrest_6}}</h6>
+                {% endif %}
+                {% if key.non_intrest_7 %}
+                <h6>{{key.non_intrest_7}}</h6>
+                {% endif %}
+                {% if key.non_intrest_8 %}
+                <h6>{{key.non_intrest_8}}</h6>
+                {% endif %}
+                {% if key.non_intrest_9 %}
+                <h6>{{key.non_intrest_9}}</h6>
+                {% endif %}
+                {% if key.non_intrest_10 %}
+                <h6>{{key.non_intrest_10}}</h6>
+                {% endif %}
+                {% if key.non_intrest_11 %}
+                <h6>{{key.non_intrest_11}}</h6>
+                {% endif %}
+                
+              </div>
+              
+            </div>
+            
+          </div>
+           
+         </div> 
+           
+         </div>
+
+                <div class="row my-4">
+
+         <div class="container">
+
+          <div class="card">
+
+            <h5 class="card-header bg-white py-3" style="font-weight:700;">Complexion</h5>
+
+            <div class="card-body p-5">
+
+              <div class="prof_personal_par1">
+                {% if key.complexion_0 %}
+                <h6>{{key.complexion_0}}</h6>
+                {% endif %}
+              {% if key.complexion_1 %}
+                <h6>{{key.complexion_1}}</h6>
+                {% endif %}
+              {% if key.complexion_2 %}
+                <h6>{{key.complexion_2}}</h6>
+                {% endif %}
+                {% if key.complexion_3 %}
+                <h6>{{key.complexion_3}}</h6>
+                {% endif %}
+                {% if key.complexion_4 %}
+                <h6>{{key.complexion_4}}</h6>
+                {% endif %}
+                {% if key.complexion_5 %}
+                <h6>{{key.complexion_5}}</h6>
+                {% endif %}
+                
+              </div>
+              
+            </div>
+            
+          </div>
+           
+         </div> 
+           
+         </div>
+
+                  <div class="row my-4">
+
+         <div class="container">
+
+          <div class="card">
+
+            <h5 class="card-header bg-white py-3" style="font-weight:700;">Food Taste</h5>
+
+            <div class="card-body p-5">
+
+              <div class="prof_personal_par1">
+
+                {% if key.food_taste_0 %}
+                <h6>{{key.food_taste_0}}</h6>
+                {% endif %}
+              {% if key.food_taste_1 %}
+                <h6>{{key.food_taste_1}}</h6>
+                {% endif %}
+              {% if key.food_taste_2 %}
+                <h6>{{key.food_taste_2}}</h6>
+                {% endif %}
+                {% if key.food_taste_3 %}
+                <h6>{{key.food_taste_3}}</h6>
+                {% endif %}
+                {% if key.food_taste_4 %}
+                <h6>{{key.food_taste_4}}</h6>
+                {% endif %}
+                {% if key.food_taste_5 %}
+                <h6>{{key.food_taste_5}}</h6>
+                {% endif %}
+                
+              </div>
+              
+            </div>
+            
+          </div>
+           
+         </div> 
+           
+         </div>
+
+
+         </div>
+
+        </div>
+
+
+        <div id="prof_sec2">
+
+          <h1>Please Subscribe</h1>
+          <h3 class="my-3">Open only for paid subscribers</h3>
+          <button type="button" class="prof_personal_btn3 my-4">Subscribe Now</button>
+          <button type="button" class="prof_personal_btn4 " id="prof_sec3">Cancel</button>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+{% endfor %}
+
+  <script>
+
+    document.getElementById("prof_sec1").addEventListener("click", function () {
+      document.getElementById("prof_sec2").style.display = "flex";
+
+    });
+
+    document.getElementById("prof_sec3").addEventListener("click", function () {
+      document.getElementById("prof_sec2").style.display = "none";
+    });
+
+  </script>
+
+
+
+</body>
+
+</html>

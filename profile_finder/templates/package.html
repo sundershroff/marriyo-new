@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- CSS -->
+	<link rel="stylesheet" type="text/css" href="/media/css/package.css">
+	<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="    sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+	<!-- BS -->
+
+
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+	<!-- over -->
+	<title>Happy Couple</title>
+</head>
+<body>
+
+<!-- Button trigger modal -->
+{% comment %} <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  Launch demo modal
+</button> {% endcomment %}
+
+<!-- Modal -->
+<div class="modal fade modal-xl" id="uploadYours" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content p-5" >
+      <div class="modal-header" style="border:none;">
+        <h1 class="modal-title fs-3" id="exampleModalLabel">Happy Couples Packages</h1>
+    
+      </div>
+	  <form method="POST">
+		{% csrf_token %}
+      <div class="modal-body">
+         <div class="pack_sec1 py-3">
+
+
+         	<div class="pack_sec2 my-3">
+         		<h3 class="my-3">Images</h3>
+         		<h5 class="my-3">2 month Validity</h5>
+         		<h1 class="my-3">₹ 1,500</h1>
+         		<button class="my-3">Add</button>
+         	</div>
+
+         	<div class="pack_sec3 my-3">
+         		<h3 class="my-3">Video</h3>
+         		<h5 class="my-3">2 month Validity</h5>
+         		<h1 class="my-3">₹ 2,500</h1>
+         		<button class="my-3">Add</button>
+         	</div>
+
+         	<div class="pack_sec4 my-3">
+         		<h3 class="my-3">Image & Video</h3>
+         		<h5 class="my-3">2 month Validity</h5>
+         		<h1 class="my-3">₹ 3,500</h1>
+         		<button  class="my-3"><input type="radio" value="3,500" name="add">Add</button>
+         	</div>
+         	
+         </div>
+	
+      </div>
+	  {% for i in mydata %}
+      <div class="modal-footer pack_sec5" style="border:none;">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button type="submit" class="btn btn-primary"><a  style="
+			color: white;
+			text-decoration: none;
+		">Continue</a></button>
+		{% comment %} href="/package_amount/{{i.uid}}" {% endcomment %}
+      </div>
+	  {% endfor %}
+	</form>
+    </div>
+  </div>
+</div>
+
+
+</body>
+</html>
+

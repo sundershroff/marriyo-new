@@ -1,0 +1,886 @@
+<html>
+    <head>
+        <title></title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://jqueryvalidation.org/files/demo/site-demos.css">
+        <link rel="stylesheet" href="/media/css/style.css">
+        <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="    sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
+        crossorigin="anonymous" />
+       
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+      
+        <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    </head>
+    <body>
+      <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+      <div class="fill_det_sec1">
+
+        <div class="container">
+          <div class="row">
+    
+          <div class="col-lg-12 py-5">
+    
+            <div class="fill_det_img1 py-5">
+              <img src="/media/images/Logo_2.png">
+            </div>
+            
+          </div>
+          
+           </div>
+    
+           <div class="row">
+             <div class="col-lg-12">
+    
+            <div class="fill_det_cont1">
+              <h4>Fill the details</h4>
+              <p>Enter your Basic details for the better service!</p>
+            </div>
+            
+          </div>
+           </div>
+    
+          <form method="POST"  class="fill_det_forms" enctype="multipart/form-data" id="myform">
+            {% csrf_token %}
+            {% comment %} {{ form }} {% endcomment %}
+            <div class="row">
+    
+              <div class="col-lg-4">
+                <label class="py-3">Name<span>*</span></label>
+                <input type="text" name="name" class="form-control">
+                
+              </div>
+              <div class="col-lg-4">
+                <label class="py-3">Address<span>*</span></label>
+                <input type="text" name="address" class="form-control">
+              </div>
+              <div class="col-lg-4">
+    
+                <label class="py-3">Age<span>*</span></label>
+                <input type="number" name="age" class="form-control">
+              
+              </div>
+              
+            </div>
+    
+            <div class="row mt-3">
+    
+              <div class="col-lg-4">
+                <label class="py-3">Height in CM<span>*</span></label>
+                <input type="number" name="height" class="form-control">
+                
+              </div>
+              <div class="col-lg-4">
+                <label class="py-3">Weight in KG/LB<span>*</span></label>
+                <input type="number" name="weight" class="form-control">
+              </div>
+              <div class="col-lg-4">
+                <label class="py-3">Gender<span>*</span></label>
+                <select class="form-select" name="gender">
+                  <option value="">Select</option>
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                </select>
+              </div>
+              <div class="col-lg-4">
+                <label class="py-3">Marital Status<span>*</span></label>
+                
+              <select class="form-select" name="marital">
+                <option value="">Select</option>
+                <option value="Single">Single</option>
+                <option value="Married">Married</option>
+              </select>
+              </div>
+              
+            </div>
+    
+              <div class="row mt-3">
+    
+              <div class="col-lg-4">
+                <label class="py-3">Physical Status<span>*</span></label>
+                <select class="form-select" name="physical">
+                  <option value="">Select</option>
+                  <option value="Good">Good</option>
+                  <option value="Physically Challenge">Physically Challenge</option>
+              </select>
+                
+              </div>
+              <div class="col-lg-4">
+                <label class="py-3">Enter Birth Place<span>*</span></label>
+                <input type="text" class="form-select" name="birth_place">
+              </div>
+              <div class="col-lg-4">
+                <label class="py-3">Birth Country<span>*</span></label>
+                <select id="" class="form-select" name="birth_country">
+                  <option value="">Select</option>
+                  {% for j in all %}
+                  <option value="{{j.name}}">{{j.name}}</option>
+                  {% endfor %} 
+              </select>
+              </div>
+              
+            </div>
+            <div class="row mt-3">
+    
+              <div class="col-lg-4">
+                <label class="py-3">Birth Time<span>*</span></label>
+                <input type="time" class="form-select" name="birth_time">
+                
+                
+              </div>
+              <div class="col-lg-4">
+                <label class="py-3">Birth City<span>*</span></label>
+                <input type="text" class="form-select" name="birth_city">
+              </div>
+              <div class="col-lg-4">
+                <label class="py-3">Country of Origin<span>*</span></label>
+                <select id="" class="form-select" name="origin">
+                  <option value="">Select</option>
+                  {% for j in all %}
+                  <option value="{{j.name}}">{{j.name}}</option>
+                  {% endfor %} 
+              </select>
+              </div>
+              
+            </div>
+            <div class="row mt-3">
+    
+              <div class="col-lg-4">
+                <label class="py-3">ResIding Country<span>*</span></label>
+                <select id="countryone" class="form-select" name="r_country" onchange="fun1.call(this,event)">
+                  <option value="">Select</option>
+                  {% for j in all %}
+                  <option value="{{j.name}}">{{j.name}}</option>
+                  {% endfor %} 
+              </select>
+                
+              </div>
+              <div class="col-lg-4">
+                <label class="py-3">ResIding State<span>*</span></label>
+                <select id="res2" class="form-select" name="r_state">
+                  <option value="">Select</option>
+                  <script>
+                    stat = {{ states|safe }};
+                ttt = stat[0].states;
+                for (i=0;i<ttt.length;i++){
+                   tt = ttt[i].name;
+                   document.write("<option value="tt">"+tt+"</option>");
+                }
+              </script>
+              </select>
+              </div>
+              <div class="col-lg-4">
+                <label class="py-3">Denomination<span>*</span></label>
+                <input type="text" class="form-select" name="denomination">
+              </div>
+              
+            </div>
+            <div class="row mt-3">
+    
+              <div class="col-lg-4">
+                <label class="py-3">Religion<span>*</span></label>
+                <select class="form-select" name="religion">
+                  <option value="">Select</option>
+                  <option value="Hindu">Hindu</option>
+                  <option value="Christian">Christian</option>
+                  <option value="Muslim">Muslim</option>
+              </select>
+                
+              </div>
+
+              <div class="col-lg-4">
+                <label class="py-3">Blood Group<span>*</span></label>
+                <input type="text" class="form-select" name="blood_group">
+                
+              </div>
+
+              <div class="col-lg-4">
+                <label class="py-3">ResIding Status<span>*</span></label>
+                <input type="text" class="form-select" name="r_status">
+              </div>
+              
+            </div>
+    
+            <div class="row mt-5 mb-5">
+    
+              <div class="col-lg-4">
+                
+    
+                <div class="file-drop-area mt-1" style="background-color:white;">
+
+                  <img src="/media/images/proid_img1.png" alt="">
+               
+                  <p class="file-message my-3">Drag Or Click Here To Upload Your ID</p>
+
+                  <input class="file-input" type="file" name="id_card_2" >
+                  <!-- accept=".png,.jpg,.jpeg,.pdf,.doc,.docx" -->
+              </div>
+    
+    
+              </div>
+              
+            
+            </div>
+    
+            <div class="fill_det_sec3 py-5">
+    
+            <div class="row mt-5 ">
+    
+              <h6>Address of ParIsh / Temple /<br> Mosque</h6>
+              
+              <div class="col-lg-4">
+                <label class="py-3">Name of parIsh / Temple / Mosque*</label>
+                <input type="text" name="temple_name" class="form-control">
+              </div>
+    
+              <div class="col-lg-4">
+                <label class="py-3">Street<span>*</span></label>
+                <input type="text" class="form-select" name="temple_street">
+              </div>
+    
+              <div class="col-lg-4">
+                <label class="py-3">Post Street<span>*</span></label>
+                <input class="form-select"  name="temple_post_code">
+              </div>
+            
+                </div>
+    
+                <div class="row mt-3">
+    
+                  <div class="col-lg-4">
+                <label class="py-3">Country<span>*</span></label>
+                <select class="form-select" name="temple_country">
+                  <option value="">Select</option>
+                  {% for j in all %}
+                  <option value="{{j.name}}">{{j.name}}</option>
+                  {% endfor %} 
+              </select>
+              </div>
+    
+              <div class="col-lg-4">
+                <label class="py-3">City<span>*</span></label>
+                <input type="text" class="form-select" name="temple_city">
+                 
+              </div>
+    
+              <div class="col-lg-4">
+                <label class="py-3">Phone Number<span>*</span></label>
+                <input type="number"  class="form-control" name="temple_phone_number">
+              </div>		  	    	
+                </div>
+                 <div class="row mt-3">
+    
+                  <div class="col-lg-4">
+                <label class="py-3">Diocese<span>*</span></label>
+                <input type="text" class="form-select" name="temple_diocese">
+                 
+              </div>
+    
+              <div class="col-lg-4">
+                <label class="py-3">Local Admin<span>*</span></label>
+                <input type="text" class="form-select" name="temple_local_admin">
+               
+              </div>
+                </div>
+                 </div>
+    
+                 <div class="fill_det_sec3 py-5">
+    
+            <div class="row mt-5 ">
+    
+              <h6>Emergency <br>Contact</h6>
+              
+    
+                <div class="row mt-3">
+    
+                <div class="col-lg-4">
+                <label class="py-3">Name<span>*</span></label>
+                <input type="text" name="emergency_name" class="form-control">
+              </div>
+    
+              <div class="col-lg-4">
+                <label class="py-3">Type Of Relation<span>*</span></label>
+                <input type="text" class="form-select" name="emergency_relation">
+                  
+              </div>
+    
+              <div class="col-lg-4">
+                <label class="py-3">Phone Number<span>*</span></label>
+                <input type="number" name="emergency_phone_number" class="form-control">
+              </div>		  	    	
+                </div>
+    
+                 <div class="row mt-3">
+    
+                  <div class="col-lg-4">
+                <label class="py-3">Email ID<span>*</span></label>
+                <input type="email" name="emergency_email" class="form-control">
+              </div>
+    
+              <div class="col-lg-4">
+                <label class="py-3">Marital Status<span>*</span></label>
+                <select class="form-select" name="emergency_marital_status">
+                  <option value="">Select</option>
+                  <option value="Single">Single</option>
+                  <option value="Married">Married</option>
+              </select>
+              </div>
+    
+              <div class="col-lg-4">
+                <label class="py-3">Occupations<span>*</span></label>
+                <input type="text" name="emergency_occupations" class="form-control">
+              </div>
+    
+                </div>
+                <div  id="add_more">
+                 <div class="row mt-3">
+    
+                <div class="col-lg-4">
+                <label class="py-3">Name<span>*</span></label>
+                <input type="text" name="emergency_name" class="form-control">
+              </div>
+    
+              <div class="col-lg-4">
+                <label class="py-3">Type Of Relation<span>*</span></label>
+                <input type="text" class="form-select" name="emergency_relation">
+                  
+              </div>
+    
+              <div class="col-lg-4">
+                <label class="py-3">Phone Number<span>*</span></label>
+                <input type="number" name="emergency_phone_number" class="form-control">
+              </div>		  	    	
+                </div>
+    
+                 <div class="row mt-3 ">
+    
+                  <div class="col-lg-4">
+                <label class="py-3">Email ID<span>*</span></label>
+                <input type="email" name="emergency_email" class="form-control">
+              </div>
+    
+              <div class="col-lg-4">
+                <label class="py-3">Marital Status<span>*</span></label>
+                <select class="form-select" name="emergency_marital_status">
+                  <option value="">Select</option>
+                  <option value="Single">Single</option>
+                  <option value="Married">Married</option>
+              </select>
+              </div>
+    
+              <div class="col-lg-4">
+                <label class="py-3">Occupations<span>*</span></label>
+                <input type="text" name="emergency_occupations" class="form-control">
+              </div>
+    
+              <div class="col-lg-4 my-4">
+                <div class="fill_det_sec4">
+                <button type="button" onclick="add_more_hide()">Close</button>
+                  </div>
+              </div>	
+                            
+                </div>
+                </div>
+              
+                 </div>
+    
+                </div>
+    
+                 <div class="row my-5">
+                    <div class="col-lg-12">
+                      <div class="fill_det_sec4">
+                        <button type="button" class="add_more">Add more</button>
+                      </div>
+                    </div>
+                 </div>
+    
+                <div class="row py-5">
+                    <div class="col-lg-12">
+                      <div class="fill_det_sec5">
+                        <button type="button" class="fill_det_btn1">Back</button>
+                        <button class="fill_det_btn2" type="submit">Go Next</button>
+                      </div>
+                    </div>
+                 </div>
+    
+    
+                <div class="row py-5">
+                    <div class="col-lg-12">
+                      <div class="fill_det_sec6">
+                        <p>If don’t want to continue now?<a href="#">Logout Non</a></p>
+                      </div>
+                    </div>
+                 </div>
+    
+          </form>
+          <!-- end -->
+        </div>
+        
+      </div>
+    
+          {% include 'footer.html' %}
+          <script>
+            // $(document).ready(function() {
+            //   url = window.location.href;
+            //   var url = url .split( '?' );
+            //   if(url[1] == "myself"){
+            //     $("#upid").hide();
+            //     a = 
+            //     {% for key in da %}
+            //       //console.log({{key.dob}});
+            //       $("#dob").val("{{key.dob}}");
+            //     {% endfor %}
+                
+            //   }
+            //     $('#birth_country').select2();
+            //     $("#birth_place").select2();
+            //     $("#birth_city").select2();
+            //     $("#orgin").select2();
+            //     $("#r_country").select2();
+            //     $("#r_state").select2();
+            //     $("#country").select2();
+            //     $("#city").select2();
+            // });
+            // $("#birth_country").change(function(){
+            //   country = $("#birth_country").val();
+            //   //alert(country);
+            //   $.ajax({
+            //     type: "GET",
+            //     url: "statelist/"+country,
+            //   }).done(function (data_json) {
+            //     var data = JSON.parse(data_json);
+            //     state = "";
+            //     for (let i = 0; i < data.length; i++) {
+            //       //console.log(data[i].name);
+            //       state+="<option value='"+data[i].id+"'>"+data[i].name+"</option>";
+            //     }
+            //     $("#birth_place").append(state);
+            //   });
+            // });
+
+
+            // $("#orgin").change(function(){
+            //   country = $("#orgin").val();
+            //   //alert(country);
+            //   $.ajax({
+            //     type: "GET",
+            //     url: "rstatelist/"+country,
+            //   }).done(function (data_json) {
+            //     var data = JSON.parse(data_json);
+            //     state = "";
+            //     for (let i = 0; i < data.length; i++) {
+            //       //console.log(data[i].name);
+            //       state+="<option value='"+data[i].id+"'>"+data[i].name+"</option>";
+            //     }
+            //     $("#r_country").append(state);
+            //   });
+            // });
+
+            // $("#birth_place").change(function(){
+            //   country = $("#birth_place").val();
+            //   //alert(country);
+            //   $.ajax({
+            //     type: "GET",
+            //     url: "citylist/"+country,
+            //   }).done(function (data_json) {
+            //     var data = JSON.parse(data_json);
+            //     state = "";
+            //     for (let i = 0; i < data.length; i++) {
+            //       //console.log(data[i].name);
+            //       state+="<option value='"+data[i].city+"'>"+data[i].city+"</option>";
+            //     }
+            //     $("#birth_city").append(state);
+            //   });
+            // });
+
+
+            // $("#r_country").change(function(){
+            //   country = $("#r_country").val();
+            //   //alert(country);
+            //   $.ajax({
+            //     type: "GET",
+            //     url: "rcitylist/"+country,
+            //   }).done(function (data_json) {
+            //     var data = JSON.parse(data_json);
+            //     state = "";
+            //     for (let i = 0; i < data.length; i++) {
+            //       //console.log(data[i].name);
+            //       state+="<option value='"+data[i].city+"'>"+data[i].city+"</option>";
+            //     }
+            //     $("#r_state").append(state);
+            //   });
+            // });
+
+            // $("#country").change(function(){
+            //   country = $("#country").val();
+            //   alert(country);
+            //   $.ajax({
+            //     type: "GET",
+            //     url: "citylistp/"+country,
+            //   }).done(function (data_json) {
+            //     var data = JSON.parse(data_json);
+            //     state = "";
+            //     for (let i = 0; i < data.length; i++) {
+            //       console.log(data[i].name);
+            //       state+="<option value='"+data[i].name+"'>"+data[i].name+"</option>";
+            //     }
+            //     $("#city").append(state);
+            //   });
+            // });
+            // just for the demos, avoids form submit
+            // jQuery.validator.setDefaults({
+            //   debug: true,
+            //   success: "valid"
+            // });
+            // {% comment %} $.validator.addMethod("valueNotEquals", function(value, element, arg){
+            //   return arg !== value;
+            // }, "Select Any One"); {% endcomment %}
+            // $( "#myform" ).validate({
+            //   rules: {
+            //     name: {
+            //       required: true
+            //     }
+                // address: {
+                //   required: true
+                // },
+                // age: {
+                //   required: true
+                // },
+                // height: {
+                //   required: true
+                // },
+                // weight: {
+                //   required: true
+                // },
+                // gender: {
+                //   required: true
+                // },
+                // martial:{
+                //   valueNotEquals: "default"
+                // },
+                // physical:{
+                //   valueNotEquals: "default"
+                // },
+                // // dob:{
+                // //   required : true,
+                // //   // date: true,
+                // //   // dateFormat: true
+                // // },
+                // birth_time:{
+                //   required : true,
+                // },
+                // birth_country:{
+                //   valueNotEquals: "default"
+                // },
+                // birth_place:{
+                //   valueNotEquals: "default"
+                // },
+                // birth_city:{
+                //   valueNotEquals: "default"
+                // },
+                // orgin:{
+                //   valueNotEquals: "default"
+                // },
+                // r_country:{
+                //   valueNotEquals: "default"
+                // },
+                // r_state :{
+                //   valueNotEquals: "default"
+                // },
+                // denomination : {
+                //   required : true,
+                // },
+                // blood_group:{
+                //   required : true,
+                // },
+                // r_status:{
+                //   required : true,
+                // },
+                // id_card_2:{
+                //   required: true, 
+                //   // accept: "pdf",
+                // },
+                // temple_name:{
+                //   required:true,
+                // },
+                // temple_street:{
+                //   required : true,
+                // },
+                // temple_country:{
+                //   required:true,
+                //   minlength:6,
+                //   maxlength:6,
+                // },
+                // temple_country:{
+                //   valueNotEquals: "default"
+                // },
+                // temple_city:{
+                //   valueNotEquals: "default"
+                // },
+                // temple_phone_number:{
+                //   required:true,
+                //   minlength:10,
+                //   maxlength:12,
+                // },
+                // temple_diocese:{
+                //   required:true,
+                // },
+                // temple_local_admin:{
+                //   required : true,
+                // },
+                // emergency_name:{
+                //   required : true,
+                // },
+                // emergency_relation:{
+                //   required:true,
+                // },
+                // emergency_phone_number:{
+                //   required:true,
+                //   minlength:10,
+                //   maxlength:12
+                // },
+                // emergency_email:{
+                //   required : true,
+                // },
+                // emergency_marital_status:{
+                //   required : true,
+                // },
+                // emergency_occupations:{
+                //   required : true,
+                // }
+
+                
+
+            //   },
+            //   submitHandler: function (form) {
+            //         console.log('test');
+            //         form.submit();
+            //     }
+            // });
+            </script>
+          <style>
+            .bg-image-vertical {
+                position: relative;
+                overflow: hidden;
+                background-repeat: no-repeat;
+                background-position: right center;
+                background-size: auto 100%;
+                }
+
+                @media (min-width: 1025px) {
+                    .h-custom-2 {
+                        height: 100%;
+                    }
+                }
+            </style>
+            <script>
+              $(document).ready(function(){
+                $("#add_more").hide();
+              });
+              $(".add_more").click(function(){
+                $("#add_more").show();
+                $(".add_more").hide();
+              });
+              function add_more_hide(){
+                //alert();
+                $(".add_more").show();
+                $("#add_more").hide();
+              }
+            </script>
+             <script>
+              $(document).on('change', '.file-input', function() {
+              
+      
+                  var filesCount = $(this)[0].files.length;
+                  
+                  var textbox = $(this).prev();
+              
+                  if (filesCount === 1) {
+                  var fileName = $(this).val().split('\\').pop();
+                  textbox.text(fileName);
+                  } else {
+                  textbox.text(filesCount + ' files selected');
+                  }
+              });
+
+              $('#idform').validate({
+                  rules : {
+                      idcard: {
+                          required: true, 
+                          accept: "pdf",
+                          //extension: "png|jpeg|jpg|pdf|doc|docx",
+                          //filesize: 1048576,   
+                      }
+                  }
+              });
+       
+          </script>
+          <script type="text/javascript">
+            function fun1(event){
+            a = document.getElementById("countryone").value;
+            <!--document.getElementById("res").innerHTML=a;-->
+            c = {{ country|safe }};
+            position =c.indexOf(a);
+            <!--document.getElementById("res1").innerHTML=position;-->
+            stat = {{ states|safe }};
+            ttt = stat[position].states;
+            tt = "<select>";
+            for (i=0;i<ttt.length;i++){
+               tt += "<option>"+ttt[i].name+"</option>";
+            }
+                 tt+="</select>";
+                  document.getElementById("res2").innerHTML=tt;
+            }
+            
+            </script>
+           <script>
+              jQuery.validator.setDefaults({
+  debug: true,
+  success: "valid"
+});
+$( "#myform" ).validate({
+  rules: {
+    name: {
+      required: true
+    },
+     address: {
+      required: true
+    },
+    age: {
+      required: true
+    },
+    height: {
+      required: true
+    },
+    weight: {
+      required: true
+    },
+    gender: {
+      required: true
+    },
+    marital:{
+      // valueNotEquals: "default"
+      required: true
+    },
+    physical:{
+      // valueNotEquals: "default"
+      required: true
+    },
+    dob:{
+      required : true
+      // date: true,
+      // dateFormat: true
+    },
+    birth_time:{
+      required : true
+    },
+    birth_place:{
+      // valueNotEquals: "default"
+      required : true
+    },
+    birth_country:{
+      // valueNotEquals: "default"
+      required : true
+    },
+    birth_city:{
+      // valueNotEquals: "default"
+      required : true
+    },
+    origin:{
+      // valueNotEquals: "default"
+      required : true
+    },
+    r_country:{
+      // valueNotEquals: "default"
+      required : true
+    },
+    r_state :{
+      // valueNotEquals: "default"
+      required : true
+    },
+    
+    denomination : {
+      required : true
+    },
+    blood_group:{
+      required : true
+    },
+    r_status:{
+      required : true
+    },
+    id_card_2:{
+      required: true
+      // accept: "pdf",
+    },
+    temple_name:{
+      required:true
+    },
+    temple_street:{
+      required : true
+    },
+    temple_post_code:{
+      required : true
+    },
+    temple_country:{
+      required:true,
+      minlength:6,
+      maxlength:6,
+    },
+    religion:{
+      required:true
+    },
+    temple_country:{
+      // valueNotEquals: "default"
+      required:true
+    },
+    temple_city:{
+      // valueNotEquals: "default"
+      required:true
+    },
+    temple_phone_number:{
+      required:true,
+      minlength:10,
+      maxlength:12,
+    },
+    temple_diocese:{
+      required:true
+    },
+    temple_local_admin:{
+      required : true
+    },
+    emergency_name:{
+      required : true
+    },
+    emergency_relation:{
+      required:true
+    },
+    emergency_phone_number:{
+      required:true,
+      minlength:10,
+      maxlength:12
+    },
+    emergency_email:{
+      required : true
+    },
+    emergency_marital_status:{
+      required : true
+    },
+    emergency_occupations:{
+      required : true
+  }
+
+  },
+  submitHandler: function (form) {
+                    console.log('test');
+                    form.submit();
+                }
+});
+            </script> 
+          
+    </body>
+</html>

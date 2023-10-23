@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profiles</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+    integrity="    sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"
+    integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.css" integrity="sha512-0yYhCyiMB+6XOis4qvWA42kPkKb54+uMaOhbsta6m+aQ7cZOm5hzERPrRkkknlpEdoxVCwYui+yM0jRazpDFuA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<!-- css link -->
+<link rel="stylesheet" href="/media/css/style.css">
+
+<link rel="stylesheet" href="/media/css/all_investigator.css">
+
+</head>
+<body>
+  {% include 'header.html' %}
+
+  {% include 'menu_header.html' %}
+
+    <section class="container-fluid" id="sec">
+        <div class="container clearfix" id="cont">
+            <div class="row ">
+                <div class="col-md-8">
+                  {% for i in mydata %}
+                    <h4 class="head1 mt-3"><a href="/all_investigator/{{i.uid}}" style="text-decoration: none;color: #2B3674;">All investigator</a> 
+                      <span class="spy ms-3"><a href="/my_investigator/{{i.uid}}" style="text-decoration: none;color: gray;"> My investigator</a></span></h4>
+                    <h6 class="head2">{{ all_investigator|length }} investigator</h6>
+                    {% endfor %}
+                </div>
+                <div class="col-md-4 ms-auto mt-3">
+                    <div class="input-group">
+                        <div class="input-group ">
+                            <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" >
+                            <button type="button" class="btn btn-primary ms-1 rounded">
+                                <i class="fas fa-search "></i>
+                            </button>
+                            <div class="been ms-3">
+                                <div class="dropdown ">
+                                    <button class="bnt  " type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Filter<span class="bi bi-filter ms-2 "></span>
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                    <li><button class="dropdown-item" type="button">Action</button></li>
+                                    <li><button class="dropdown-item" type="button">Another action</button></li>
+                                    <li><button class="dropdown-item" type="button">Something else here</button></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                 </div>
+             </div>
+        </div>
+    </section>
+    <!-- card section -->
+    <div class="container">
+        <div class="row mt-3 ">
+          {% for i in all_investigator %}
+          
+          <div class="col-md-3 col-sm-6 gap">
+            <div class="cards border 1">
+                <div class="img1">
+                  <img src="/media/images/w4.jpg" alt="">
+                </div>
+                <div class="img2">
+                  <img src="{{i.profile_picture}}" alt="">
+                </div>
+                <div class="main">
+                  <h5 class="head text-center">{{i.first_name}} {{i.last_name}}</h5>
+                  <p class="text-center">{{i.office_country}} {{i.office_city}}</p>
+                </div>
+                  <!-- rating start -->
+                <div class="small-ratings text-center">
+                  <i class="fa fa-star rating-color"></i>
+                  <i class="fa fa-star rating-color"></i>
+                  <i class="fa fa-star rating-color"></i>
+                  <i class="fa fa-star rating-color"></i>
+                  <i class="fa fa-star"></i>
+               </div>
+<form method="POST">
+  {% csrf_token %}
+                <div class="but text-center p-3">
+                 <a href="/hire_investigator/{{i.uid}}"><button type="submit" name="hire" value="{{i.uid}}"  class="btn text-white" type="button">Hire Investigator</button></a> 
+                </div>
+              </form>
+            </div>
+          </div>
+          {% endfor %}
+
+          
+    
+    
+          
+        </div>
+         <!-- nxt row -->
+         <div class="row mt-2">
+         </div>
+         <!-- nxt row -->
+         <div class="row mt-2">
+        
+       </div>
+       <!-- view all profiles -->
+       <div class="but text-center p-3 mt-5">
+        <button class="bttn " type="button">View All Profiles</button>
+      </div>
+    
+      </div>
+      {% include 'footer.html' %}
+
+</body>
+
+</html>

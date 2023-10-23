@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="/media/css/settings_notification.css">
+  <link rel="stylesheet" href="/media/css/style.css">
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+    integrity="    sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+  <!-- BS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+    crossorigin="anonymous"></script>
+  <!-- over -->
+  <title>Notification</title>
+</head>
+
+<body class="sub_sec1">
+  {% include 'header.html' %}
+
+  {% include 'menu_header.html' %}
+
+  <div class="container-fluid">
+
+    <div class="parent my-5">
+
+      <div class="chi1 px-3 " id="child1">
+
+      
+
+
+        {% for i in mydata %}
+
+        <div class="row my-4 py-2">
+          
+          <div class="setting_hover">
+          <div class="col-2">
+            <i class="fas fa-bell"></i>
+          </div>
+
+          <div class="col-10">
+             <h5><a href="/settings_notification/{{i.uid}}">Notification</a></h5>
+          </div>
+
+          </div>
+          
+        </div>
+
+        <div class="row my-4 py-2">
+          <div class="setting_hover">
+
+          <div class="col-2">
+            <i class="fas fa-lock"></i>
+          </div>
+
+          <div class="col-10">
+             <h5><a href="/settings_privacy/{{i.uid}}">Privacy</a></h5>
+          </div>
+
+          </div>
+          
+        </div>
+
+        <div class="row my-4 py-2">
+
+          <div class="setting_hover">
+
+          <div class="col-2">
+            <i class="fas fa-shield-alt"></i>
+          </div>
+
+          <div class="col-10">
+             <h5><a href="/settings_security/{{i.uid}}">Security</a></h5>
+          </div>
+
+          </div>
+          
+        </div>
+        
+        <div class="row my-4 py-2">
+
+
+          <div class="setting_hover">
+
+          <div class="col-2">
+            <i class="fab fa-bitcoin"></i>
+          </div>
+
+          <div class="col-10">
+             <h5><a href="/settings_subscription/{{i.uid}}">Subscriptions</a></h5>
+          </div>
+
+          </div>
+          
+        </div>
+
+        <div class="row my-4 py-2">
+          
+          <div class="setting_hover">
+          <div class="col-2">
+            <i class="far fa-question-circle"></i>
+          </div>
+
+          <div class="col-10">
+             <h5><a href="/settings_about/{{i.uid}}">About</a></h5>
+          </div>
+
+          </div>
+          
+        </div>
+
+            <div class="row my-4 py-2">
+            <div class="setting_hover">
+          <div class="col-2">
+            <i class="fas fa-wallet"></i>
+          </div>
+
+          <div class="col-10">
+             <h5><a href="/settings_wallet/{{i.uid}}">Wallet</a></h5>
+          </div>
+        </div>
+          
+        </div>
+
+        <div class="row my-4 py-2">
+          
+           <div class="setting_hover">
+          <div class="col-2">
+            <i class="fas fa-phone-alt"></i>
+          </div>
+
+          <div class="col-10">
+             <h5><a href="#">Help & contact</a></h5>
+          </div>
+        </div>
+          
+        </div>
+
+
+     
+
+
+        
+      </div>
+
+      <div class="chi2">
+
+        <div class="row">
+
+          <div class="col-12">
+
+            <div class="setting_par1">
+               
+              <h5>Notification</h5>
+              <i class="fas fa-bars" id="click_event"></i>
+
+              <div class="setting_par3" id="popsec1">
+
+                <div class="py-3"></div>
+                
+                <ul>
+                  <li><a href="/settings_notification/{{i.uid}}">Notification</a></li>
+                  <li><a href="/settings_privacy/{{i.uid}}">Privacy</a></li>
+                  <li><a href="/settings_security/{{i.uid}}">Security</a></li>
+                  <li><a href="/settings_subscription/{{i.uid}}">Subscriptions</a></li>
+                  <li><a href="/settings_about/{{i.uid}}">About</a></li>
+                  <li><a href="/settings_wallet/{{i.uid}}">Wallet</a></li>
+                  <li><a href="#">Help & contact</a></li>
+                </ul>
+                {% endfor %}
+                 <div class="py-3"></div>
+              </div>
+              
+            </div>
+            
+          </div>
+          
+        </div>
+
+        <div class="row p-5 my-4">
+
+          <div class="col-12">
+
+            <div class="setting_par7">
+
+            <div class="setting_par2">
+
+      
+              <div class="setting_par4 my-4">
+                 <h6>All Notification</h6>
+              </div>
+
+              <div class="setting_par4 my-4">
+                 <h6>Pause All</h6>
+              </div>
+
+              <div class="setting_par4 my-4">
+                 <h6>Direct Request Only</h6>
+              </div>
+
+              <div class="setting_par4 my-4">
+                 <h6>System Notification Only</h6>               
+              </div>
+ 
+            </div>
+
+            <div class="setting_par5">
+
+
+               <div class="setting_par6">
+
+                   <label class="switch set_lab1">
+                   <input type="checkbox">
+                   <span class="slider round"></span>
+                  </label>
+              
+              </div>
+
+                <div class="setting_par6 set_lab2">
+                
+                   <label class="switch">
+                   <input type="checkbox">
+                   <span class="slider round"></span>
+                  </label>
+              
+              </div>
+
+                <div class="setting_par6 set_lab3">
+                
+                   <label class="switch">
+                   <input type="checkbox">
+                   <span class="slider round"></span>
+                  </label>
+              
+              </div>
+
+                <div class="setting_par6 set_lab4">
+                
+                   <label class="switch">
+                   <input type="checkbox">
+                   <span class="slider round"></span>
+                  </label>
+              
+              </div>
+
+             
+            </div>
+
+            </div>
+            
+          </div>
+          
+        </div>
+        
+      </div>
+      
+    </div>
+    
+  </div>
+
+
+<!-- js -->
+<script type="text/javascript" src="/media/js/event.js"></script>
+
+
+{% include 'footer.html' %}
+</body>
+  
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile progress</title>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+    integrity="    sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+
+
+    <!-- boot link -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- font awesome link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.css" integrity="sha512-0yYhCyiMB+6XOis4qvWA42kPkKb54+uMaOhbsta6m+aQ7cZOm5hzERPrRkkknlpEdoxVCwYui+yM0jRazpDFuA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        
+ <!-- link css -->
+ <link rel="stylesheet" href="/media/css/my_investigator.css">
+ <link rel="stylesheet" href="/media/css/style.css">
+
+</head>
+<body>
+  {% include 'header.html' %}
+
+  {% include 'menu_header.html' %}
+    <section class="container-fluid" id="sec">
+        <div class="container clearfix" id="cont">
+            <div class="row">
+                <div class="col-md-12">
+                  {% for i in mydata %}
+                  <h4 class="head1 mt-3"><a href="/all_investigator/{{i.uid}}" style="text-decoration: none;color: gray;">All investigator</a> 
+                    <span class="spy ms-3"><a href="/my_investigator/{{i.uid}}" style="text-decoration: none;color: #2B3674;"> My investigator</a></span></h4>
+                  <h6 class="head2">{{my_investigators|length}} investigator</h6>
+                  {% endfor %}                </div>
+            </div>
+        </div>
+    </section> 
+           <!-- cards -->
+       <div class="container">
+            <div class="row mt-5">
+              {% for i in my_investigators %}
+                <div class="col-md-3 col-sm-6">
+                    <div class="cards border 1">
+                        <div class="img1">
+                          <img src="/media/images/w4.jpg" alt="">
+                        </div>
+                        <div class="img2">
+                          <img src="{{i.profile_picture}}" alt="">
+                        </div>
+                        <div class="main">
+                          <h5 class="head text-center">{{i.first_name}} {{i.last_name}}</h5>
+                          <p class="text-center font ">{{i.office_country}} {{i.office_city}}</p>
+                        </div>
+                       <center>
+                        <div class="progress align-middle mb-3 " style="width:50%" >
+                          {% for i in mydata %}
+
+                            <div class="progress-bar bg-success" style="width:70%"><a href="/my_investigator_question/{{i.uid}}" style="
+                              width: 10%;
+                              height: 3%;
+                              position: absolute;
+                          "></a></div>
+                           {% endfor %}
+                          </div></center>
+                          <form method="POST">
+                            {% csrf_token %}
+                          <div class="text-center pro">
+                            <p class="text-muted">
+                             <button type="submit" name="my_investigator" value="{{i.uid}}" style="
+                             border-radius: 7px;
+                             padding: 6px;
+                             font-size: 15px;
+                             font-weight: 600;
+                             background-image:linear-gradient(to right, rgb(41 67 206),rgb(225 136 242));
+                             color: white;
+                             border:1px solid white
+                         "> Task completed:
+                              <span class="" style="color:white">70%</span></button>
+                            </p></div>
+                          </form>
+                    </div>
+                  </div>
+                  {% endfor %}
+
+            </div>
+       </div>    
+       <br>
+       {% include 'footer.html' %}
+
+</body>
+</html>

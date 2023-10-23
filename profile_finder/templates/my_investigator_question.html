@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+  integrity="    sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+
+
+      <!-- Alignment -->
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script> 
+      <!-- font awesome link -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.css" integrity="sha512-0yYhCyiMB+6XOis4qvWA42kPkKb54+uMaOhbsta6m+aQ7cZOm5hzERPrRkkknlpEdoxVCwYui+yM0jRazpDFuA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+ <link rel="stylesheet" href="/media/css/my_investigator_questions.css">
+ <link rel="stylesheet" href="/media/css/style.css">
+
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+</head>
+
+<body>
+  {% include 'header.html' %}
+
+  {% include 'menu_header.html' %}
+
+  <div class="container">
+      <section>
+        <div class="row">
+            <div class="col-md-12 mb-3 mt-3">
+              {% for i in mydata %}
+
+                <h5><a href="/my_investigator/{{i.uid}}" style="text-decoration: none;"><span class="text-muted">Private Investigator ></a>
+                  <a href="/my_investigator_question/{{i.uid}}" style="text-decoration: none;"></span>My Investigator</a></h5>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    {% for i in specific_user%}
+    <div class="row">
+      <div class="col-md-3">
+        
+        <div class="cards img-thumbnail">
+          <div class="img1">
+            <img src="/media/images/w4.jpg" alt="">
+          </div>
+          <div class="img2 mb-3">
+            <img src="{{i.profile_picture}}" alt="">
+          </div>
+          <div class="main text-center">
+            <h5 class="head text-center">{{i.first_name}} {{i.last_name}}</h5>
+            <p class="text-center mb-4">{{i.office_country}} {{i.office_city}}</p>
+            <div class="ratings mt-3 mb-3">
+                            <i class="fa fa-star rating-color"></i>
+                            <i class="fa fa-star rating-color"></i>
+                            <i class="fa fa-star rating-color"></i>
+                            <i class="fa fa-star rating-color"></i>
+                            <i class="fa fa-star"></i>
+                        </div>
+            <button class="btn text-white mb-3" type="button">Close Deal & Rate</button>
+          
+          </div>
+      </div>
+      
+    
+  <div class="pay text-center mt-2  img-thumbnail ">
+    <h5 class="mt-4 mb-4 ">Overall Task Status</h5>
+    <!-- Circular Progress Bar -->
+    <div class="progress-bar-container mb-3">
+  
+  <div class="progress-bar html ">
+    <progress id="html" min="0" max="100" value="75"></progress>
+  </div>
+</div>
+<button class="more pe-2 ps-2 p-1 mt-3 mb-4">Notify To Complete</button>
+
+  </div>
+
+</div>
+<!-- ... (rest of the code) ... -->
+
+      <div class="col-md-9 mt-3 " style="overflow-y: scroll;height: 44.5rem;">
+        <div class="row gg">
+          <div class="col-md-9">
+              <h4>All Questions</h4>
+          </div>
+          <div class="col-md-3 text-center ">
+            <button class="btn text-white ps-2 pe-2 " id="addnew" type="button" data-bs-toggle="modal" data-bs-target="#myModal00">+ Add New Questions</button>
+
+            
+          </div>
+        </div>
+        <!-- content -->
+        <div class="row content mt-3  " >
+
+          <div class=" col-md-1 text-center text-success  mt-3">
+
+          <i class='bi bi-check-circle-fill' style="font-size: 25px;"></i>
+          </div>
+          <div class="col-md-9 mt-3">
+            <h5>Where is the San Sebastian home? and she completed here graduation?</h5>
+          </div>
+          <div class="col-md-2 text-center">
+            <button class="more pe-3 ps-3 p-1 mt-3 mb-3" type="button" data-bs-toggle="modal" data-bs-target="#myModal1">View answer</button>
+          </div> 
+       </div>
+
+
+       <div class="row content mt-3  " >
+        <div class=" col-md-1 text-center text-success  mt-3">
+        <i class='bi bi-check-circle-fill' style="font-size: 25px;"></i>
+        </div>
+        <div class="col-md-9 mt-3">
+          <h5>Any other relation she having?</h5>
+        </div>
+        <div class="col-md-2 text-center">
+          <button class="more pe-3 ps-3 p-1 mt-3 mb-3" type="button"data-bs-toggle="modal" data-bs-target="#myModal2">View answer</button>
+
+        </div> 
+     </div>
+
+
+     <div class="row content mt-3  " >
+      <div class=" col-md-1 text-center text-success  mt-3">
+      <i class='bi bi-check-circle-fill' style="font-size: 25px;"></i>
+      </div>
+      <div class="col-md-9 mt-3">
+        <h5>Who is her best friend?</h5>
+      </div>
+      <div class="col-md-2 text-center">
+        <button class="more pe-3 ps-3 p-1 mt-3 mb-3" type="button"data-bs-toggle="modal" data-bs-target="#myModal3">View answer</button>
+      </div> 
+   </div>
+
+   <div class="row content mt-3  " >
+    <div class=" col-md-1 text-center text-success  mt-3">
+    <i class='bi bi-check-circle-fill' style="font-size: 25px;"></i>
+    </div>
+    <div class="col-md-9 mt-3">
+      <h5>Where she studied her higher secondary school?</h5>
+    </div>
+    <div class="col-md-2 text-center">
+      <button class="more pe-3 ps-3 p-1 mt-3 mb-3" type="button"data-bs-toggle="modal" data-bs-target="#myModal3">View answer</button>
+    </div> 
+ </div>
+
+ <div class="row content mt-3  " >
+  <div class=" col-md-1 text-center text-success  mt-3">
+  <i class='bi bi-check-circle-fill' style="font-size: 25px;"></i>
+  </div>
+  <div class="col-md-9 mt-3">
+    <h5>Her Father have any bad habits?</h5>
+  </div>
+  <div class="col-md-2 text-center">
+    <button class="more pe-3 ps-3 p-1 mt-3 mb-3" type="button"data-bs-toggle="modal" data-bs-target="#myModal3">View answer</button>
+  </div> 
+</div>
+
+<div class="row content mt-3  " >
+  <div class=" col-md-1 text-center text-success  mt-3">
+  <i class='bi bi-check-circle-fill' style="font-size: 25px;"></i>
+  </div>
+  <div class="col-md-9 mt-3">
+    <h5>Is it true the family is very Orthodox?</h5>
+  </div>
+  <div class="col-md-2 text-center">
+    <button class="more pe-3 ps-3 p-1 mt-3 mb-3" type="button"data-bs-toggle="modal" data-bs-target="#myModal3">View answer</button>
+  </div> 
+</div>
+
+<div class="row content mt-3  " >
+  <div class=" col-md-1 text-center text-success  mt-3">
+  <i class='bi bi-check-circle-fill uncheck' style="font-size: 25px;"></i>
+  </div>
+  <div class="col-md-9 mt-3">
+    <h5>Whats the neighbour assessment on here?</h5>
+  </div>
+  
+</div>
+
+<div class="row content mt-3  " >
+  <div class=" col-md-1 text-center text-success  mt-3">
+  <i class='bi bi-check-circle-fill uncheck' style="font-size: 25px;"></i>
+  </div>
+  <div class="col-md-9 mt-3">
+    <h5>She is excessively present day or typical?</h5>
+  </div>
+   
+</div>
+
+<div class="row content mt-3  " >
+  <div class=" col-md-1 text-center text-success  mt-3">
+  <i class='bi bi-check-circle-fill uncheck' style="font-size: 25px;"></i>
+  </div>
+  <div class="col-md-9 mt-3">
+    <h5>What her brother doing? can you find for me his details?</h5>
+  </div>
+  
+</div>
+
+<div class="row content mt-3  " >
+  <div class=" col-md-1 text-center text-success  mt-3">
+  <i class='bi bi-check-circle-fill uncheck' style="font-size: 25px;"></i>
+  </div>
+  <div class="col-md-9 mt-3">
+    <h5> I heard she is good dancer is that correct?</h5>
+  </div>
+</div>
+
+      </div>
+    </div>
+    </div>
+    {% endfor %}
+       <!-- Modals -->
+
+       <div class="modal" id="myModal00">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="container">
+                        
+                    <h4 class="mt-4">Question</h4>
+                    <h6 class="head5 mt-4 mb-4 text-muted">Write your question here.</h6>
+                      <textarea name="textarea" id="textarea" cols="57" rows="5"></textarea>
+                     
+                    </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn1 pe-3 ps-3 pt-2 pb-2 " data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn text-white" data-bs-dismiss="modal">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 1 -->
+    <div class="modal" id="myModal1">
+      <div class="modal-dialog">
+          <div class="modal-content">
+              <div class="modal-body">
+                  <div class="container">
+                      <h6>Answer</h6>
+                      <p>Question</p>
+                      <h5 class="head5">Where is the San Sebastian home? and she completed her graduation?</h5>
+                      <p>Answer</p>
+                      <p class="par">Yes, she completed her graduation last year, and her home is in the same place as mentioned in her profile.</p>
+                  </div>
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  <!-- Modal 2 -->
+  <div class="modal" id="myModal2">
+      <div class="modal-dialog">
+          <div class="modal-content">
+              <div class="modal-body">
+                  <div class="container">
+                      <h6>Answer</h6>
+                      <p>Question</p>
+                      <h5 class="head5">Another question goes here?</h5>
+                      <p>Answer</p>
+                      <p class="par">This is the answer to the second question.</p>
+                  </div>
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+              </div>
+          </div>
+      </div>
+  </div>
+
+    <!-- Modal 3 -->
+    <div class="modal" id="myModal3">
+      <div class="modal-dialog">
+          <div class="modal-content">
+              <div class="modal-body">
+                  <div class="container">
+                      <h6>Answer</h6>
+                      <p>Question</p>
+                      <h5 class="head5">Another question goes here?</h5>
+                      <p>Answer</p>
+                      <p class="par">This is the answer to the second question.</p>
+                  </div>
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+              </div>
+          </div>
+      </div>
+  </div>
+  {% include 'footer.html' %}
+
+</body>
+</html>

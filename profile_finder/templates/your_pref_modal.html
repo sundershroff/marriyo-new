@@ -1,0 +1,128 @@
+<!-- your_pref -->
+<div class="modal fade modal-xl" id="your_pref" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header p-4" style="border:none;">
+  
+          <h3 class="modal-title " id="exampleModalLabel" style="color:#2B3674">Add your preference</h3>
+  
+        </div>
+        <div class="modal-body your_pref_sec1">
+  
+          <form method="POST" class="px-4">
+  {% csrf_token %}
+            <div class="row my-2">
+  
+              <div class="col-lg-4 my-3">
+                <label >Marital Status<span>*</span></label>
+                <select name="marital_status" class="form-select py-3 my-2">
+                  <option value="">Select</option>
+                  <option value="Unmarried">Unmarried</option>
+                  <option value="Divorce">Divorce</option>
+                  <option value="Awaiting Divorce">Awaiting Divorce</option>
+                  <option value="Widow/Widower">Widow/Widower</option>
+                  <option value="Annulled">Annulled</option>
+                </select>
+              </div>
+  
+              <div class="col-lg-4 my-3">
+                <label>Physical & Mental Status<span>*</span></label>
+                <select name = "physical_mental_status" class="form-select py-3 my-2">
+                  <option value="default">Select</option>
+                  <option value="Normal & Healthy">Normal & Healthy</option>
+                  <option value="Handicap">Handicap</option>
+                  <option value="All is Not Well">All is Not Well</option>
+                </select>
+              </div>
+  
+              <div class="col-lg-4 my-3">
+                <label>Email<span>*</span></label>
+                <input type="email" name="email" class="form-control py-3 my-2" placeholder="Email">
+              </div>
+              
+            </div>
+  
+            <div class="row my-2 ">
+  
+              <div class="col-lg-4 my-3">
+                <label>Family Status<span>*</span></label>
+                <select name="family_status" class="form-select py-3 my-2">
+                  <option value="">Select</option>
+                  <option value="Rich">Rich</option>
+                  <option value="Upper Middle Class">Upper Middle Class</option>
+                  <option value="Middle Class">Middle Class</option>
+                  <option value="Lower Middle Class">Lower Middle Class</option>
+                </select>
+              </div>
+  
+              <div class="col-lg-4 my-3">
+                <label>Age Group<span>*</span></label>
+                <input type="number" name="age" class="form-select py-3 my-2">
+                
+              </div>
+  
+              <div class="col-lg-4 my-3">
+                <label>Height<span>*</span></label>
+                 <input type="number" name="height" class="form-select py-3 my-2">
+                 
+              </div>
+              
+            </div>
+  
+            <div class="row">
+  
+              
+  
+              <div class="col-lg-12">
+                 <h6 class="pb-4 border-bottom">Educations</h6>
+              </div>
+              
+            </div>
+  
+  
+            <div class="row">
+  
+              <div class="col-lg-4 my-3">
+                <label>Higher Education<span>*</span></label>
+                 <input type="text" name="education" class="form-select py-3 my-2">
+              
+              </div>
+              
+            </div>
+  
+            <div class="row my-3">
+  
+              <div class="col-lg-4">
+  
+                <h6>Are You Working Now ?</h6>
+  
+                <div class="my-4">
+                   <label class="yourpref-checkbox">
+                      <input type="radio" value="yes" name="Working">
+                      <span class="yourprefcheckmark"></span>
+                      Yes
+                    </label>
+  
+  
+                  <label class="yourpref-checkbox mx-3">
+                      <input type="radio" value="no" name="Working">
+                      <span class="yourprefcheckmark"></span>
+                      No
+                    </label>   
+                </div>
+                
+              </div>
+              
+            </div>
+  
+       
+          
+        </div>
+        <div class="modal-footer mx-5 py-3" style="border:none;">
+          <button type="button" class="btn your_pref_btns" data-bs-dismiss="modal">Cancel</button>
+          <button type="submit" class="btn your_pref_btns">Submit</button>
+        </div>
+      </div>
+    </form>
+    </div>
+  </div>

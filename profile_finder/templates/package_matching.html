@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="/media/css/package_matching.css">
+  <link rel="stylesheet" href="/media/css/style.css">
+
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+    integrity="    sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+  <!-- BS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+    crossorigin="anonymous"></script>
+  <!-- over -->
+  <title>Subscription</title>
+</head>
+
+<body class="sub_sec1">
+  {% include 'header.html' %}
+
+	{% include 'menu_header.html' %}
+<div class="container">
+
+
+  <div class="row my-5">
+
+  <div class="col-12">
+    
+    <h3 style="font-weight:700;">Choose Your Subscription Plan</h3>
+    
+  </div>
+  
+</div>
+<!-- over -->
+<div class="row my-4">
+
+  <div  class="sub_sec2">
+
+    <div class="sub_par1">
+
+      <h4 class="my-3 text-center" style="color:#27AE60;font-weight:700;">Trial</h4>
+
+      <h6 class="my-2 text-center" style="color:#6E717A;">(Valid for 15 days)</h6>
+
+      <h3 class="mt-3 mb-5 text-center"style = "color:#27AE60;">Free</h3>
+
+      <h6 class="text-center" style="color:#6E717A;">Just Profile View Only</h6>
+      {% for key in mydata %}
+      <button class=" sub_btn1"><a class="subs" href="/package_amount/{{key.uid}}">Start Free</a></button>
+      {% endfor %}
+    </div>
+
+    <div class="sub_par2 ">
+
+      <h4 class="my-3 text-center" style="color:#56CCF2;font-weight:700;">Basic</h4>
+
+      <h6 class="my-2 text-center" style="color:#6E717A;">(Valid for 1 Month)</h6>
+
+      <h3 class="mt-3 mb-5 text-center" style="font-weight:700;">₹ 1,500</h3>
+
+      <div class="row">
+
+        <div class="sub_pos">
+          
+        
+
+        <div class="col-9 sub_chi1">
+          
+        <h6 style="color:#6E717A;" class="px-2">Profiles View</h6>
+        <h6 style="color:#6E717A;" class="px-2">Profiles Request</h6>
+        </div>
+
+        <div class="col-3 sub_chi2">
+          <h6 class="text-end pr-5" style="color:#6E717A;"><span style="color:black;">10</span>(Day)</h6>
+          <h6 class="text-end px-2">20</h6>
+        </div>
+        
+        </div>
+        
+        
+      </div>
+      {% for key in mydata %}
+      <button class="sub_btn2"><a class="subs" href="/package_amount/{{key.uid}}">Choose Plan</a></button>
+      {% endfor %}
+    </div>
+
+    <div class="sub_par3">
+
+      <h4 class="my-3 text-center" style="color:#F2994A;font-weight:700;">Standard</h4>
+
+      <h6 class="my-2 text-center" style="color:#6E717A;">(Valid for 3 Months)</h6>
+
+      <h3 class="mt-3 mb-5 text-center" style="font-weight:700;">₹ 2,500</h3>
+
+      <div class="row">
+
+        <div class="sub_pos">
+          
+        
+
+        <div class="col-9 sub_chi1">
+          
+        <h6 style="color:#6E717A;" >Profiles View</h6>
+        <h6 style="color:#6E717A;" >Profiles Request</h6>
+        </div>
+
+        <div class="col-3 sub_chi2">
+          <h6 class="text-end " style="color:#6E717A;"><span style="color:black;">20</span>(Day)</h6>
+          <h6 class="text-end ">40</h6>
+        </div>
+        
+        </div>
+
+        
+        
+      </div>
+      {% for key in mydata %}
+      <button class="sub_btn3"><a class="subs" href="/package_amount/{{key.uid}}">Choose Plan</a></button>
+      {% endfor %}
+    </div>
+
+    <div class="sub_par4">
+
+      <h4 class="my-3 text-center" style="color:#2F80ED;font-weight:700;">Premium</h4>
+
+      <h6 class="my-2 text-center" style="color:#6E717A;">(Valid for 6 Months)</h6>
+
+      <h3 class="mt-3 mb-5 text-center" style="font-weight:700;">₹ 3,500</h3>
+
+      <div class="row">
+         
+         <div class="sub_pos">
+          
+        <div class="col-9 sub_chi1">
+          
+        <h6 style="color:#6E717A;" >Profiles View</h6>
+        <h6 style="color:#6E717A;" >Profiles Request</h6>
+        <h6 style="color:#6E717A;">Profiles Highlight</h6>
+        </div>
+
+        <div class="col-3 sub_chi2">
+          <h6 class="text-end " style="color:#6E717A;"><span style="color:black;">30</span>(Day)</h6>
+          <h6 class="text-end " >60</h6>
+          <h6 class="text-end " style="color:#27AE60;">Yes</h6>
+        </div>
+        
+        </div>
+        
+        
+      </div>
+{% for key in mydata %}
+      <button class="sub_btn4"><a class="subs" href="/package_amount/{{key.uid}}">Choose Plan</a></button>
+      {% endfor %}
+    </div>
+
+    <div class="sub_par5 ">
+
+      <h4 class="my-3 text-center" style="color:#7B61FF;font-weight:700;">Special</h4>
+
+      <h6 class="my-2 text-center" style="color:#6E717A;">(Valid for 1 Year)</h6>
+
+      <h3 class="mt-3 mb-5 text-center" style="font-weight:700;">₹ 4,500</h3>
+
+ <div class="row">
+         
+         <div class="sub_pos">
+          
+        <div class="col-9 sub_chi1">
+          
+        <h6 style="color:#6E717A;" >Profiles View</h6>
+        <h6 style="color:#6E717A;" >Profiles Request</h6>
+        <h6 style="color:#6E717A;">Profiles Highlight</h6>
+        </div>
+
+        <div class="col-3 sub_chi2">
+          <h6 class="text-end "  style="color:#6E717A;"><span style="color:black;">50</span>(Day)</h6>
+          <h6 class="text-end " >100</h6>
+          <h6 class="text-end " style="color:#27AE60;">Yes</h6>
+        </div>
+        
+        </div>
+        
+        
+      </div>
+      {% for key in mydata %}
+      <button class="sub_btn5"><a class="subs" href="/package_amount/{{key.uid}}">Choose Plan</a></button>
+      {% endfor %}
+    </div>
+    
+  </div>
+  
+</div>
+
+
+
+  
+</div>
+
+
+
+
+{% include 'footer.html' %}
+
+</body>
+
+</html>
