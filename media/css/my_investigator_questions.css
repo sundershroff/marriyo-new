@@ -27,7 +27,7 @@
     background-color: white;
     border-radius: 5px;
     padding: 5px 20px 5px 9px;
-    height: 5rem;
+    /* height: 5rem; */
 }
     i.bi.bi-check-circle-fill.uncheck {
     color: #e2e2e0;
@@ -122,7 +122,11 @@ textarea{
 }
 .row.gg{
   display: flex;
-  height: 2rem; 
+    height: 3rem;
+    position: sticky;
+    top: 0px;
+    background-color: white;
+    padding-top: 11px;
 }
 @media  (max-width:1200px){
   button.btn.text-white.ps-2.pe-2 {

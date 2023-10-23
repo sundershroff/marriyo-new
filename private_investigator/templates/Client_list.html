@@ -84,20 +84,27 @@
 
        <!--Client images-->
        <div class="row ClientImages">
-<a href="/pi_client_details/{{key.uid}}" style="display: contents;">
+  {% for i in all_profinder_data %}
         <div class="col-md-6 col-lg-3  client-container">
-          <img src="/media/images/man2.webp" alt="" class="clientimg">
+          <form method="POST">  
+            {% csrf_token %}
+          <a href="" style="display: contents;"><button type="submit" name="client_one" value="{{i.uid}}" style="
+            display: contents;
+        " >
+          
+          </form>
+          <img src="{{i.profile_picture}}" alt="" class="clientimg">
           <div class="client-details">
-              <span class="clientname mb-2">Cameron Williamson</span>
-              <span class="clientID mb-1">ID :#123AD</span>
-              <span class="clientpalce mb-2">Dubai, United Arab Emirates</span>
-              <i class="clientquotes mb-2">"Life is full of possibility"</i>
+              <span class="clientname mb-2">{{i.name}}</span>
+              <span class="clientID mb-1">ID :#{{i.uid}}</span>
+              <span class="clientpalce mb-2">{{i.r_country}}, {{i.r_state}}</span>
+              <i class="clientquotes mb-2">"{{i.profile_tag}}"</i>
               <i class="bi bi-circle-fill me-3 mb-3"><span class="online ms-1">Online</span>  </i>
           </div>
       </div>
-    </a>
+      {% endfor %}
 
-      <div class="col-md-6 col-lg-3  client-container">
+      {% comment %} <div class="col-md-6 col-lg-3  client-container">
         <img src="/media/images/man2.webp" alt="" class="clientimg">
         <div class="client-details">
             <span class="clientname mb-2">Cameron Williamson</span>
@@ -169,7 +176,7 @@
       <i class="clientquotes mb-2">"Life is full of possibility"</i>
       <i class="bi bi-circle-fill me-3 mb-3"><span class="online ms-1">Online</span>  </i>
   </div>
-</div>
+</div> {% endcomment %}
       
 
        </div>

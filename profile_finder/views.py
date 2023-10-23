@@ -2527,6 +2527,20 @@ def hire_investigator(request,id):
         if x['uid'] == hire_id:
             specific_user = x
             print(specific_user)
+    
+    #hire investigator
+    if request.method == "POST":
+        print(request.POST)
+        data={
+            'pf_id':id,
+            'pi_id':request.POST['hire']
+        }
+        response = requests.post(f"http://127.0.0.1:3000/pi_my_clients/{id}",   data=data)
+        response = requests.post(f"http://127.0.0.1:3000/my_investigator/{id}",   data=data)
+        print(response)
+        print(response.status_code)
+        print(response.text)
+        return redirect(f"/pi_payment/{id}")
     context = {
             'mydata':mydata,
             'profile_pic':profile_pic,

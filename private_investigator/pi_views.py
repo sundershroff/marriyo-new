@@ -7,7 +7,7 @@ from django.http import HttpResponse
 # from django.core.files.storage import default_storage
 # import cv2
 # from django.http import JsonResponse
-# import requests
+import requests
 # from django.urls import reverse
 
 # import random
@@ -28,8 +28,6 @@ from django.http import HttpResponse
 
 all_url = "http://127.0.0.1:3000/"
 
-
-      
 def signin(request):
     error = ""
     if request.method == "POST":
@@ -176,17 +174,32 @@ def payment(request,id):
 
 def client_list(request,id):
         my = requests.get(f"http://127.0.0.1:3000/pi_my_data/{id}").json()[0]
-        print(my)
+        # print(my)
+        all_profinder_data = requests.get("http://127.0.0.1:3000/alluserdata/").json()
+        if "client_one" in request.POST:
+            print(request.POST)
+            global client_one
+            client_one = request.POST['client_one']
+            return redirect(f"/pi_client_details/{id}")
         context={'key':my,
-                 'current_path':request.get_full_path()
+                 'current_path':request.get_full_path(),
+                 'all_profinder_data':all_profinder_data,
                  }
         return render(request,"Client_list.html",context)
 
 def client_details(request,id):
         my = requests.get(f"http://127.0.0.1:3000/pi_my_data/{id}").json()[0]
-        print(my)
+        # print(my)
+        client_list(request,id)
+        print(client_one)
+        all_profinder_data = requests.get("http://127.0.0.1:3000/alluserdata/").json()
+        for x in all_profinder_data:
+            if x['uid'] == client_one:
+                specific_user = x
+             
         context={'key':my,
-                 'current_path':request.get_full_path()
+                 'current_path':request.get_full_path(),
+                 'specific_user':[specific_user],
                  }
         return render(request,"client_details.html",context)
 
@@ -212,7 +225,12 @@ def add_client(request,id):
         my = requests.get(f"http://127.0.0.1:3000/pi_my_data/{id}").json()[0]
         # print(my)
         my_client = requests.get(f"http://127.0.0.1:3000/pi_my_clients/{id}").json()[id]
-        print(my_client)
+        # print(my_client)
+        if "my_client_one" in request.POST:
+           print(request.POST)
+           global my_client_one
+           my_client_one = request.POST['my_client_one']  
+           return redirect(f"/pi_client_feedback/{id}")
         context={'key':my,
                  'current_path':request.get_full_path(),
                  'my_client':my_client,
@@ -222,9 +240,19 @@ def add_client(request,id):
 
 def client_feedback(request,id):
         my = requests.get(f"http://127.0.0.1:3000/pi_my_data/{id}").json()[0]
-        print(my)
+        # print(my)
+        add_client(request,id)
+        print(my_client_one)
+        all_profile_finder = requests.get("http://127.0.0.1:3000/alluserdata/").json()
+        for x in all_profile_finder:
+            if my_client_one == x['uid']:
+                specific_user = x
+                print(specific_user)
+
+        
         context={'key':my,
-                 'current_path':request.get_full_path()
+                 'current_path':request.get_full_path(),
+                 'specific_user':[specific_user],
                  }
         return render(request,"pi_client_feedback.html",context)
 

@@ -86,17 +86,22 @@
 
 
         <div class="col-md-6 col-lg-3  client-container">
-          <a href="/pi_client_feedback/{{key.uid}}" style="display: contents;">
-
-          <img src="/media/images/man2.webp" alt="" class="clientimg">
+          <form method="POST">  
+            {% csrf_token %}
+          <a href="" style="display: contents;"><button type="submit" name="my_client_one" value="{{i.uid}}" style="
+            display: contents;
+        " >
+          
+          </form>
+          <img src="{{i.profile_picture}}" alt="" class="clientimg">
           <button class="Pending fixed-pending-button">Complete</button>
           {% comment %} <button class="Pendings fixed-pending-button">Pending</button> {% endcomment %}
 
           <div class="client-details">
               <span class="clientname mb-2">{{i.name}}</span>
               <span class="clientID mb-1">ID :#{{i.uid}}</span>
-              <span class="clientpalce mb-2">Dubai, United Arab Emirates</span>
-              <i class="clientquotes mb-2">"Life is full of possibility"</i>
+              <span class="clientpalce mb-2">{{i.r_country}}, {{i.r_state}}</span>
+              <i class="clientquotes mb-2">"{{i.profile_tag}}"</i>
               <i class="bi bi-circle-fill me-3 mb-3"><span class="online ms-1">Online</span>  </i>
           </div>
         </a>
@@ -104,7 +109,7 @@
       </div>
     {% endfor %}
 
-      <div class="col-md-6 col-lg-3  client-container">
+      {% comment %} <div class="col-md-6 col-lg-3  client-container">
         <img src="/media/images/man2.webp" alt="" class="clientimg">
         <button class="Pendings fixed-pending-button">Pending</button>
         <div class="client-details">
@@ -137,7 +142,7 @@
         <i class="bi bi-circle-fill me-3 mb-3"><span class="online ms-1">Online</span>  </i>
     </div>
 </div>
-      
+       {% endcomment %}
 <div class="addnew col-md-12 text-center mb-4">
   <p class="addcli"> Add New Client Profiles</p>
   <button class="buttoon text-white mt-3 pe-3 ps-3 pt-2 pb-2" type="button">Add New Clients</button>

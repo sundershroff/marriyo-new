@@ -18,10 +18,30 @@
  <link rel="stylesheet" href="/media/css/style.css">
 
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+ 
 
 </head>
 
 <body>
+  <script>
+    $(document).ready(function(){
+      
+    
+
+      $("#addnew").click(function(){
+        $("ol").append("<li>"+"<div class='row content mt-3 '>"
+
+          +"<div class='col-md-1 text-center text-success  mt-3'>"
+
+          +"<i class='bi bi-check-circle-fill' style='font-size: 25px;'></i></div>"
+          +"<div class='col-md-9 mt-3'>"
+           +"<h5>"+$("#textarea_question").val()+"</h5></div>"
+          +"<div class='col-md-2 text-center'>"
+            +"<button class='more pe-3 ps-3 p-1 mt-3 mb-3' type='button' data-bs-toggle='modal' data-bs-target='#myModal1'>View answer</button></div>" 
+       +"</div></li>");
+      });
+    });
+    </script>
   {% include 'header.html' %}
 
   {% include 'menu_header.html' %}
@@ -87,13 +107,14 @@
               <h4>All Questions</h4>
           </div>
           <div class="col-md-3 text-center ">
-            <button class="btn text-white ps-2 pe-2 " id="addnew" type="button" data-bs-toggle="modal" data-bs-target="#myModal00">+ Add New Questions</button>
+            <button class="btn text-white ps-2 pe-2 " id="" type="button" data-bs-toggle="modal" data-bs-target="#myModal00">+ Add New Questions</button>
 
             
           </div>
         </div>
         <!-- content -->
-        <div class="row content mt-3  " >
+        <ol style="list-style:none;display:contents">
+        <li><div class="row content mt-3  " >
 
           <div class=" col-md-1 text-center text-success  mt-3">
 
@@ -105,9 +126,10 @@
           <div class="col-md-2 text-center">
             <button class="more pe-3 ps-3 p-1 mt-3 mb-3" type="button" data-bs-toggle="modal" data-bs-target="#myModal1">View answer</button>
           </div> 
-       </div>
+       </div></li>
+      </ol>
 
-
+{% comment %} 
        <div class="row content mt-3  " >
         <div class=" col-md-1 text-center text-success  mt-3">
         <i class='bi bi-check-circle-fill' style="font-size: 25px;"></i>
@@ -168,9 +190,9 @@
   <div class="col-md-2 text-center">
     <button class="more pe-3 ps-3 p-1 mt-3 mb-3" type="button"data-bs-toggle="modal" data-bs-target="#myModal3">View answer</button>
   </div> 
-</div>
+</div> {% endcomment %}
 
-<div class="row content mt-3  " >
+{% comment %} <div class="row content mt-3  " >
   <div class=" col-md-1 text-center text-success  mt-3">
   <i class='bi bi-check-circle-fill uncheck' style="font-size: 25px;"></i>
   </div>
@@ -207,7 +229,7 @@
   <div class="col-md-9 mt-3">
     <h5> I heard she is good dancer is that correct?</h5>
   </div>
-</div>
+</div> {% endcomment %}
 
       </div>
     </div>
@@ -223,13 +245,15 @@
                         
                     <h4 class="mt-4">Question</h4>
                     <h6 class="head5 mt-4 mb-4 text-muted">Write your question here.</h6>
-                      <textarea name="textarea" id="textarea" cols="57" rows="5"></textarea>
+                      <textarea name="textarea" id="textarea_question" cols="57" rows="5" style="
+                      width: 100%;
+                  "></textarea>
                      
                     </div>
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn1 pe-3 ps-3 pt-2 pb-2 " data-bs-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn text-white" data-bs-dismiss="modal">Submit</button>
+                    <button type="button" id="addnew" class="btn text-white" data-bs-dismiss="modal">Submit</button>
                 </div>
             </div>
         </div>
