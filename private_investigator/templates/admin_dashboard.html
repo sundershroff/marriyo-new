@@ -66,7 +66,7 @@
            </div>
 
           <div>
-            <h4>16</h4>
+            <h4>{{my_client|length}}</h4>
             <h5>Total Investigations</h5>
           </div>
 
@@ -79,7 +79,11 @@
             </div>
 
             <div>
-            <h4>300</h4>
+              {% for i in my_client %}
+         {% if "empty" in i.answer %}
+            <h4>closed</h4>
+            {% endif %}
+            {% endfor %}
             <h5>Closed Investigations</h5>
           </div>
           

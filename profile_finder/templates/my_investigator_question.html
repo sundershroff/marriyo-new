@@ -106,26 +106,32 @@
           <div class="col-md-9">
               <h4>All Questions</h4>
           </div>
-          <div class="col-md-3 text-center ">
-            <button class="btn text-white ps-2 pe-2 " id="" type="button" data-bs-toggle="modal" data-bs-target="#myModal00">+ Add New Questions</button>
 
-            
+          {% comment %} {{question_and_answer|length}} {% endcomment %}
+          <div class="col-md-3 text-center ">
+            {% if question_and_answer|length == 10  %}
+            <button class="btn text-white ps-2 pe-2 " id="" type="button" data-bs-toggle="modal" data-bs-target="#" style="
+            opacity: 44%;
+        ">+ Add New Questions</button>
+         {% else %}
+         <button class="btn text-white ps-2 pe-2 " id="" type="button" data-bs-toggle="modal" data-bs-target="#myModal00">+ Add New Questions</button>
+
+            {% endif %}
           </div>
         </div>
         <!-- content -->
-    {{question_and_answer}}
-        {% for i in question_and_answer %} 
-{{i.question}}
         <ol style="list-style:none;display:contents">
-        <li><div class="row content mt-3  " >
+        <li>
+          {% for i in question_and_answer %} 
+          {% if i.answer == "empty" %}
+
+          <div class="row content mt-3  " >
 
 
           <div class=" col-md-1 text-center text-success  mt-3">
-            {% if i.answer == "empty" %}
 
           <i class='bi bi-check-circle-fill uncheck' style="font-size: 25px;"></i>
 
-          {% endif %}
 
           
           </div>
@@ -135,16 +141,52 @@
           <div class="col-md-2 text-center">
             <button class="more pe-3 ps-3 p-1 mt-3 mb-3" type="button" data-bs-toggle="modal" data-bs-target="#model{{forloop.counter}}">View answer</button>
           </div> 
-       </div></li>
-      </ol>
+       </div>
+  <!-- Modal 1 -->
+  <div class="modal" id="model{{forloop.counter}}">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="container">
+                    {% comment %} <h6>Answer</h6> {% endcomment %}
+                    <p>Question</p>
+                    <h5 class="head5">{{i.question}}</h5>
+                    <p>Answer</p>
+                    <p class="par"></p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>    
+       {% else %}
 
-      <!-- Modal 1 -->
+          <div class="row content mt-3  " >
+
+
+          <div class=" col-md-1 text-center text-success  mt-3">
+
+          <i class='bi bi-check-circle-fill ' style="font-size: 25px;"></i>
+
+
+          
+          </div>
+          <div class="col-md-9 mt-3">
+            <h5>{{i.question}}</h5>
+          </div>
+          <div class="col-md-2 text-center">
+            <button class="more pe-3 ps-3 p-1 mt-3 mb-3" type="button" data-bs-toggle="modal" data-bs-target="#model{{forloop.counter}}">View answer</button>
+          </div> 
+       </div>
+         <!-- Modal 1 -->
     <div class="modal" id="model{{forloop.counter}}">
       <div class="modal-dialog">
           <div class="modal-content">
               <div class="modal-body">
                   <div class="container">
-                      <h6>Answer</h6>
+                      {% comment %} <h6>Answer</h6> {% endcomment %}
                       <p>Question</p>
                       <h5 class="head5">{{i.question}}</h5>
                       <p>Answer</p>
@@ -157,6 +199,15 @@
           </div>
       </div>
   </div>    
+       {% endif %}
+
+       {% endfor %}
+
+      </li>
+      </ol>
+      {% for i in question_and_answer %} 
+
+    
       {% endfor %}
 
 {% comment %} <div class="row content mt-3  " >

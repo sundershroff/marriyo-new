@@ -81,6 +81,7 @@ h2 {
 }
 textarea{
   border-radius: 10px;
+  width: 100%;
 }
 
 p.notavailable {

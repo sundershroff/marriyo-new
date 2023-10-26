@@ -142,9 +142,13 @@ def admin_dashboard(request,id):
         my = requests.get(f"http://127.0.0.1:3000/pi_my_data/{id}").json()[0]
         pf_users = requests.get("http://127.0.0.1:3000/alluserdata/").json()
         # print(pf_users)
+        my_client = requests.get(f"http://127.0.0.1:3000/pi_my_clients/{id}").json()[id]
+
         context={'key':my,
                  'current_path':request.get_full_path(),
                  'profile_finder':pf_users,
+                 'my':my,
+                 'my_client':my_client,
                  }
         return render(request,"admin_dashboard.html",context)
 
@@ -225,7 +229,11 @@ def add_client(request,id):
         my = requests.get(f"http://127.0.0.1:3000/pi_my_data/{id}").json()[0]
         # print(my)
         my_client = requests.get(f"http://127.0.0.1:3000/pi_my_clients/{id}").json()[id]
-        # print(my_client)
+        print(my_client[0]['answer'])
+        if "empty" not in str(my_client[0]['answer']):
+            result= "complete"
+        else:
+            result= "empty"
         if "my_client_one" in request.POST:
            print(request.POST)
            global my_client_one
@@ -234,6 +242,8 @@ def add_client(request,id):
         context={'key':my,
                  'current_path':request.get_full_path(),
                  'my_client':my_client,
+                'result' :result,
+
                  }
         return render(request,"pi_add_new_client.html",context)
 
@@ -241,18 +251,33 @@ def add_client(request,id):
 def client_feedback(request,id):
         my = requests.get(f"http://127.0.0.1:3000/pi_my_data/{id}").json()[0]
         # print(my)
-        add_client(request,id)
-        print(my_client_one)
+        # add_client(request,id)
+        # print(my_client_one)
         all_profile_finder = requests.get("http://127.0.0.1:3000/alluserdata/").json()
         for x in all_profile_finder:
             if my_client_one == x['uid']:
+                # print(x['uid'])
                 specific_user = x
-                print(specific_user)
+                question_and_Answer = requests.get(f"http://127.0.0.1:3000/my_question_and_answer/{x['uid']}").json()[x['uid']]
+                print(question_and_Answer)
+                if "empty" not in str(question_and_Answer):
+                    result= "complete"
+                else:
+                    result = "empty"
+              
+        #post
+        if request.method=="POST":
+            print(request.POST)
+            response = requests.post(f"http://127.0.0.1:3000/my_question_and_answer/{specific_user['uid']}",data=request.POST)
+            print(response)
+            print(response.status_code)
+            print(response.text)
 
-        
         context={'key':my,
                  'current_path':request.get_full_path(),
                  'specific_user':[specific_user],
+                 'question_and_Answer':question_and_Answer,
+                 'result' :result,
                  }
         return render(request,"pi_client_feedback.html",context)
 

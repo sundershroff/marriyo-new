@@ -31,7 +31,9 @@
                   {% for i in mydata %}
                   <h4 class="head1 mt-3"><a href="/all_investigator/{{i.uid}}" style="text-decoration: none;color: gray;">All investigator</a> 
                     <span class="spy ms-3"><a href="/my_investigator/{{i.uid}}" style="text-decoration: none;color: #2B3674;"> My investigator</a></span></h4>
-                  <h6 class="head2">{{my_investigators|length}} investigator</h6>
+                  <h6 class="head2" style="
+                  color: #897dbd;
+              ">{{my_investigators|length}} investigator</h6>
                   {% endfor %}                </div>
             </div>
         </div>

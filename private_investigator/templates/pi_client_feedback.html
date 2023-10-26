@@ -76,8 +76,12 @@
           <div class="main text-center mb-4 ">
             <h5 class="head text-center">{{i.name}}</h5>
             <p class="text-center mb-4">{{i.r_country}}, {{i.r_state}}</p>
-           <button class="Pending" >Pending</button>
+            {% if result == "complete" %}
+            <button class="Pending" style="background-color:green">Complete</button>
 
+            {% else %}
+           <button class="Pending" >Pending</button>
+           {% endif %}
       
           </div>
       </div>
@@ -95,7 +99,7 @@
         <p class="notavailable mb-5 pe-3 ps-3 pt-2 pb-2 ms-2  ">The Investigator is very quick and collect all details what I request him. thanks a lot for helping such a great job</p>
     
       </div> {% endcomment %}
-    
+      {% endfor %}
   <div class="pay  mt-2  img-thumbnail ">
     <h5 class="mt-4 mb-4 ms-4  ">Client Feedback</h5>
     <p class="notavailable mb-5 mb-5 pe-3 ps-3 pt-2 pb-2 ms-2">Not available,need to complete your task first</p>
@@ -113,163 +117,112 @@
          
         </div>
         <!-- content -->
-        <div class="row content mt-3 mb-3 " >
+       
 
-          <div class=" col-md-1 text-center text-success  mt-3">
-           {% comment %} #uncheck {% endcomment %}
-            {% comment %} <i class='bi bi-check-circle-fill uncheck' style="font-size: 25px;"></i> {% endcomment %}
+{% for i in question_and_Answer %}
+{% if i.answer == "empty" %}
 
-  {% comment %} #check {% endcomment %}
-          <i class='bi bi-check-circle-fill' style="font-size: 25px;"></i>
+       <div class="row content mt-3 mb-3 " >
+        <div class=" col-md-1 text-center text-success  mt-3">
+        <i class='bi bi-check-circle-fill uncheck' style="font-size: 25px;"></i>
+        </div>
+        <div class="col-md-9 mt-3">
+          <h5>{{i.question}}</h5>
+        </div>
+        <div class="col-md-2 text-center">
+          <button class="more pe-3 ps-3 p-1 mt-3 mb-3" type="button"data-bs-toggle="modal" data-bs-target="#myModal{{forloop.counter}}">Add answer</button>
+
+        </div> 
+     </div>
+ <!-- Modals -->
+
+ <div class="modal" id="myModal{{forloop.counter}}">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-body">
+              <div class="container">
+                  
+              <h4 class="mt-4">Question</h4>
+              <h5 class="head5">{{i.question}}</h5>
+              <h6 class="head5 mt-4 mb-4 text-muted">Write your Answer here.</h6>
+              <form method="POST">
+                {% csrf_token %}
+                <input type="text" name="answer" id="textarea" cols="57" rows="5" style="
+                width: 100%;
+                height: 100px;
+                border-radius: 14px;
+                border: 1px solid gray;
+                text-align: center;
+            "></input>              
+               
+              </div>
           </div>
-          <div class="col-md-9 mt-3">
-            <h5>Where is the San Sebastian home? and she completed here graduation?</h5>
+          <div class="modal-footer">
+            <button type="button" class="btn1 pe-3 ps-3 pt-2 pb-2 " data-bs-dismiss="modal">Cancel</button>
+              <button type="submit" name="question" value="{{i.question}}" class="btn text-white" data-bs-dismiss="modal">Submit</button>
+            </form>
           </div>
-          <div class="col-md-2 text-center">
-            <button class="more pe-3 ps-3 p-1 mt-3 mb-3" type="button" data-bs-toggle="modal" data-bs-target="#myModal1">Add answer</button>
-          </div> 
-       </div>
+      </div>
+  </div>
+</div>
 
+{% else %}
 
        <div class="row content mt-3 mb-3 " >
         <div class=" col-md-1 text-center text-success  mt-3">
         <i class='bi bi-check-circle-fill' style="font-size: 25px;"></i>
         </div>
         <div class="col-md-9 mt-3">
-          <h5>Any other relation she having?</h5>
+          <h5>{{i.question}}</h5>
         </div>
         <div class="col-md-2 text-center">
-          <button class="more pe-3 ps-3 p-1 mt-3 mb-3" type="button"data-bs-toggle="modal" data-bs-target="#myModal2">Add answer</button>
+          <button class="more pe-3 ps-3 p-1 mt-3 mb-3" type="button"data-bs-toggle="modal" data-bs-target="#myModal{{forloop.counter}}">Add answer</button>
 
         </div> 
      </div>
+ <!-- Modals -->
 
-
-     <div class="row content mt-3 mb-3 " >
-      <div class=" col-md-1 text-center text-success  mt-3">
-      <i class='bi bi-check-circle-fill' style="font-size: 25px;"></i>
+ <div class="modal" id="myModal{{forloop.counter}}">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-body">
+              <div class="container">
+                  
+              <h4 class="mt-4">Question</h4>
+              <h5 class="head5">{{i.question}}</h5>
+              <h6 class="head5 mt-4 mb-4 text-muted">Write your Answer here.</h6>
+              <form method="POST">
+                {% csrf_token %}
+                <input type="text" name="answer" value="{{i.answer}}" id="textarea" cols="57" rows="5" style="
+                width: 100%;
+                height: 100px;
+                border-radius: 14px;
+                border: 1px solid gray;
+                text-align: center;
+            "></input>
+              
+               
+              </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn1 pe-3 ps-3 pt-2 pb-2 " data-bs-dismiss="modal">Cancel</button>
+              <button type="submit" name="question" value="{{i.question}}" class="btn text-white" data-bs-dismiss="modal">Submit</button>
+            </form>
+          </div>
       </div>
-      <div class="col-md-9 mt-3">
-        <h5>Who is her best friend?</h5>
-      </div>
-      <div class="col-md-2 text-center">
-        <button class="more pe-3 ps-3 p-1 mt-3 mb-3" type="button"data-bs-toggle="modal" data-bs-target="#myModal3">Add answer</button>
-      </div> 
-   </div>
-
-   <div class="row content mt-3  mb-3" >
-    <div class=" col-md-1 text-center text-success  mt-3">
-    <i class='bi bi-check-circle-fill' style="font-size: 25px;"></i>
-    </div>
-    <div class="col-md-9 mt-3">
-      <h5>Where she studied her higher secondary school?</h5>
-    </div>
-    <div class="col-md-2 text-center">
-      <button class="more pe-3 ps-3 p-1 mt-3 mb-3" type="button"data-bs-toggle="modal" data-bs-target="#myModal3">Add answer</button>
-    </div> 
- </div>
-
- <div class="row content mt-3 mb-3 " >
-  <div class=" col-md-1 text-center text-success  mt-3">
-  <i class='bi bi-check-circle-fill uncheck' style="font-size: 25px;"></i>
   </div>
-  <div class="col-md-9 mt-3">
-    <h5>Her Father have any bad habits?</h5>
-  </div>
-  <div class="col-md-2 text-center">
-    <button class="more pe-3 ps-3 p-1 mt-3 mb-3" type="button"data-bs-toggle="modal" data-bs-target="#myModal3">Add answer</button>
-  </div> 
 </div>
+{% endif %}
 
-<div class="row content mt-3 mb-3 " >
-  <div class=" col-md-1 text-center text-success  mt-3">
-  <i class='bi bi-check-circle-fill uncheck' style="font-size: 25px;"></i>
-  </div>
-  <div class="col-md-9 mt-3">
-    <h5>Is it true the family is very Orthodox?</h5>
-  </div>
-  <div class="col-md-2 text-center">
-    <button class="more pe-3 ps-3 p-1 mt-3 mb-3" type="button"data-bs-toggle="modal" data-bs-target="#myModal3">Add answer</button>
-  </div> 
-</div>
+     {% endfor %}
 
-<div class="row content mt-3  mb-3" >
-  <div class=" col-md-1 text-center text-success  mt-3">
-  <i class='bi bi-check-circle-fill uncheck' style="font-size: 25px;"></i>
-  </div>
-  <div class="col-md-9 mt-3">
-    <h5>Whats the neighbour assessment on here?</h5>
-  </div>
-  <div class="col-md-2 text-center">
-    <button class="more pe-3 ps-3 p-1 mt-3 mb-3" type="button"data-bs-toggle="modal" data-bs-target="#myModal3">Add answer</button>
-  </div> 
-  
-</div>
-
-<div class="row content mt-3  mb-3" >
-  <div class=" col-md-1 text-center text-success  mt-3">
-  <i class='bi bi-check-circle-fill uncheck' style="font-size: 25px;"></i>
-  </div>
-  <div class="col-md-9 mt-3">
-    <h5>She is excessively present day or typical?</h5>
-  </div>
-  <div class="col-md-2 text-center">
-    <button class="more pe-3 ps-3 p-1 mt-3 mb-3" type="button"data-bs-toggle="modal" data-bs-target="#myModal3">Add answer</button>
-  </div> 
-   
-</div>
-
-<div class="row content mt-3 mb-3 " >
-  <div class=" col-md-1 text-center text-success  mt-3">
-  <i class='bi bi-check-circle-fill uncheck' style="font-size: 25px;"></i>
-  </div>
-  <div class="col-md-9 mt-3 ">
-    <h5>What her brother doing? can you find for me his details?</h5>
-  </div>
-  <div class="col-md-2 text-center">
-    <button class="more pe-3 ps-3 p-1 mt-3 mb-3" type="button"data-bs-toggle="modal" data-bs-target="#myModal3">Add answer</button>
-  </div> 
-</div>
-
-<div class="row content mt-3 mb-3 " >
-  <div class=" col-md-1 text-center text-success  mt-3">
-  <i class='bi bi-check-circle-fill uncheck' style="font-size: 25px;"></i>
-  </div>
-  <div class="col-md-9 mt-3">
-    <h5> I heard she is good dancer is that correct?</h5>
-  </div>
-  <div class="col-md-2 text-center">
-    <button class="more pe-3 ps-3 p-1 mt-3 mb-3" type="button"data-bs-toggle="modal" data-bs-target="#myModal3">Add answer</button>
-  </div> 
-</div>
 
       </div>
-      {% endfor %}
+
     </div>
     </div>
     
-       <!-- Modals -->
-
-       <div class="modal" id="myModal00">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <div class="container">
-                        
-                    <h4 class="mt-4">Question</h4>
-                    <h6 class="head5 mt-4 mb-4 text-muted">Write your question here.</h6>
-                      <textarea name="textarea" id="textarea" cols="57" rows="5"></textarea>
-                     
-                    </div>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn1 pe-3 ps-3 pt-2 pb-2 " data-bs-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn text-white" data-bs-dismiss="modal">Submit</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
+      
     <!-- Modal 1 -->
     <div class="modal" id="myModal1">
       <div class="modal-dialog">

@@ -94,9 +94,12 @@
           
           </form>
           <img src="{{i.profile_picture}}" alt="" class="clientimg">
-          <button class="Pending fixed-pending-button">Complete</button>
-          {% comment %} <button class="Pendings fixed-pending-button">Pending</button> {% endcomment %}
+          {% if "empty" not in i.answer %}
 
+          <button class="Pending fixed-pending-button">Complete</button>
+          {% else %}
+          <button class="Pendings fixed-pending-button">Pending</button>
+{% endif %}
           <div class="client-details">
               <span class="clientname mb-2">{{i.name}}</span>
               <span class="clientID mb-1">ID :#{{i.uid}}</span>
