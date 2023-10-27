@@ -99,132 +99,23 @@
          
         </div>
         <!-- content -->
+        {% for j in  question_and_Answer %}
         <div class="row content mt-3 mb-3 " >
 
           <div class=" col-md-1 text-center text-success  mt-3">
 
-          <i class='bi bi-check-circle-fill' style="font-size: 25px;"></i>
+          <i class='bi bi-check-circle-fill uncheck' style="font-size: 25px;"></i>
           </div>
           <div class="col-md-9 mt-3">
-            <h5>Where is the San Sebastian home? and she completed here graduation?</h5>
+            <h5>{{j.question}}</h5>
           </div>
           {% comment %} <div class="col-md-2 text-center">
             <button class="more pe-3 ps-3 p-1 mt-3 mb-3" type="button" data-bs-toggle="modal" data-bs-target="#myModal1">View answer</button>
           </div>  {% endcomment %}
        </div>
 
+       {% endfor %}
 
-       <div class="row content mt-3 mb-3 " >
-        <div class=" col-md-1 text-center text-success  mt-3">
-        <i class='bi bi-check-circle-fill' style="font-size: 25px;"></i>
-        </div>
-        <div class="col-md-9 mt-3">
-          <h5>Any other relation she having?</h5>
-        </div>
-        {% comment %} <div class="col-md-2 text-center">
-          <button class="more pe-3 ps-3 p-1 mt-3 mb-3" type="button"data-bs-toggle="modal" data-bs-target="#myModal2">View answer</button>
-
-        </div>  {% endcomment %}
-     </div>
-
-
-     <div class="row content mt-3 mb-3 " >
-      <div class=" col-md-1 text-center text-success  mt-3">
-      <i class='bi bi-check-circle-fill' style="font-size: 25px;"></i>
-      </div>
-      <div class="col-md-9 mt-3">
-        <h5>Who is her best friend?</h5>
-      </div>
-      {% comment %} <div class="col-md-2 text-center">
-        <button class="more pe-3 ps-3 p-1 mt-3 mb-3" type="button"data-bs-toggle="modal" data-bs-target="#myModal3">View answer</button>
-      </div>  {% endcomment %}
-   </div>
-
-   <div class="row content mt-3  mb-3" >
-    <div class=" col-md-1 text-center text-success  mt-3">
-    <i class='bi bi-check-circle-fill' style="font-size: 25px;"></i>
-    </div>
-    <div class="col-md-9 mt-3">
-      <h5>Where she studied her higher secondary school?</h5>
-    </div>
-    <div class="col-md-2 text-center">
-      <button class="more pe-3 ps-3 p-1 mt-3 mb-3" type="button"data-bs-toggle="modal" data-bs-target="#myModal3">View answer</button>
-    </div> 
- </div>
-
- <div class="row content mt-3 mb-3 " >
-  <div class=" col-md-1 text-center text-success  mt-3">
-  <i class='bi bi-check-circle-fill uncheck' style="font-size: 25px;"></i>
-  </div>
-  <div class="col-md-9 mt-3">
-    <h5>Her Father have any bad habits?</h5>
-  </div>
-  <div class="col-md-2 text-center">
-    <button class="more pe-3 ps-3 p-1 mt-3 mb-3" type="button"data-bs-toggle="modal" data-bs-target="#myModal3">View answer</button>
-  </div> 
-</div>
-
-<div class="row content mt-3 mb-3 " >
-  <div class=" col-md-1 text-center text-success  mt-3">
-  <i class='bi bi-check-circle-fill uncheck' style="font-size: 25px;"></i>
-  </div>
-  <div class="col-md-9 mt-3">
-    <h5>Is it true the family is very Orthodox?</h5>
-  </div>
-  <div class="col-md-2 text-center">
-    <button class="more pe-3 ps-3 p-1 mt-3 mb-3" type="button"data-bs-toggle="modal" data-bs-target="#myModal3">View answer</button>
-  </div> 
-</div>
-
-<div class="row content mt-3  mb-3" >
-  <div class=" col-md-1 text-center text-success  mt-3">
-  <i class='bi bi-check-circle-fill uncheck' style="font-size: 25px;"></i>
-  </div>
-  <div class="col-md-9 mt-3">
-    <h5>Whats the neighbour assessment on here?</h5>
-  </div>
-  <div class="col-md-2 text-center">
-    <button class="more pe-3 ps-3 p-1 mt-3 mb-3" type="button"data-bs-toggle="modal" data-bs-target="#myModal3">View answer</button>
-  </div> 
-  
-</div>
-
-<div class="row content mt-3  mb-3" >
-  <div class=" col-md-1 text-center text-success  mt-3">
-  <i class='bi bi-check-circle-fill uncheck' style="font-size: 25px;"></i>
-  </div>
-  <div class="col-md-9 mt-3">
-    <h5>She is excessively present day or typical?</h5>
-  </div>
-  <div class="col-md-2 text-center">
-    <button class="more pe-3 ps-3 p-1 mt-3 mb-3" type="button"data-bs-toggle="modal" data-bs-target="#myModal3">View answer</button>
-  </div> 
-   
-</div>
-
-<div class="row content mt-3 mb-3 " >
-  <div class=" col-md-1 text-center text-success  mt-3">
-  <i class='bi bi-check-circle-fill uncheck' style="font-size: 25px;"></i>
-  </div>
-  <div class="col-md-9 mt-3 ">
-    <h5>What her brother doing? can you find for me his details?</h5>
-  </div>
-  <div class="col-md-2 text-center">
-    <button class="more pe-3 ps-3 p-1 mt-3 mb-3" type="button"data-bs-toggle="modal" data-bs-target="#myModal3">View answer</button>
-  </div> 
-</div>
-
-<div class="row content mt-3 mb-3 " >
-  <div class=" col-md-1 text-center text-success  mt-3">
-  <i class='bi bi-check-circle-fill uncheck' style="font-size: 25px;"></i>
-  </div>
-  <div class="col-md-9 mt-3">
-    <h5> I heard she is good dancer is that correct?</h5>
-  </div>
-  <div class="col-md-2 text-center">
-    <button class="more pe-3 ps-3 p-1 mt-3 mb-3" type="button"data-bs-toggle="modal" data-bs-target="#myModal3">View answer</button>
-  </div> 
-</div>
 
       </div>
       {% endfor %}

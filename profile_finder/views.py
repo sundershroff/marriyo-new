@@ -2552,8 +2552,19 @@ def hire_investigator(request,id):
 def my_investigator(request,id):
     my = requests.get(f"http://127.0.0.1:3000/alldata/{id}").json()
     my_investigators = requests.get(f"http://127.0.0.1:3000/my_investigator/{id}").json()[id]
+    question_and_answer = requests.get(f"http://127.0.0.1:3000/my_question_and_answer/{id}").json()[id]
     profile_pic = [my][0]['profile_picture']
     mydata=[my]
+    #percentage
+    total_length = len(question_and_answer)
+    completed_length = []
+    for x in question_and_answer:
+        if "empty" != x['answer']:
+           completed_length.append(x['answer'])
+    total_percent = int(len(completed_length)/len(question_and_answer)*100)
+    print(total_percent)
+    
+    #post
     if "my_investigator" in request.POST:
            print(request.POST)
            global hire_id
@@ -2563,6 +2574,7 @@ def my_investigator(request,id):
             'mydata':mydata,
             'profile_pic':profile_pic,
            'my_investigators':my_investigators,
+            'total_percent':total_percent,
                }
 
     return render(request,'my_investigator.html',context)
@@ -2572,28 +2584,42 @@ def my_investigator_question(request,id):
     question_and_answer = requests.get(f"http://127.0.0.1:3000/my_question_and_answer/{id}").json()[id]
     profile_pic = [my][0]['profile_picture']
     mydata=[my]
-    print(question_and_answer)
+    # print(question_and_answer)
     my_investigator(request,id)
-    print(hire_id)
+    # print(hire_id)
     all_investigator_values = requests.get("http://127.0.0.1:3000/all_private_investigator_data").json()
     for  x in all_investigator_values:
         if x['uid'] == hire_id:
             specific_user = x
-            print(specific_user)
-            
-    #questions
+            # print(specific_user)
+    #percentage
+    total_length = len(question_and_answer)
+    completed_length = []
+    for x in question_and_answer:
+        if "empty" != x['answer']:
+           completed_length.append(x['answer'])
+    total_percent = int(len(completed_length)/len(question_and_answer)*100)
+    print(total_percent)
+
+    
+    #question
     if request.method == "POST":
-        print(request.POST)
-        response = requests.post(f"http://127.0.0.1:3000/my_question_and_answer/{id}",data=request.POST)
-        print(response)
-        print(response.status_code)
-        print(response.text)
+        if "Questin" in request.POST:
+            print(request.POST)
+            response = requests.post(f"http://127.0.0.1:3000/my_question_and_answer/{id}",data=request.POST)
+            print(response)
+            print(response.status_code)
+            print(response.text)
+        if "feedback" in request.POST:
+            print(request.POST)
+
 
     context = {
             'mydata':mydata,
             'profile_pic':profile_pic,
             'specific_user':[specific_user],
             'question_and_answer':question_and_answer,
+            'total_percent':total_percent,
                }
 
     return render(request,'my_investigator_question.html',context)

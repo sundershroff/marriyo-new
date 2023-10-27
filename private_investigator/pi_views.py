@@ -8,6 +8,7 @@ from django.http import HttpResponse
 # import cv2
 # from django.http import JsonResponse
 import requests
+import json
 # from django.urls import reverse
 
 # import random
@@ -149,6 +150,7 @@ def admin_dashboard(request,id):
                  'profile_finder':pf_users,
                  'my':my,
                  'my_client':my_client,
+                 'my_client_script':json.dumps(my_client),
                  }
         return render(request,"admin_dashboard.html",context)
 
@@ -200,10 +202,12 @@ def client_details(request,id):
         for x in all_profinder_data:
             if x['uid'] == client_one:
                 specific_user = x
+                question_and_Answer = requests.get(f"http://127.0.0.1:3000/my_question_and_answer/{x['uid']}").json()[x['uid']]
              
         context={'key':my,
                  'current_path':request.get_full_path(),
                  'specific_user':[specific_user],
+                 'question_and_Answer':question_and_Answer,
                  }
         return render(request,"client_details.html",context)
 

@@ -79,16 +79,12 @@
             </div>
 
             <div>
-              {% for i in my_client %}
-         {% if "empty" in i.answer %}
-            <h4>closed</h4>
-            {% endif %}
-            {% endfor %}
+             
+            <h4 id="closed"></h4>
             <h5>Closed Investigations</h5>
           </div>
           
         </div>
-
         <div class="dash_bor_box">
 
           <div>
@@ -96,7 +92,7 @@
           </div>
 
           <div>
-          <h4>300</h4>
+          <h4 id="pending"></h4>
           <h5>Pending Investigations</h5>
         </div>
         
@@ -160,51 +156,47 @@
     <!-- over -->
 
     <!-- start -->
-     <div class="dash_bor_table px-4">
+     <div class="dash_bor_table px-4" style="
+     height: 30rem;
+     overflow-y: scroll;
+     position: relative;">
+      <table class=" table table-borderless ">
 
-      <table class=" table table-borderless " >
-
-      <tr>
+      <tr style="
+      position: sticky;
+      top: 0px;
+  ">
         <th class="py-4">#No</th>
         <th class="py-4">User Id</th>
         <th class="py-4">Name</th>
         <th class="py-4">Email Id</th>
       </tr>
+      {% for i in my_client %}
 
       <tr>
-        <td class="dash_bor_table_img"><img src="/media/images//girl2.png" class="mx-2"> EnvIronmental Specialist</td>
-        <td class="py-4">18/09/2016</td>
-        <td class="py-4">Kochi</td>
-        <td class="py-4">sunder@gmail.com</td>
-
+        <td class="dash_bor_table_img"><img src="{{i.profile_picture}}" class="mx-2"> {{forloop.counter}}</td>
+        <td class="py-4">{{i.uid}}</td>
+        <td class="py-4">{{i.name}}</td>
+        <td class="py-4">{{i.email}}</td>
       </tr>
+      {% endfor %}
 
-       <tr>
-        <td class="dash_bor_table_img"><img src="/media/images//girl2.png" class="mx-2"> EnvIronmental Specialist</td>
-        <td class="py-4">18/09/2016</td>
-        <td class="py-4">Kochi</td>
-      </tr>
 
-        <tr>
-        <td class="dash_bor_table_img"><img src="/media/images//girl2.png" class="mx-2"> EnvIronmental Specialist</td>
-        <td class="py-4">18/09/2016</td>
-        <td class="py-4">Kochi</td>
-      </tr>
+      
 
-      <tr>
-        <td class="dash_bor_table_img"><img src="/media/images//girl2.png" class="mx-2"> EnvIronmental Specialist</td>
-        <td class="py-4">18/09/2016</td>
-        <td class="py-4">Kochi</td>
-      </tr>
-
-        <div class="py-4">
+        {% comment %} <div class="py-4"> {% endcomment %}
       
 
     </table>
-
   
 
-    <div class="dash_bor_rsp_va my-3">
+    <div class="dash_bor_rsp_va my-3" style="
+    height: auto;
+    position: sticky;
+    bottom: 0px;
+    border-top: 9px solid rgba(0, 0, 255, 0.1);
+    border-radius: 0px;
+">
       <a href="#" class="mx-3">View All</a>
     </div>
 
@@ -222,62 +214,44 @@
           <i class="fa-solid fa-ellipsis-vertical"></i>
         </div>
 
-        <div class="px-4 my-3">
+        <div class="px-4 my-3" style="
+        height: 30rem;
+        overflow-y: scroll;
+    ">
           <table class="table table-borderless">
 
-            <tr>
+            <tr style="
+            position: sticky;
+            top: 0px;
+        ">
               <th class="py-4">User Name</th>
               <th class="py-4">Local Admin</th>
               <th class="py-4">Date Of Approved</th>
             </tr>
-
-            <tr>
-              
-            
-              <td class="py-4"><span class="dash_bor_table_img1"><img src="/media/images//girl1.png"> Albert Flores</span></td>
+{% for i in my_client %}
+{% if "empty" not in i.answer %}
+            <tr>  
+              <td class="py-4"><span class="dash_bor_table_img1"><img src="/media/images//girl1.png"> {{i.name}}</span></td>
               <td  class="py-4">Environmental Specialist</td>
               <td class="py-4">18/09/2016</td>
          
             </tr>
+            {% endif %}
 
+            {% endfor %}
+            
           
-            <tr>
-              
-            
-              <td class="py-4"><span class="dash_bor_table_img1"><img src="/media/images//girl1.png"> Albert Flores</span></td>
-              <td  class="py-4">Environmental Specialist</td>
-              <td class="py-4">18/09/2016</td>
-         
-            </tr>
-
-            <tr>
-              
-            
-              <td class="py-4"><span class="dash_bor_table_img1"><img src="/media/images//girl1.png"> Albert Flores</span></td>
-              <td  class="py-4">Environmental Specialist</td>
-              <td class="py-4">18/09/2016</td>
-         
-            </tr>
-
            
-            <tr>
-              
-            
-              <td class="py-4"><span class="dash_bor_table_img1"><img src="/media/images//girl1.png"> Albert Flores</span></td>
-              <td  class="py-4">Environmental Specialist</td>
-              <td class="py-4">18/09/2016</td>
-         
-            </tr>
 
           </table>
-             <div class="dash_bor_rsp_va my-3">
+             <div class="dash_bor_rsp_va my-3" style="height: auto;position: sticky;bottom: 0;border-top: 9px solid rgba(0, 0, 255, 0.1);border-radius: 0 0px;">
       <a href="#" class="mx-3">View All</a>
     </div>
         </div>
         
       </div>
 
-      <div class="dash_bor_table2">
+      <div class="dash_bor_table2" >
           
           
         <div class="dash_bor_split px-4">
@@ -356,12 +330,39 @@
     </div>
     <!-- over -->
   </div>
-   
- </div>
+</div>
+<script>
+a = {{my_client_script|safe}};
+  //closed investigation
 
+text=0;
+for(i=0;i<Object.keys(a).length;i++){
+  if(a[i]['answer'].indexOf("empty") == -1){
+    text += a[i]['answer'].split().length;
+  }
+  else{
+    text+=0;
+  }
 
- 
- <script src="/media/js/mainn.js"></script>
+}   
+document.getElementById("closed").innerHTML=text;
+
+//pending investigations
+text=0;
+for(i=0;i<Object.keys(a).length;i++){
+  if(a[i]['answer'].indexOf("empty") != -1){
+    text += a[i]['answer'].split().length;
+  }
+  else{
+    text+=0;
+  }
+
+}   
+document.getElementById("pending").innerHTML=text;
+
+</script>
+
+<script src="/media/js/mainn.js"></script>
 
 
 </body>

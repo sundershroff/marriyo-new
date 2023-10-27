@@ -18,8 +18,99 @@
  <link rel="stylesheet" href="/media/css/style.css">
 
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
- 
-
+ <style>
+  .content {
+    text-align: center;
+  }
+  .content h1 {
+    font-family: 'Sansita', sans-serif;
+    letter-spacing: 1px;
+    font-size: 50px;
+    color: #282828;
+    margin-bottom: 10px;
+  }
+  .content  i {
+    color: #FFC107;
+  }
+  .content span {
+    position: relative;
+    display: inline-block;
+  }
+  .content  span:before, .content  span:after {
+    position: absolute;
+    content: "";
+    background-color: #282828;
+    width: 40px;
+    height: 2px;
+    top: 40%;
+  }
+  .content  span:before {
+    left: -45px;
+  }
+  .content  span:after {
+    right: -45px;
+  }
+  .content p {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 18px;
+    letter-spacing: 1px;
+  }
+  .wrapper {
+    position: relative;
+    display: inline-block;
+    border: none;
+    font-size: 14px;
+    /* margin: 50px auto; */
+    /* left: -63%; */
+    /* transform: translateX(-63%); */
+  }
+  
+  .wrapper input {
+    border: 0;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    position: absolute !important;
+    clip: rect(1px 1px 1px 1px);
+    clip: rect(1px, 1px, 1px, 1px);
+    opacity: 0;
+  }
+  
+  .wrapper label {
+    position: relative;
+    float: right;
+    color: #C8C8C8;
+  }
+  
+  .wrapper label:before {
+    margin: 5px;
+    content: "\f005";
+    font-family: FontAwesome;
+    display: inline-block;
+    font-size: 1.5em;
+    color: #ccc;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+  }
+  
+  .wrapper input:checked ~ label:before {
+    color: #FFC107;
+  }
+  
+  .wrapper label:hover ~ label:before {
+    color: #ffdb70;
+  }
+  
+  .wrapper label:hover:before {
+    color: #FFC107;
+  }
+ </style>
+<style>
+  @keyframes html-progress {
+    to { --progress-value: {{total_percent}}; }
+  }
+</style>
 </head>
 
 <body>
@@ -79,10 +170,50 @@
                             <i class="fa fa-star rating-color"></i>
                             <i class="fa fa-star"></i>
                         </div>
-            <button class="btn text-white mb-3" type="button">Close Deal & Rate</button>
+            <button class="btn text-white mb-3" type="button" data-bs-toggle="modal" data-bs-target="#myModalreview">Close Deal & Rate</button>
           
           </div>
       </div>
+      {% comment %} model {% endcomment %}
+      <form method="POST">
+        {% csrf_token %}
+      <div class="modal" id="myModalreview">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="container">
+                        
+                    <h4 class="mt-4">Close & Rate</h4>
+                  
+                    
+                    <div class="wrapper">
+                      <input type="checkbox" name="rating" id="st1" value="5" />
+                      <label for="st1"></label>
+                      <input type="checkbox" name="rating" id="st2" value="4" />
+                      <label for="st2"></label>
+                      <input type="checkbox" name="rating" id="st3" value="3" />
+                      <label for="st3"></label>
+                      <input type="checkbox" name="rating" id="st4" value="2" />
+                      <label for="st4"></label>
+                      <input type="checkbox" name="rating" id="st5" value="1" />
+                      <label for="st5"></label>
+                    </div>
+
+                    <h6 class="head5 mt-4 mb-4 text-muted">Write your Feedback here.</h6>
+                      <textarea name="feedback" id="textarea_question" cols="57" rows="5" style="
+                      width: 100%;
+                  "></textarea>
+                     
+                    </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn1 pe-3 ps-3 pt-2 pb-2 " data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" namme="investigator_uid" value="{{i.uid}}" id="addnew" class="btn text-white" data-bs-dismiss="modal">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+  </form>
       {% endfor %}
     
   <div class="pay text-center mt-2  img-thumbnail ">
@@ -168,7 +299,7 @@
 
           <div class=" col-md-1 text-center text-success  mt-3">
 
-          <i class='bi bi-check-circle-fill ' style="font-size: 25px;"></i>
+          <i class='bi bi-check-circle-fill ' style="font-size: 25px;color:green;"></i>
 
 
           
