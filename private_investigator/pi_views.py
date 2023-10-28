@@ -145,12 +145,34 @@ def admin_dashboard(request,id):
         # print(pf_users)
         my_client = requests.get(f"http://127.0.0.1:3000/pi_my_clients/{id}").json()[id]
 
+        #closed investigation'
+        closed=[]
+        for x in my_client:
+            # print(x['answer'])
+            if x['answer'] is None:
+                print("")
+            elif "empty" not in x['answer']:
+                closed.append("1")
+        print(len(closed))
+        
+        # pending investigation
+        pending=[]
+        for x in my_client:
+            # print(x['answer'])
+            if x['answer'] is None:
+                pending.append("1")
+            elif "empty" in x['answer']:
+                pending.append("1")
+        print(len(pending))
+               
+
         context={'key':my,
                  'current_path':request.get_full_path(),
                  'profile_finder':pf_users,
                  'my':my,
                  'my_client':my_client,
-                 'my_client_script':json.dumps(my_client),
+                 'closed':len(closed),
+                 'pending':len(pending),
                  }
         return render(request,"admin_dashboard.html",context)
 
@@ -181,7 +203,19 @@ def payment(request,id):
 def client_list(request,id):
         my = requests.get(f"http://127.0.0.1:3000/pi_my_data/{id}").json()[0]
         # print(my)
-        all_profinder_data = requests.get("http://127.0.0.1:3000/alluserdata/").json()
+        
+        my_client = requests.get(f"http://127.0.0.1:3000/pi_my_clients/{id}").json()[id]
+        if len(my_client) == 0:
+            all_profinder_data_values = requests.get("http://127.0.0.1:3000/alluserdata/").json()
+        else:
+            all_profinder_data_values=[]
+            all_profinder_data = requests.get("http://127.0.0.1:3000/alluserdata/").json()
+            for x in all_profinder_data:
+                if x['uid'] not in str(my_client):
+                    print(x)
+                    all_profinder_data_values.append(x)
+
+        #post
         if "client_one" in request.POST:
             print(request.POST)
             global client_one
@@ -189,7 +223,8 @@ def client_list(request,id):
             return redirect(f"/pi_client_details/{id}")
         context={'key':my,
                  'current_path':request.get_full_path(),
-                 'all_profinder_data':all_profinder_data,
+                 'all_profinder_data':all_profinder_data_values,
+                 'my_client':my_client,
                  }
         return render(request,"Client_list.html",context)
 

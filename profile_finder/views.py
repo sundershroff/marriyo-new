@@ -2556,13 +2556,16 @@ def my_investigator(request,id):
     profile_pic = [my][0]['profile_picture']
     mydata=[my]
     #percentage
-    total_length = len(question_and_answer)
-    completed_length = []
-    for x in question_and_answer:
-        if "empty" != x['answer']:
-           completed_length.append(x['answer'])
-    total_percent = int(len(completed_length)/len(question_and_answer)*100)
-    print(total_percent)
+    if len(my_investigators) != 0 and len(question_and_answer) != 0:
+        total_length = len(question_and_answer)
+        completed_length = []
+        for x in question_and_answer:
+            if "empty" != x['answer']:
+               completed_length.append(x['answer'])
+        total_percent = int(len(completed_length)/len(question_and_answer)*100)
+        print(total_percent)
+    else:
+        total_percent = 0
     
     #post
     if "my_investigator" in request.POST:
@@ -2593,13 +2596,16 @@ def my_investigator_question(request,id):
             specific_user = x
             # print(specific_user)
     #percentage
-    total_length = len(question_and_answer)
-    completed_length = []
-    for x in question_and_answer:
-        if "empty" != x['answer']:
-           completed_length.append(x['answer'])
-    total_percent = int(len(completed_length)/len(question_and_answer)*100)
-    print(total_percent)
+    if len(question_and_answer) != 0:
+        total_length = len(question_and_answer)
+        completed_length = []
+        for x in question_and_answer:
+            if "empty" != x['answer']:
+               completed_length.append(x['answer'])
+        total_percent = int(len(completed_length)/len(question_and_answer)*100)
+        print(total_percent)
+    else:
+        total_percent = 0
 
     
     #question

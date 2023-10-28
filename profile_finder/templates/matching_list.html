@@ -331,6 +331,175 @@
   </div>
   {% for key in alldata %}  
 
+  {% endfor %}
+  <!-- over -->
+  <!-- Followed List -->
+
+  <div class="container">
+    <div class="row">
+
+      <div class="match_list_sec1 my-3">
+
+        <div>
+          <h3>Favorites List</h3>
+          <h6><span>{{sent|length}}</span> Matching profiles are available for you</h6>
+        </div>
+
+        <div>
+          <div class="match_list_sec2">
+
+            <div class="match_list_sec4 text-end my-3">
+              {% for key in mydata %}
+              <a href="/viewallmatch/{{key.uid}}">View all</a>
+              {% endfor %}
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="match_list_carsel owl-carousel owl-theme container my-1">
+
+    {% for key in sent %}   
+    {% for keyy in alldata %} 
+    {% if key.uid == keyy.uid %}
+    {{keyy.target}}
+    <div class="item"  data-bs-toggle="modal" data-bs-target="#{{keyy.target}}" >
+      {% comment %} <img src="/media/images/girl1.png"> {% endcomment %}
+      <img class="matchingimage" src="{{key.profile_picture}}">
+
+      <button type="button" class="view_all_btn1" data-bs-toggle="modal"
+      data-bs-target="#r{{keyy.target}}">
+      <i class="far fa-ellipsis-v"></i>
+    </button>
+
+
+      <i class="fas fa-mountain match_list_icon2"></i>
+
+      <div class="match_list_content">
+
+        <p>ID: #{{key.uid}}</p>
+        <h4>{{key.name}}</h4>
+        <h6>{{key.address}}</h6>
+        <h6><em>{{key.profile_tag}}</em></h6>
+        <p><i class="fas fa-circle fa-xs "></i> Online</p>
+      </div>
+
+      <form method="POST">
+        {% csrf_token %}
+        {% if key.uid in favoritemy %}
+        <button class="fa fa-heart fa-xs match_list_icon3" style="font-size:1.8em;border: 0px;" type="submit" name="myfavorite_id" value="{{key.uid}}" >
+        </button>
+        
+        {% else %}
+        <button class="far fa-heart fa-xs match_list_icon3" style="font-size:1.8em;border: 0px;" type="submit" name="myfavorite_id" value="{{key.uid}}" >
+        </button>
+        {% endif %}
+      </form>
+            </div>
+         
+   {% else %}
+  {% endif %} 
+  {% endfor %}
+  
+    {% endfor %}
+    <div class="item">
+      <img class="matchingimage" src="/media/images/burger.png">
+    </div>
+  
+  </div>
+
+
+    
+ 
+  {% comment %} </div>
+ 
+
+  </div> {% endcomment %}
+
+  <!-- over -->
+  <!-- Related List -->
+
+  <div class="container">
+    <div class="row">
+
+      <div class="match_list_sec1 my-3">
+
+        <div>
+          <h3>Related List</h3>
+          <h6><span>{{lenofid|length}}</span> Matching profiles are available for you</h6>
+        </div>
+
+        <div>
+          <div class="match_list_sec2">
+
+            <div class="match_list_sec4 text-end my-3">
+              {% for key in mydata %}
+              <a href="/viewallmatch/{{key.uid}}">View all</a>
+              {% endfor %}
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="match_list_carsel owl-carousel owl-theme container mt-1 mb-5">
+    {% for key in lenofid %}     
+    <!-- {% if key.percentage >= 50 %} -->
+      <div class="item" data-bs-toggle="modal" data-bs-target="#{{key.target}}" >
+        {% comment %} <img src="/media/images/girl1.png"> {% endcomment %}
+        <img class="matchingimage" src="{{key.profile_picture}}">
+
+        <button type="button" class="view_all_btn1" data-bs-toggle="modal"
+          data-bs-target="#r{{key.target}}">
+          <i class="far fa-ellipsis-v"></i>
+        </button>
+
+        <i class="fas fa-mountain match_list_icon2"></i>
+
+        <div class="match_list_content">
+
+          <p>ID: #{{key.uid}}</p>
+          <h6>{{key.address}}</h6>
+          <h6><em>{{key.profile_tag}}</em></h6>
+          <p><i class="fas fa-circle fa-xs "></i> Online</p>
+        </div>
+
+        <form method="POST">
+          {% csrf_token %}
+          {% if key.uid in favoritemy %}
+          <button class="fa fa-heart fa-xs match_list_icon3" style="font-size:1.8em;border: 0px;" type="submit" name="myfavorite_id" value="{{key.uid}}" >
+          </button>
+          
+          {% else %}
+          <button class="far fa-heart fa-xs match_list_icon3" style="font-size:1.8em;border: 0px;" type="submit" name="myfavorite_id" value="{{key.uid}}" >
+          </button>
+          {% endif %}
+              </div>
+            </form>
+           
+
+      <!-- </div> -->
+
+      <!-- {% endif %} -->
+
+      {% endfor %}
+       
+
+      <div class="item">
+        <img class="matchingimage" src="/media/images/burger.png">
+      </div>
+      
+  </div>
+  
+  {% for key in alldata %}     
+
   <div>
       <!-- modal 1 -->
       <div class="modal fade" id="r{{key.target}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -621,166 +790,11 @@
       </div>
     </div>
   </div>
-  {% endfor %}
-  <!-- over -->
-  <!-- Followed List -->
 
-  <div class="container">
-    <div class="row">
+{% endfor %}
 
-      <div class="match_list_sec1 my-3">
 
-        <div>
-          <h3>Favorites List</h3>
-          <h6><span>{{sent|length}}</span> Matching profiles are available for you</h6>
-        </div>
-
-        <div>
-          <div class="match_list_sec2">
-
-            <div class="match_list_sec4 text-end my-3">
-              {% for key in mydata %}
-              <a href="/viewallmatch/{{key.uid}}">View all</a>
-              {% endfor %}
-            </div>
-
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-  <div class="match_list_carsel owl-carousel owl-theme container my-1">
-
-    {% for key in sent %}   
-    {% for keyy in alldata %}  
-    <div class="item"  data-bs-toggle="modal" data-bs-target="#{{keyy.target}}" >
-      {% endfor %}
-      {% comment %} <img src="/media/images/girl1.png"> {% endcomment %}
-      <img class="matchingimage" src="{{key.profile_picture}}">
-
-      <button type="button" class="view_all_btn1" data-bs-toggle="modal"
-        data-bs-target="#r{{key.target}}">
-        <i class="far fa-ellipsis-v"></i>
-      </button>
-
-      <i class="fas fa-mountain match_list_icon2"></i>
-
-      <div class="match_list_content">
-
-        <p>ID: #{{key.uid}}</p>
-        <h4>{{key.name}}</h4>
-        <h6>{{key.address}}</h6>
-        <h6><em>{{key.profile_tag}}</em></h6>
-        <p><i class="fas fa-circle fa-xs "></i> Online</p>
-      </div>
-
-      <form method="POST">
-        {% csrf_token %}
-        {% if key.uid in favoritemy %}
-        <button class="fa fa-heart fa-xs match_list_icon3" style="font-size:1.8em;border: 0px;" type="submit" name="myfavorite_id" value="{{key.uid}}" >
-        </button>
-        
-        {% else %}
-        <button class="far fa-heart fa-xs match_list_icon3" style="font-size:1.8em;border: 0px;" type="submit" name="myfavorite_id" value="{{key.uid}}" >
-        </button>
-        {% endif %}
-            </div>
-          </form>
-  </div>
-    {% endfor %}
-     
-
-    <div class="item">
-      <img class="matchingimage" src="/media/images/burger.png">
-    </div>
-    
- 
-  </div>
- 
-
-  </div>
-
-  <!-- over -->
-  <!-- Related List -->
-
-  <div class="container">
-    <div class="row">
-
-      <div class="match_list_sec1 my-3">
-
-        <div>
-          <h3>Related List</h3>
-          <h6><span>{{lenofid|length}}</span> Matching profiles are available for you</h6>
-        </div>
-
-        <div>
-          <div class="match_list_sec2">
-
-            <div class="match_list_sec4 text-end my-3">
-              {% for key in mydata %}
-              <a href="/viewallmatch/{{key.uid}}">View all</a>
-              {% endfor %}
-            </div>
-
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-  <div class="match_list_carsel owl-carousel owl-theme container mt-1 mb-5">
-    {% for key in lenofid %}     
-    <!-- {% if key.percentage >= 50 %} -->
-      <div class="item" data-bs-toggle="modal" data-bs-target="#{{key.target}}" >
-        {% comment %} <img src="/media/images/girl1.png"> {% endcomment %}
-        <img class="matchingimage" src="{{key.profile_picture}}">
-
-        <button type="button" class="view_all_btn1" data-bs-toggle="modal"
-          data-bs-target="#r{{key.target}}">
-          <i class="far fa-ellipsis-v"></i>
-        </button>
-
-        <i class="fas fa-mountain match_list_icon2"></i>
-
-        <div class="match_list_content">
-
-          <p>ID: #{{key.uid}}</p>
-          <h6>{{key.address}}</h6>
-          <h6><em>{{key.profile_tag}}</em></h6>
-          <p><i class="fas fa-circle fa-xs "></i> Online</p>
-        </div>
-
-        <form method="POST">
-          {% csrf_token %}
-          {% if key.uid in favoritemy %}
-          <button class="fa fa-heart fa-xs match_list_icon3" style="font-size:1.8em;border: 0px;" type="submit" name="myfavorite_id" value="{{key.uid}}" >
-          </button>
-          
-          {% else %}
-          <button class="far fa-heart fa-xs match_list_icon3" style="font-size:1.8em;border: 0px;" type="submit" name="myfavorite_id" value="{{key.uid}}" >
-          </button>
-          {% endif %}
-              </div>
-            </form>
-           
-
-      <!-- </div> -->
-
-      <!-- {% endif %} -->
-
-      {% endfor %}
-       
-
-      <div class="item">
-        <img class="matchingimage" src="/media/images/burger.png">
-      </div>
-      
-  </div>
   
-
   <!-- over -->
 
   <!-- <div class="container owl-carousel owl-theme pb-5 my-5" id="owl1">

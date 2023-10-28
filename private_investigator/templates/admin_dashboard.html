@@ -80,7 +80,7 @@
 
             <div>
              
-            <h4 id="closed"></h4>
+            <h4 id="">{{closed}}</h4>
             <h5>Closed Investigations</h5>
           </div>
           
@@ -92,7 +92,7 @@
           </div>
 
           <div>
-          <h4 id="pending"></h4>
+          <h4 id="">{{pending}}</h4>
           <h5>Pending Investigations</h5>
         </div>
         
@@ -331,12 +331,14 @@
     <!-- over -->
   </div>
 </div>
-<script>
-a = {{my_client_script|safe}};
-  //closed investigation
+{% block javascript %} 
 
+
+<script>
+a = {{ my_client_script|safe }};
+  //closed investigation
 text=0;
-for(i=0;i<Object.keys(a).length;i++){
+for(i=0;i<a;i++){
   if(a[i]['answer'].indexOf("empty") == -1){
     text += a[i]['answer'].split().length;
   }
@@ -345,23 +347,24 @@ for(i=0;i<Object.keys(a).length;i++){
   }
 
 }   
-document.getElementById("closed").innerHTML=text;
+document.getElementById("closed").innerHTML=;
+
 
 //pending investigations
-text=0;
-for(i=0;i<Object.keys(a).length;i++){
+text_a=0;
+for(i=0;ia;i++){
   if(a[i]['answer'].indexOf("empty") != -1){
-    text += a[i]['answer'].split().length;
+    text_a += a[i]['answer'].split().length;
   }
   else{
-    text+=0;
+    text_a+=0;
   }
 
 }   
-document.getElementById("pending").innerHTML=text;
+document.getElementById("pending").innerHTML=text_a;
 
 </script>
-
+{% endblock %}
 <script src="/media/js/mainn.js"></script>
 
 
