@@ -2618,6 +2618,7 @@ def my_investigator_question(request,id):
             print(response.text)
         if "feedback" in request.POST:
             print(request.POST)
+            response = requests.post(f"http://127.0.0.1:3000/ratings_feedback/{id}",data=request.POST)
 
 
     context = {

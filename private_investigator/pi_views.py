@@ -178,9 +178,68 @@ def admin_dashboard(request,id):
 
 def profile(request,id):
         my = requests.get(f"http://127.0.0.1:3000/pi_my_data/{id}").json()[0]
-        print(my)
+        # print(my)
+        my_clients = requests.get(f"http://127.0.0.1:3000/pi_my_clients/{id}").json()[id]
+        filtered_clients = []
+        for x in my_clients:
+            if "empty" not in x['answer']:
+                filtered_clients.append(x)
+        # percentage
+        bad_review = []
+        good_review=[]
+        for j in filtered_clients:
+            if j['rating'] == "empty":
+                bad_review.append(j['rating'])
+            elif j['rating'] == "0":
+                bad_review.append(j['rating'])
+            elif j['rating'] == "1.0":
+                bad_review.append(j['rating'])
+            elif j['rating'] == "2.0":
+                bad_review.append(j['rating'])
+            elif j['rating'] == "3.0":
+                bad_review.append(j['rating'])
+            elif j['rating'] == "4.0":
+                good_review.append(j['rating'])
+            elif j['rating'] == "5.0":
+                good_review.append(j['rating'])
+        badreview = int(len(bad_review)/len(filtered_clients)*100)
+        goodreview = int(len(good_review)/len(filtered_clients)*100)
+       
+        #total ratings
+        total_r = []
+        one=[]
+        two=[]
+        three=[]
+        four=[]
+        five=[]
+        
+        for z in filtered_clients:
+           print(z['rating'])
+           if "empty" not in z['rating']:
+               total_r.append(z['rating'])
+        print(total_r)
+        
+        for i in total_r:
+            if j['rating'] == "1.0":
+                one.append(j['rating'])
+            elif j['rating'] == "2.0":
+                two.append(j['rating'])
+            elif j['rating'] == "3.0":
+                three.append(j['rating'])
+            elif j['rating'] == "4.0":
+                four.append(j['rating'])
+            elif j['rating'] == "5.0":
+                five.append(j['rating'])
+        score_total = len(five)*5 + len(four) * 4 + len(three) * 3 + len(two) * 2 + len(one) * 1
+        response_total = len(five)+ len(four) + len(three) + len(two)+len(one)
+        total_ratings = score_total/response_total
+        print((total_ratings))
         context={'key':my,
-                 'current_path':request.get_full_path()
+                 'current_path':request.get_full_path(),
+                 'my_clients':filtered_clients,
+                 'bad_review':badreview,
+                 'good_review':goodreview,
+                 'total_ratings':total_ratings,
                  }
         return render(request,"profile.html",context)
 
@@ -292,17 +351,28 @@ def client_feedback(request,id):
         # print(my)
         # add_client(request,id)
         # print(my_client_one)
-        all_profile_finder = requests.get("http://127.0.0.1:3000/alluserdata/").json()
+        all_profile_finder = requests.get(f"http://127.0.0.1:3000/pi_my_clients/{id}").json()[id]
         for x in all_profile_finder:
             if my_client_one == x['uid']:
                 # print(x['uid'])
                 specific_user = x
                 question_and_Answer = requests.get(f"http://127.0.0.1:3000/my_question_and_answer/{x['uid']}").json()[x['uid']]
+                situation_prediction = requests.get(f"http://127.0.0.1:3000/my_question_and_answer/{x['uid']}").json()[x['uid']]
                 print(question_and_Answer)
                 if "empty" not in str(question_and_Answer):
                     result= "complete"
                 else:
                     result = "empty"
+        
+        #situation
+        print("situation")
+        sit = []
+        for x in situation_prediction:
+            sit.append(x['answer'])
+        if "empty" in sit:
+            situation = "pending"
+        else:
+            situation = "complete"
               
         #post
         if request.method=="POST":
@@ -317,6 +387,7 @@ def client_feedback(request,id):
                  'specific_user':[specific_user],
                  'question_and_Answer':question_and_Answer,
                  'result' :result,
+                 'situation':situation,
                  }
         return render(request,"pi_client_feedback.html",context)
 

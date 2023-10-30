@@ -240,6 +240,7 @@
 
             {% endfor %}
             
+            
           
            
 
@@ -259,67 +260,102 @@
           <i class="fa-solid fa-ellipsis-vertical"></i>
         </div>
 
-        <div class="px-4 my-3" >
+        <div class="px-4 my-3" style="
+        overflow: scroll;
+        height: 30rem;
+        overflow-x: hidden;
+    ">
           <table class="table table-borderless " >
 
-            <tr>
+            <tr style="position: sticky;top: 0;">
               <th class="py-4"> No</th>
 
               <th class="py-4">User Id</th>
               <th class="py-4">Name </th>
               <th class="py-4">Ratings</th>
             </tr>
+            {% for i in my_client %}
 
             <tr>
               
-              <td  class="py-4">1</td>
-              <td  class="py-4">Environmental Specialist</td>
-              <td class="py-4"><span class="dash_bor_table_img1"><img src="/media/images//girl1.png"> Albert Flores</span></td>
-
-              <td class="py-4"><div class="small-ratings text-center">
+              <td  class="py-4">{{forloop.counter}}</td>
+              <td  class="py-4">{{i.uid}}</td>
+              <td class="py-4"><span class="dash_bor_table_img1"><img src="{{i.profile_picture}}"> {{i.name}}</span></td>
+              <td class="py-4"> 
+                {% if i.rating == "5.0" %}
+                <div class="ratings mt-3 mb-3 ms-4">
+                <i class="fa fa-star rating-color"></i>
+                <i class="fa fa-star rating-color"></i>
+                <i class="fa fa-star rating-color"></i>
+                <i class="fa fa-star rating-color"></i>
+                <i class="fa fa-star rating-color"></i>
+            </div>
+            {% elif i.rating == "4.0" %}
+                <div class="ratings mt-3 mb-3 ms-4">
                 <i class="fa fa-star rating-color"></i>
                 <i class="fa fa-star rating-color"></i>
                 <i class="fa fa-star rating-color"></i>
                 <i class="fa fa-star rating-color"></i>
                 <i class="fa fa-star"></i>
-             </div></td>
-         
+            </div>
+            {% elif i.rating == "3.0" %}
+                <div class="ratings mt-3 mb-3 ms-4">
+                <i class="fa fa-star rating-color"></i>
+                <i class="fa fa-star rating-color"></i>
+                <i class="fa fa-star rating-color"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+            </div>
+            {% elif i.rating == "2.0" %}
+                <div class="ratings mt-3 mb-3 ms-4">
+                <i class="fa fa-star rating-color"></i>
+                <i class="fa fa-star rating-color"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+            </div>
+            {% elif i.rating == "1.0" %}
+                <div class="ratings mt-3 mb-3 ms-4">
+                <i class="fa fa-star rating-color"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+            </div>
+            {% elif i.rating == "0" %}
+                <div class="ratings mt-3 mb-3 ms-4">
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+            </div>
+            {% elif i.rating == "empty" %}
+                <div class="ratings mt-3 mb-3 ms-4">
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+            </div>
+          {% endif %}
+          </td>
             </tr>
+            {% endfor %}
 
-        <tr>
-              
-          <td  class="py-4">1</td>
-              <td  class="py-4">Environmental Specialist</td>
-              <td class="py-4"><span class="dash_bor_table_img1"><img src="/media/images//girl1.png"> Albert Flores</span></td>
-
-              <td class="py-4">18/09/2016</td>
-         
-            </tr>
-
- <tr>
-              
-  <td  class="py-4">1</td>
-              <td  class="py-4">Environmental Specialist</td>
-              <td class="py-4"><span class="dash_bor_table_img1"><img src="/media/images//girl1.png"> Albert Flores</span></td>
-
-              <td class="py-4">18/09/2016</td>
-         
-            </tr>
-
-
-             <tr>
-              
-              <td  class="py-4">1</td>
-              <td  class="py-4">Environmental Specialist</td>
-              <td class="py-4"><span class="dash_bor_table_img1"><img src="/media/images//girl1.png"> Albert Flores</span></td>
-
-              <td class="py-4">18/09/2016</td>
-         
-            </tr>
-
+  
+   
 
           </table>
-             <div class="dash_bor_rsp_va my-3">
+             <div class="dash_bor_rsp_va my-3" style="
+             height: 11%;
+             position: sticky;
+             bottom: 0px;
+             /* margin-top: 10px; */
+             border-top: 5px solid rgba(0, 0, 255, 0.1);
+             border-top-left-radius: 0;
+             border-top-right-radius: 0;
+         ">
       <a href="#" class="mx-3">View All</a>
     </div>
         </div>

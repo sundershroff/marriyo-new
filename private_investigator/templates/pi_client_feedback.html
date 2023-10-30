@@ -77,34 +77,101 @@
             <h5 class="head text-center">{{i.name}}</h5>
             <p class="text-center mb-4">{{i.r_country}}, {{i.r_state}}</p>
             {% if result == "complete" %}
-            <button class="Pending" style="background-color:green">Complete</button>
+            <button class="Pending" id="situation" style="background-color:green">Complete</button>
 
             {% else %}
-           <button class="Pending" >Pending</button>
+           <button class="Pending" id="situation" >Pending</button>
            {% endif %}
       
           </div>
       </div>
+      {{i.rating}}
       
-      {% comment %} <div class="pay  mt-2  img-thumbnail ">
+      {% if situation == "complete" %}
+      <div class="pay  mt-2  img-thumbnail ">
         <h5 class="mt-4 mb-4 ms-4">Client Feedback</h5>
-        <h3 class="ratingvalue ms-4">4.2</h3>
+        {% if i.rating == "5.0" %}
+        <h3 class="ratingvalue ms-4">{{i.rating}}</h3>
         <div class="ratings mt-3 mb-3 ms-4">
           <i class="fa fa-star rating-color"></i>
           <i class="fa fa-star rating-color"></i>
           <i class="fa fa-star rating-color"></i>
           <i class="fa fa-star rating-color"></i>
-          <i class="fa fa-star"></i>
+          <i class="fa fa-star rating-color"></i>
       </div>
-        <p class="notavailable mb-5 pe-3 ps-3 pt-2 pb-2 ms-2  ">The Investigator is very quick and collect all details what I request him. thanks a lot for helping such a great job</p>
+      <p class="notavailable mb-5 pe-3 ps-3 pt-2 pb-2 ms-2  ">{{i.feedback}}</p>
+      {% elif i.rating == "4.0" %}
+      <h3 class="ratingvalue ms-4">{{i.rating}}</h3>
+      <div class="ratings mt-3 mb-3 ms-4">
+        <i class="fa fa-star rating-color"></i>
+        <i class="fa fa-star rating-color"></i>
+        <i class="fa fa-star rating-color"></i>
+        <i class="fa fa-star rating-color"></i>
+        <i class="fa fa-star"></i>
+      </div>
+      <p class="notavailable mb-5 pe-3 ps-3 pt-2 pb-2 ms-2  ">{{i.feedback}}</p>
+      {% elif i.rating == "3.0" %}
+      <h3 class="ratingvalue ms-4">{{i.rating}}</h3>
+      <div class="ratings mt-3 mb-3 ms-4">
+        <i class="fa fa-star rating-color"></i>
+        <i class="fa fa-star rating-color"></i>
+        <i class="fa fa-star rating-color"></i>
+        <i class="fa fa-star"></i>
+        <i class="fa fa-star"></i>
+      </div>
+      <p class="notavailable mb-5 pe-3 ps-3 pt-2 pb-2 ms-2  ">{{i.feedback}}</p>
+      {% elif i.rating == "2.0" %}
+      <h3 class="ratingvalue ms-4">{{i.rating}}</h3>
+      <div class="ratings mt-3 mb-3 ms-4">
+        <i class="fa fa-star rating-color"></i>
+        <i class="fa fa-star rating-color"></i>
+        <i class="fa fa-star "></i>
+        <i class="fa fa-star"></i>
+        <i class="fa fa-star"></i>
+      </div>
+      <p class="notavailable mb-5 pe-3 ps-3 pt-2 pb-2 ms-2  ">{{i.feedback}}</p>
+      {% elif i.rating == "1.0" %}
+      <h3 class="ratingvalue ms-4">{{i.rating}}</h3>
+      <div class="ratings mt-3 mb-3 ms-4">
+        <i class="fa fa-star rating-color"></i>
+        <i class="fa fa-star "></i>
+        <i class="fa fa-star "></i>
+        <i class="fa fa-star"></i>
+        <i class="fa fa-star"></i>
+      </div>
+      <p class="notavailable mb-5 pe-3 ps-3 pt-2 pb-2 ms-2  ">{{i.feedback}}</p>
+      {% elif i.rating == "0" %}
+      <h3 class="ratingvalue ms-4">{{i.rating}}</h3>
+      <div class="ratings mt-3 mb-3 ms-4">
+        <i class="fa fa-star "></i>
+        <i class="fa fa-star "></i>
+        <i class="fa fa-star "></i>
+        <i class="fa fa-star"></i>
+        <i class="fa fa-star"></i>
+      </div>
+      <p class="notavailable mb-5 pe-3 ps-3 pt-2 pb-2 ms-2  ">{{i.feedback}}</p>
+      {% elif i.rating == "empty" %}
+      <h3 class="ratingvalue ms-4">No ratings & feedback are added</h3>
+      <div class="ratings mt-3 mb-3 ms-4">
+        <i class="fa fa-star "></i>
+        <i class="fa fa-star "></i>
+        <i class="fa fa-star "></i>
+        <i class="fa fa-star"></i>
+        <i class="fa fa-star"></i>
+      </div>
+      <p class="notavailable mb-5 pe-3 ps-3 pt-2 pb-2 ms-2  "></p>
+      {% endif %}
     
-      </div> {% endcomment %}
-      {% endfor %}
+      </div>
+      
+     {% else %}
   <div class="pay  mt-2  img-thumbnail ">
     <h5 class="mt-4 mb-4 ms-4  ">Client Feedback</h5>
     <p class="notavailable mb-5 mb-5 pe-3 ps-3 pt-2 pb-2 ms-2">Not available,need to complete your task first</p>
 
   </div> 
+  {% endif %}
+  {% endfor %}
 
 </div>
 <!-- ... (rest of the code) ... -->
@@ -283,6 +350,10 @@
       </div>
   </div>
 </main>
+<script>
+  a=document.getElementById("situation").innertext;
+
+</script>
 <script src="/media/js/main.js"></script>
 
 </body>

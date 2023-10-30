@@ -242,7 +242,13 @@
 .dash_star_clr i {
 	color:#FBBC05;
 }
+.px-4.my-3::-webkit-scrollbar {
+    display: none;
+}
 
+.rating-color {
+    color: #fbc634 !important;
+}
 /*.dash_bor_cont{
 	display:flex;
 	justify-content:center;
@@ -253,7 +259,7 @@
 		display:flex;
 		flex-direction:row;
 		justify-content:center;
-		align-items:top;
+		align-items:center;
 	column-gap:5px;
 		background-color:white;
 	}

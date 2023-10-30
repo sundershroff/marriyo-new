@@ -97,13 +97,45 @@
         <div class=" col-md-3 pe-md-0 thirdbox">
             <div class=" bg-white rate">
                 <div class="m2 pt-5">
-                <h5 class="headd ps-5" id="rat4.2">4.2</h5>
+                <h5 class="headd ps-5" id="rat4.2">{{total_ratings}}</h5>
                 <div class="ratings mt-2" id="ratstar">
+                    {% if  total_ratings == 5  %}
+                    <i class="fa fa-star rating-color"></i>
+                    <i class="fa fa-star rating-color"></i>
+                    <i class="fa fa-star rating-color"></i>
+                    <i class="fa fa-star rating-color"></i>
+                    <i class="fa fa-star rating-color"></i>
+                    {% elif total_ratings >= 4 and total_ratings <= 5  %}
                     <i class="fa fa-star rating-color"></i>
                     <i class="fa fa-star rating-color"></i>
                     <i class="fa fa-star rating-color"></i>
                     <i class="fa fa-star rating-color"></i>
                     <i class="fa fa-star"></i>
+                    {% elif total_ratings >= 3 and total_ratings <= 4  %}
+                    <i class="fa fa-star rating-color"></i>
+                    <i class="fa fa-star rating-color"></i>
+                    <i class="fa fa-star rating-color"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    {% elif total_ratings >= 2 and total_ratings <= 3  %}
+                    <i class="fa fa-star rating-color"></i>
+                    <i class="fa fa-star rating-color"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    {% elif total_ratings >= 1 and total_ratings <= 2  %}
+                    <i class="fa fa-star rating-color"></i>
+                    <i class="fa "></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    {% elif total_ratings <= 1 %}
+                    <i class="fa fa-star "></i>
+                    <i class="fa "></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    {% endif %}
                 </div>
                 </div>
             </div>
@@ -184,11 +216,43 @@
                   <div class="review col-md-12 mb-3 mt-3">
                     <h4>Reviews</h4>
                     <div class="ratings mt-2">
+                        {% if  total_ratings == 5  %}
                         <i class="fa fa-star rating-color"></i>
                         <i class="fa fa-star rating-color"></i>
                         <i class="fa fa-star rating-color"></i>
                         <i class="fa fa-star rating-color"></i>
-                        <i class="fa fa-star"></i><span class="rating-number ms-3">4.3</span>
+                        <i class="fa fa-star rating-color"></i><span class="rating-number ms-3">{{total_ratings}}</span>
+                        {% elif total_ratings >= 4 and total_ratings <= 5  %}
+                        <i class="fa fa-star rating-color"></i>
+                        <i class="fa fa-star rating-color"></i>
+                        <i class="fa fa-star rating-color"></i>
+                        <i class="fa fa-star rating-color"></i>
+                        <i class="fa fa-star"></i><span class="rating-number ms-3">{{total_ratings}}</span>
+                        {% elif total_ratings >= 3 and total_ratings <= 4  %}
+                        <i class="fa fa-star rating-color"></i>
+                        <i class="fa fa-star rating-color"></i>
+                        <i class="fa fa-star rating-color"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i><span class="rating-number ms-3">{{total_ratings}}</span>
+                        {% elif total_ratings >= 2 and total_ratings <= 3  %}
+                        <i class="fa fa-star rating-color"></i>
+                        <i class="fa fa-star rating-color"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i><span class="rating-number ms-3">{{total_ratings}}</span>
+                        {% elif total_ratings >= 1 and total_ratings <= 2  %}
+                        <i class="fa fa-star rating-color"></i>
+                        <i class="fa "></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i><span class="rating-number ms-3">{{total_ratings}}</span>
+                        {% elif total_ratings <= 1 %}
+                        <i class="fa fa-star "></i>
+                        <i class="fa "></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i><span class="rating-number ms-3">{{total_ratings}}</span>
+                        {% endif %}
                     </div>
                   </div>
             </div>
@@ -203,88 +267,39 @@
                             <span id="boot-icon" class="bi bi-emoji-smile"></span>  
                         </div>
                         <div class="col-md-9  mt-3 ">
-                            <h5 class="goodper">60% </h5>
+                            <h5 class="goodper">{{good_review}}% </h5>
                             <h6 class="good text-muted">Good Review</h6>
                         </div>
                     </div>
 
-                    <div class="row divider2"></div>
-
-                    <div class="row mt-2 mb-2">
-                    <div class="col-md-3  mb-3 ">
-                        <img src="/media/images/man1.jpg"class="rounded-circle img-fluid center">
-                    </div>
-                    <div class="col-md-9">
-                        <p class="fw-bold lead mb-2"><strong>Anna Smith</strong></p>
-                        <div class="ratings mt-2">
-                            <i class="fa fa-star rating-color"></i>
-                            <i class="fa fa-star rating-color"></i>
-                            <i class="fa fa-star rating-color"></i>
-                            <i class="fa fa-star rating-color"></i>
-                            <i class="fa fa-star"></i>
-                        </div>
-                        <p class="text-muted fw-light mb-4"> Lorem ipsum dolor, sit amet consectetur adipisicing elit. </p>
-                    </div>
-                    </div>
+                   
+                    {% for i in my_clients %}
+                    {% if i.rating == "5.0" %}
                     <div class="row divider"></div>
                     <div class="row mt-2 mb-2">
                         <div class="col-md-3  mb-3 ">
-                            <img src="/media/images/man1.jpg"class="rounded-circle img-fluid ">
+                            <img src="{{i.profile_picture}}"class="rounded-circle img-fluid ">
                         </div>
                         <div class="col-md-9">
-                            <p class="fw-bold lead mb-2"><strong>Anna Smith</strong></p>
+                            <p class="fw-bold lead mb-2"><strong>{{i.name}}</strong></p>
                             <div class="ratings mt-2">
                                 <i class="fa fa-star rating-color"></i>
                                 <i class="fa fa-star rating-color"></i>
                                 <i class="fa fa-star rating-color"></i>
                                 <i class="fa fa-star rating-color"></i>
-                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star rating-color"></i>
                             </div>
-                            <p class="text-muted fw-light mb-4"> Lorem ipsum dolor, sit amet consectetur adipisicing elit. </p>
+                            <p class="text-muted fw-light mb-4"> {{i.feedback}}</p>
                         </div>
                         </div>
-                        <div class="row divider"></div>
-            <div class="row mt-2 mb-2">
-                <div class="col-md-3  mb-3 ">
-                    <img src="/media/images/man1.jpg"class="rounded-circle img-fluid ">
-                </div>
-                <div class="col-md-9">
-                    <p class="fw-bold lead mb-2"><strong>Anna Smith</strong></p>
-                    <div class="ratings mt-2">
-                        <i class="fa fa-star rating-color"></i>
-                        <i class="fa fa-star rating-color"></i>
-                        <i class="fa fa-star rating-color"></i>
-                        <i class="fa fa-star rating-color"></i>
-                        <i class="fa fa-star"></i>
-                    </div>
-                    <p class="text-muted fw-light mb-4"> Lorem ipsum dolor, sit amet consectetur adipisicing elit. </p>
-                </div>
-                </div>
-            
-                <div class="row divider"></div>
-                    <div class="row mt-2 mb-2">
-                        <div class="col-md-3  mb-3 ">
-                            <img src="/media/images/man1.jpg"class="rounded-circle img-fluid ">
-                        </div>
-                        <div class="col-md-9">
-                            <p class="fw-bold lead mb-2"><strong>Anna Smith</strong></p>
-                            <div class="ratings mt-2">
-                                <i class="fa fa-star rating-color"></i>
-                                <i class="fa fa-star rating-color"></i>
-                                <i class="fa fa-star rating-color"></i>
-                                <i class="fa fa-star rating-color"></i>
-                                <i class="fa fa-star"></i>
-                            </div>
-                            <p class="text-muted fw-light mb-4"> Lorem ipsum dolor, sit amet consectetur adipisicing elit. </p>
-                        </div>
-                        </div>
+                        {% elif i.rating == "4.0" %}
                         <div class="row divider"></div>
                         <div class="row mt-2 mb-2">
                             <div class="col-md-3  mb-3 ">
-                                <img src="/media/images/profile6.png"class="rounded-circle img-fluid ">
+                                <img src="{{i.profile_picture}}"class="rounded-circle img-fluid ">
                             </div>
                             <div class="col-md-9">
-                                <p class="fw-bold lead mb-2"><strong>Anna Smith</strong></p>
+                                <p class="fw-bold lead mb-2"><strong>{{i.name}}</strong></p>
                                 <div class="ratings mt-2">
                                     <i class="fa fa-star rating-color"></i>
                                     <i class="fa fa-star rating-color"></i>
@@ -292,9 +307,33 @@
                                     <i class="fa fa-star rating-color"></i>
                                     <i class="fa fa-star"></i>
                                 </div>
-                                <p class="text-muted fw-light mb-4"> Lorem ipsum dolor, sit amet consectetur adipisicing elit. </p>
+                                <p class="text-muted fw-light mb-4"> {{i.feedback}}</p>
                             </div>
-                        </div>                       
+                            </div>
+                            {% elif i.rating == "3.0" %}
+                            <div class="row divider"></div>
+                            <div class="row mt-2 mb-2">
+                                <div class="col-md-3  mb-3 ">
+                                    <img src="{{i.profile_picture}}"class="rounded-circle img-fluid ">
+                                </div>
+                                <div class="col-md-9">
+                                    <p class="fw-bold lead mb-2"><strong>{{i.name}}</strong></p>
+                                    <div class="ratings mt-2">
+                                        <i class="fa fa-star rating-color"></i>
+                                        <i class="fa fa-star rating-color"></i>
+                                        <i class="fa fa-star rating-color"></i>
+                                        <i class="fa fa-star "></i>
+                                        <i class="fa fa-star"></i>
+                                    </div>
+                                    <p class="text-muted fw-light mb-4"> {{i.feedback}}</p>
+                                </div>
+                                </div>
+                        {% endif %}
+                        {% endfor %}
+
+            
+                
+                                             
                 </div>
                 <div class="col-md-6 column-width " >
                     <div class="row">
@@ -302,99 +341,86 @@
                             <span id="boot-icon" class="bi bi-emoji-frown"></span>  
                         </div>
                         <div class="col-md-9  mt-3 ">
-                            <h5 class="badper">30% </h5>
+                            <h5 class="badper">{{bad_review}}% </h5>
                             <h6 class="good text-muted">Bad Review</h6>
                         </div>
                     </div>
-
-                    <div class="row divider2"></div>
-
-                    <div class="row mt-2 mb-2">
-                    <div class="col-md-3  mb-3 ">
-                        <img src="/media/images/testimonials-1.jpg"class="rounded-circle img-fluid ">
-                    </div>
-                    <div class="col-md-9">
-                        <p class="fw-bold lead mb-2"><strong>Anna Smith</strong></p>
-                        <div class="ratings mt-2">
-                            <i class="fa fa-star rating-color"></i>
-                            <i class="fa fa-star rating-color"></i>
-                            <i class="fa fa-star rating-color"></i>
-                            <i class="fa fa-star rating-color"></i>
-                            <i class="fa fa-star"></i>
-                        </div>
-                        <p class="text-muted fw-light mb-4"> Lorem ipsum dolor, sit amet consectetur adipisicing elit. </p>
-                    </div>
-                    </div>
+                    {% for i in my_clients %}
+                    {% if i.rating == "2.0" %}
                     <div class="row divider"></div>
                     <div class="row mt-2 mb-2">
                         <div class="col-md-3  mb-3 ">
-                            <img src="/media/images/man1.jpg"class="rounded-circle img-fluid ">
+                            <img src="{{i.profile_picture}}"class="rounded-circle img-fluid ">
                         </div>
                         <div class="col-md-9">
-                            <p class="fw-bold lead mb-2"><strong>Anna Smith</strong></p>
+                            <p class="fw-bold lead mb-2"><strong>{{i.name}}</strong></p>
                             <div class="ratings mt-2">
                                 <i class="fa fa-star rating-color"></i>
                                 <i class="fa fa-star rating-color"></i>
-                                <i class="fa fa-star rating-color"></i>
-                                <i class="fa fa-star rating-color"></i>
-                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star "></i>
+                                <i class="fa fa-star "></i>
+                                <i class="fa fa-star "></i>
                             </div>
-                            <p class="text-muted fw-light mb-4"> Lorem ipsum dolor, sit amet consectetur adipisicing elit. </p>
+                            <p class="text-muted fw-light mb-4"> {{i.feedback}}</p>
                         </div>
                         </div>
+                        {% elif i.rating == "1.0" %}
                         <div class="row divider"></div>
-
-                                <div class="row mt-2 mb-2">
-                                    <div class="col-md-3  mb-3 ">
-                                        <img src="/media/images/man1.jpg"class="rounded-circle img-fluid ">
+                        <div class="row mt-2 mb-2">
+                            <div class="col-md-3  mb-3 ">
+                                <img src="{{i.profile_picture}}"class="rounded-circle img-fluid ">
+                            </div>
+                            <div class="col-md-9">
+                                <p class="fw-bold lead mb-2"><strong>{{i.name}}</strong></p>
+                                <div class="ratings mt-2">
+                                    <i class="fa fa-star rating-color"></i>
+                                    <i class="fa fa-star "></i>
+                                    <i class="fa fa-star "></i>
+                                    <i class="fa fa-star "></i>
+                                    <i class="fa fa-star "></i>
+                                </div>
+                                <p class="text-muted fw-light mb-4"> {{i.feedback}}</p>
+                            </div>
+                            </div>
+                            {% elif i.rating == "0" %}
+                        <div class="row divider"></div>
+                        <div class="row mt-2 mb-2">
+                            <div class="col-md-3  mb-3 ">
+                                <img src="{{i.profile_picture}}"class="rounded-circle img-fluid ">
+                            </div>
+                            <div class="col-md-9">
+                                <p class="fw-bold lead mb-2"><strong>{{i.name}}</strong></p>
+                                <div class="ratings mt-2">
+                                    <i class="fa fa-star "></i>
+                                    <i class="fa fa-star "></i>
+                                    <i class="fa fa-star "></i>
+                                    <i class="fa fa-star "></i>
+                                    <i class="fa fa-star "></i>
+                                </div>
+                                <p class="text-muted fw-light mb-4"> {{i.feedback}}</p>
+                            </div>
+                            </div>
+                            {% elif i.rating == "empty" %}
+                            <div class="row divider"></div>
+                            <div class="row mt-2 mb-2">
+                                <div class="col-md-3  mb-3 ">
+                                    <img src="{{i.profile_picture}}"class="rounded-circle img-fluid ">
+                                </div>
+                                <div class="col-md-9">
+                                    <p class="fw-bold lead mb-2"><strong>{{i.name}}</strong></p>
+                                    <div class="ratings mt-2">
+                                        <i class="fa fa-star "></i>
+                                        <i class="fa fa-star "></i>
+                                        <i class="fa fa-star "></i>
+                                        <i class="fa fa-star "></i>
+                                        <i class="fa fa-star "></i>
                                     </div>
-                                    <div class="col-md-9">
-                                        <p class="fw-bold lead mb-2"><strong>Anna Smith</strong></p>
-                                        <div class="ratings mt-2">
-                                            <i class="fa fa-star rating-color"></i>
-                                            <i class="fa fa-star rating-color"></i>
-                                            <i class="fa fa-star rating-color"></i>
-                                            <i class="fa fa-star rating-color"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
-                                        <p class="text-muted fw-light mb-4"> Lorem ipsum dolor, sit amet consectetur adipisicing elit. </p>
-                                    </div>
-                                    </div>
-                    
-                                        <div class="row divider"></div>
-                                        <div class="row mt-2 mb-2">
-                                            <div class="col-md-3  mb-3 ">
-                                                <img src="/media/images/man1.jpg"class="rounded-circle img-fluid ">
-                                            </div>
-                                            <div class="col-md-9">
-                                                <p class="fw-bold lead mb-2"><strong>Anna Smith</strong></p>
-                                                <div class="ratings mt-2">
-                                                    <i class="fa fa-star rating-color"></i>
-                                                    <i class="fa fa-star rating-color"></i>
-                                                    <i class="fa fa-star rating-color"></i>
-                                                    <i class="fa fa-star rating-color"></i>
-                                                    <i class="fa fa-star"></i>
-                                                </div>
-                                                <p class="text-muted fw-light mb-4"> Lorem ipsum dolor, sit amet consectetur adipisicing elit. </p>
-                                            </div>
-                                            </div>
-                                            <div class="row divider"></div>
-                                            <div class="row mt-2 mb-2">
-                                                <div class="col-md-3  mb-3 ">
-                                                    <img src="/media/images/man1.jpg"class="rounded-circle img-fluid ">
-                                                </div>
-                                                <div class="col-md-9">
-                                                    <p class="fw-bold lead mb-2"><strong>Anna Smith</strong></p>
-                                                    <div class="ratings mt-2">
-                                                        <i class="fa fa-star rating-color"></i>
-                                                        <i class="fa fa-star rating-color"></i>
-                                                        <i class="fa fa-star rating-color"></i>
-                                                        <i class="fa fa-star rating-color"></i>
-                                                        <i class="fa fa-star"></i>
-                                                    </div>
-                                                    <p class="text-muted fw-light mb-4"> Lorem ipsum dolor, sit amet consectetur adipisicing elit. </p>
-                                                </div>
-                                                </div>                                   
+                                    <p class="text-muted fw-light mb-4"> No reviews are here</p>
+                                </div>
+                                </div>
+                            {% endif %}      
+                                                {% endfor %}
+                        
                 </div>
             </div>
         </div>
