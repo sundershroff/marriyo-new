@@ -83,9 +83,6 @@ urlpatterns = [
 
 
 
-    
-
-
 #///////////////////private investagator////////////////////
     path('pi_signin', pi_views.signin),
     path('pi_signup', pi_views.signup),
@@ -103,19 +100,6 @@ urlpatterns = [
     path('pi_add_client/<id>', pi_views.add_client),
     path('pi_client_feedback/<id>', pi_views.client_feedback),
     path('pi_setting/<id>', pi_views.setting),
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 ]

@@ -144,7 +144,10 @@ def admin_dashboard(request,id):
         pf_users = requests.get("http://127.0.0.1:3000/alluserdata/").json()
         # print(pf_users)
         my_client = requests.get(f"http://127.0.0.1:3000/pi_my_clients/{id}").json()[id]
-
+        filtered_clients = []
+        for x in my_client:
+            if "empty" not in x['answer']:
+                filtered_clients.append(x)
         #closed investigation'
         closed=[]
         for x in my_client:
@@ -153,7 +156,7 @@ def admin_dashboard(request,id):
                 print("")
             elif "empty" not in x['answer']:
                 closed.append("1")
-        print(len(closed))
+        # print(len(closed))
         
         # pending investigation
         pending=[]
@@ -163,27 +166,8 @@ def admin_dashboard(request,id):
                 pending.append("1")
             elif "empty" in x['answer']:
                 pending.append("1")
-        print(len(pending))
-               
-
-        context={'key':my,
-                 'current_path':request.get_full_path(),
-                 'profile_finder':pf_users,
-                 'my':my,
-                 'my_client':my_client,
-                 'closed':len(closed),
-                 'pending':len(pending),
-                 }
-        return render(request,"admin_dashboard.html",context)
-
-def profile(request,id):
-        my = requests.get(f"http://127.0.0.1:3000/pi_my_data/{id}").json()[0]
-        # print(my)
-        my_clients = requests.get(f"http://127.0.0.1:3000/pi_my_clients/{id}").json()[id]
-        filtered_clients = []
-        for x in my_clients:
-            if "empty" not in x['answer']:
-                filtered_clients.append(x)
+        # print(len(pending))
+        
         # percentage
         bad_review = []
         good_review=[]
@@ -197,14 +181,14 @@ def profile(request,id):
             elif j['rating'] == "2.0":
                 bad_review.append(j['rating'])
             elif j['rating'] == "3.0":
-                bad_review.append(j['rating'])
+                good_review.append(j['rating'])
             elif j['rating'] == "4.0":
                 good_review.append(j['rating'])
             elif j['rating'] == "5.0":
                 good_review.append(j['rating'])
         badreview = int(len(bad_review)/len(filtered_clients)*100)
         goodreview = int(len(good_review)/len(filtered_clients)*100)
-       
+        
         #total ratings
         total_r = []
         one=[]
@@ -234,6 +218,83 @@ def profile(request,id):
         response_total = len(five)+ len(four) + len(three) + len(two)+len(one)
         total_ratings = score_total/response_total
         print((total_ratings))
+
+        context={'key':my,
+                 'current_path':request.get_full_path(),
+                 'profile_finder':pf_users,
+                 'my':my,
+                 'my_client':my_client,
+                 'closed':len(closed),
+                 'pending':len(pending),
+                'total_ratings':total_ratings,
+                'filtered_clients':filtered_clients,
+
+                 }
+        return render(request,"admin_dashboard.html",context)
+
+def profile(request,id):
+        my = requests.get(f"http://127.0.0.1:3000/pi_my_data/{id}").json()[0]
+        # print(my)
+        my_clients = requests.get(f"http://127.0.0.1:3000/pi_my_clients/{id}").json()[id]
+        filtered_clients = []
+        for x in my_clients:
+            if "empty" not in x['answer']:
+                filtered_clients.append(x)
+        # percentage
+        bad_review = []
+        good_review=[]
+        for j in filtered_clients:
+            if j['rating'] == "empty":
+                bad_review.append(j['rating'])
+            elif j['rating'] == "0":
+                bad_review.append(j['rating'])
+            elif j['rating'] == "1.0":
+                bad_review.append(j['rating'])
+            elif j['rating'] == "2.0":
+                bad_review.append(j['rating'])
+            elif j['rating'] == "3.0":
+                good_review.append(j['rating'])
+            elif j['rating'] == "4.0":
+                good_review.append(j['rating'])
+            elif j['rating'] == "5.0":
+                good_review.append(j['rating'])
+        badreview = int(len(bad_review)/len(filtered_clients)*100)
+        goodreview = int(len(good_review)/len(filtered_clients)*100)
+        
+        print(len(bad_review))
+        print(len(filtered_clients))
+        print(badreview)
+        print(goodreview)
+       
+        #total ratings
+        total_r = []
+        one=[]
+        two=[]
+        three=[]
+        four=[]
+        five=[]
+        
+        for z in filtered_clients:
+        #    print(z['rating'])
+           if "empty" not in z['rating']:
+               total_r.append(z['rating'])
+        # print(total_r)
+        
+        for i in total_r:
+            if j['rating'] == "1.0":
+                one.append(j['rating'])
+            elif j['rating'] == "2.0":
+                two.append(j['rating'])
+            elif j['rating'] == "3.0":
+                three.append(j['rating'])
+            elif j['rating'] == "4.0":
+                four.append(j['rating'])
+            elif j['rating'] == "5.0":
+                five.append(j['rating'])
+        score_total = len(five)*5 + len(four) * 4 + len(three) * 3 + len(two) * 2 + len(one) * 1
+        response_total = len(five)+ len(four) + len(three) + len(two)+len(one)
+        total_ratings = score_total/response_total
+        print((total_ratings))
         context={'key':my,
                  'current_path':request.get_full_path(),
                  'my_clients':filtered_clients,
@@ -245,7 +306,11 @@ def profile(request,id):
 
 def edit_profile(request,id):
         my = requests.get(f"http://127.0.0.1:3000/pi_my_data/{id}").json()[0]
-        print(my)
+        # print(my)
+        if request.method == "POST":
+            print(request.POST)
+            print(request.FILES)
+            response = requests.post(f"http://127.0.0.1:3000/pi_edit_account/{id}",data=request.POST,files=request.FILES)
         context={'key':my,
                  'current_path':request.get_full_path()
                  }
