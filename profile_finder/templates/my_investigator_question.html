@@ -164,7 +164,6 @@
             <h5 class="head text-center">{{i.first_name}} {{i.last_name}}</h5>
             <p class="text-center mb-4">{{i.office_country}} {{i.office_city}} </p>
             <div class="ratings mt-3 mb-3">
-              {{mydata}}
                             <i class="fa fa-star rating-color"></i>
                             <i class="fa fa-star rating-color"></i>
                             <i class="fa fa-star rating-color"></i>
@@ -254,10 +253,10 @@
         <!-- content -->
         <ol style="list-style:none;display:contents">
         <li>
-          {% for i in question_and_answer %} 
-          {% if i.answer == "empty" %}
-
-          <div class="row content mt-3  " >
+          {% for a in all_profile_finder  %}
+          {% for i,j in a %}
+          {% if j == "empty" %}
+          <div class="row content mt-3 ">
 
 
           <div class=" col-md-1 text-center text-success  mt-3">
@@ -268,7 +267,7 @@
           
           </div>
           <div class="col-md-9 mt-3">
-            <h5>{{i.question}}</h5>
+            <h5>{{i}}</h5>
           </div>
           <div class="col-md-2 text-center">
             <button class="more pe-3 ps-3 p-1 mt-3 mb-3" type="button" data-bs-toggle="modal" data-bs-target="#model{{forloop.counter}}">View answer</button>
@@ -282,7 +281,7 @@
                 <div class="container">
                     {% comment %} <h6>Answer</h6> {% endcomment %}
                     <p>Question</p>
-                    <h5 class="head5">{{i.question}}</h5>
+                    <h5 class="head5">{{i}}</h5>
                     <p>Answer</p>
                     <p class="par"></p>
                 </div>
@@ -306,41 +305,46 @@
           
           </div>
           <div class="col-md-9 mt-3">
-            <h5>{{i.question}}</h5>
+            <h5>{{i}}</h5>
           </div>
           <div class="col-md-2 text-center">
             <button class="more pe-3 ps-3 p-1 mt-3 mb-3" type="button" data-bs-toggle="modal" data-bs-target="#model{{forloop.counter}}">View answer</button>
           </div> 
        </div>
-         <!-- Modal 1 -->
-    <div class="modal" id="model{{forloop.counter}}">
-      <div class="modal-dialog">
-          <div class="modal-content">
-              <div class="modal-body">
-                  <div class="container">
-                      {% comment %} <h6>Answer</h6> {% endcomment %}
-                      <p>Question</p>
-                      <h5 class="head5">{{i.question}}</h5>
-                      <p>Answer</p>
-                      <p class="par">{{i.answer}}</p>
-                  </div>
-              </div>
-              <div class="modal-footer">
-                  <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-              </div>
-          </div>
-      </div>
-  </div>    
-       {% endif %}
 
+
+       <!-- Modal 1 -->
+  <div class="modal" id="model{{forloop.counter}}">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="container">
+                    {% comment %} <h6>Answer</h6> {% endcomment %}
+                    <p>Question</p>
+                    <h5 class="head5">{{i}}</h5>
+                    <p>Answer</p>
+                    <p class="par">{{j}}</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>    
+
+       {% endif %}
        {% endfor %}
+           {% endfor %}
+
+
+         
+
 
       </li>
       </ol>
-      {% for i in question_and_answer %} 
-
+      
     
-      {% endfor %}
 
 {% comment %} <div class="row content mt-3  " >
   <div class=" col-md-1 text-center text-success  mt-3">
@@ -411,9 +415,7 @@
         </div>
     </div>
   </form>
-  {% for i in question_and_answer %} 
 
-      {% endfor %}
 
 
   <!-- Modal 2 -->

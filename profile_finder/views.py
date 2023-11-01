@@ -2495,7 +2495,20 @@ def blocked_acc(request,id):
 def all_investigator(request,id):
     my = requests.get(f"http://127.0.0.1:3000/alldata/{id}").json()
 
-    all_investigator = requests.get(f"http://127.0.0.1:3000/all_private_investigator_data").json()
+    my_investigators = requests.get(f"http://127.0.0.1:3000/my_investigator/{id}").json()[id]
+    #separate unhired investigators
+    if len(my_investigators) == 0:
+        all_investigator_values = requests.get(f"http://127.0.0.1:3000/all_private_investigator_data").json()
+    else:
+            all_investigator_values=[]
+            all_investigator = requests.get(f"http://127.0.0.1:3000/all_private_investigator_data").json()
+            for x in all_investigator:
+                if x['uid'] not in str(my_investigators):
+                    # print(x)
+                    all_investigator_values.append(x)
+     
+       
+    #post
     if request.method=="POST":
         print(request.POST)
         if "hire" in request.POST:
@@ -2508,7 +2521,8 @@ def all_investigator(request,id):
     context = {
             'mydata':mydata,
             'profile_pic':profile_pic,
-            'all_investigator':all_investigator,
+            'all_investigator':all_investigator_values,
+            'my_investigators':my_investigators,
            
                }
 
@@ -2552,20 +2566,20 @@ def hire_investigator(request,id):
 def my_investigator(request,id):
     my = requests.get(f"http://127.0.0.1:3000/alldata/{id}").json()
     my_investigators = requests.get(f"http://127.0.0.1:3000/my_investigator/{id}").json()[id]
-    question_and_answer = requests.get(f"http://127.0.0.1:3000/my_question_and_answer/{id}").json()[id]
+    # question_and_answer = requests.get(f"http://127.0.0.1:3000/my_question_and_answer/{id}").json()[id]
     profile_pic = [my][0]['profile_picture']
     mydata=[my]
-    #percentage
-    if len(my_investigators) != 0 and len(question_and_answer) != 0:
-        total_length = len(question_and_answer)
-        completed_length = []
-        for x in question_and_answer:
-            if "empty" != x['answer']:
-               completed_length.append(x['answer'])
-        total_percent = int(len(completed_length)/len(question_and_answer)*100)
-        print(total_percent)
-    else:
-        total_percent = 0
+    # #percentage
+    # if len(my_investigators) != 0 and len(question_and_answer) != 0:
+    #     total_length = len(question_and_answer)
+    #     completed_length = []
+    #     for x in question_and_answer:
+    #         if "empty" != x['answer']:
+    #            completed_length.append(x['answer'])
+    #     total_percent = int(len(completed_length)/len(question_and_answer)*100)
+    #     print(total_percent)
+    # else:
+    #     total_percent = 0
     
     #post
     if "my_investigator" in request.POST:
@@ -2577,14 +2591,14 @@ def my_investigator(request,id):
             'mydata':mydata,
             'profile_pic':profile_pic,
            'my_investigators':my_investigators,
-            'total_percent':total_percent,
+            # 'total_percent':total_percent,
                }
 
     return render(request,'my_investigator.html',context)
 
 def my_investigator_question(request,id):
     my = requests.get(f"http://127.0.0.1:3000/alldata/{id}").json()
-    question_and_answer = requests.get(f"http://127.0.0.1:3000/my_question_and_answer/{id}").json()[id]
+    # question_and_answer = requests.get(f"http://127.0.0.1:3000/my_question_and_answer/{id}").json()[id]
     profile_pic = [my][0]['profile_picture']
     mydata=[my]
     # print(question_and_answer)
@@ -2594,25 +2608,39 @@ def my_investigator_question(request,id):
     for  x in all_investigator_values:
         if x['uid'] == hire_id:
             specific_user = x
+            investigator_id = x['uid']
+            p_investigator_client = requests.get(f"http://127.0.0.1:3000/pi_my_clients/{investigator_id}").json()[investigator_id][0]
+            print(p_investigator_client)
+            all_profile_finder = {}
+            all_profile_finder_Questin = p_investigator_client['Questin']
+            all_profile_finder_answer = p_investigator_client['answer']
+            all_profile_finder = zip(all_profile_finder_Questin,all_profile_finder_answer)
+
+            
+
             # print(specific_user)
     #percentage
-    if len(question_and_answer) != 0:
-        total_length = len(question_and_answer)
-        completed_length = []
-        for x in question_and_answer:
-            if "empty" != x['answer']:
-               completed_length.append(x['answer'])
-        total_percent = int(len(completed_length)/len(question_and_answer)*100)
-        print(total_percent)
-    else:
-        total_percent = 0
+    # if len(question_and_answer) != 0:
+    #     total_length = len(question_and_answer)
+    #     completed_length = []
+    #     for x in question_and_answer:
+    #         if "empty" != x['answer']:
+    #            completed_length.append(x['answer'])
+    #     total_percent = int(len(completed_length)/len(question_and_answer)*100)
+    #     print(total_percent)
+    # else:
+    #     total_percent = 0
 
     
     #question
     if request.method == "POST":
         if "Questin" in request.POST:
             print(request.POST)
-            response = requests.post(f"http://127.0.0.1:3000/my_question_and_answer/{id}",data=request.POST)
+            data = {
+                'Questin':request.POST['Questin'],
+                'my_investigator' : investigator_id,
+            }
+            response = requests.post(f"http://127.0.0.1:3000/my_question_and_answer/{id}",data=data)
             print(response)
             print(response.status_code)
             print(response.text)
@@ -2625,8 +2653,9 @@ def my_investigator_question(request,id):
             'mydata':mydata,
             'profile_pic':profile_pic,
             'specific_user':[specific_user],
-            'question_and_answer':question_and_answer,
-            'total_percent':total_percent,
+            # 'question_and_answer':question_and_answer,
+            # 'total_percent':total_percent,
+            'all_profile_finder':[all_profile_finder],
                }
 
     return render(request,'my_investigator_question.html',context)

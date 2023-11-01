@@ -64,7 +64,7 @@
             </div>
         </div>
     </section>
-    {% for i in specific_user %}
+      {% for i in specific_user %}
     <div class="row">
       <div class="col-md-3">
         
@@ -185,16 +185,16 @@
         </div>
         <!-- content -->
        
+{% for a in all_profile_finder %}
 
-{% for i in question_and_Answer %}
-{% if i.answer == "empty" %}
+{% if a.1 == "empty" %}
 
        <div class="row content mt-3 mb-3 " >
         <div class=" col-md-1 text-center text-success  mt-3">
         <i class='bi bi-check-circle-fill uncheck' style="font-size: 25px;"></i>
         </div>
         <div class="col-md-9 mt-3">
-          <h5>{{i.question}}</h5>
+          <h5>{{a.0}}</h5>
         </div>
         <div class="col-md-2 text-center">
           <button class="more pe-3 ps-3 p-1 mt-3 mb-3" type="button"data-bs-toggle="modal" data-bs-target="#myModal{{forloop.counter}}">Add answer</button>
@@ -210,7 +210,7 @@
               <div class="container">
                   
               <h4 class="mt-4">Question</h4>
-              <h5 class="head5">{{i.question}}</h5>
+              <h5 class="head5">{{a.0}}</h5>
               <h6 class="head5 mt-4 mb-4 text-muted">Write your Answer here.</h6>
               <form method="POST">
                 {% csrf_token %}
@@ -226,7 +226,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn1 pe-3 ps-3 pt-2 pb-2 " data-bs-dismiss="modal">Cancel</button>
-              <button type="submit" name="question" value="{{i.question}}" class="btn text-white" data-bs-dismiss="modal">Submit</button>
+              <button type="submit" name="question" value="{{a.0}}" class="btn text-white" data-bs-dismiss="modal">Submit</button>
             </form>
           </div>
       </div>
@@ -240,7 +240,7 @@
         <i class='bi bi-check-circle-fill' style="font-size: 25px;"></i>
         </div>
         <div class="col-md-9 mt-3">
-          <h5>{{i.question}}</h5>
+          <h5>{{a.0}}</h5>
         </div>
         <div class="col-md-2 text-center">
           <button class="more pe-3 ps-3 p-1 mt-3 mb-3" type="button"data-bs-toggle="modal" data-bs-target="#myModal{{forloop.counter}}">Add answer</button>
@@ -256,11 +256,11 @@
               <div class="container">
                   
               <h4 class="mt-4">Question</h4>
-              <h5 class="head5">{{i.question}}</h5>
+              <h5 class="head5">{{a.0}}</h5>
               <h6 class="head5 mt-4 mb-4 text-muted">Write your Answer here.</h6>
               <form method="POST">
                 {% csrf_token %}
-                <input type="text" name="answer" value="{{i.answer}}" id="textarea" cols="57" rows="5" style="
+                <input type="text" name="answer" value="{{a.1}}" id="textarea" cols="57" rows="5" style="
                 width: 100%;
                 height: 100px;
                 border-radius: 14px;
@@ -273,15 +273,14 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn1 pe-3 ps-3 pt-2 pb-2 " data-bs-dismiss="modal">Cancel</button>
-              <button type="submit" name="question" value="{{i.question}}" class="btn text-white" data-bs-dismiss="modal">Submit</button>
+              <button type="submit" name="question" value="{{a.0}}" class="btn text-white" data-bs-dismiss="modal">Submit</button>
             </form>
           </div>
       </div>
   </div>
 </div>
 {% endif %}
-
-     {% endfor %}
+{% endfor %}
 
 
       </div>

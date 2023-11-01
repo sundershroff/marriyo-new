@@ -237,64 +237,69 @@ def profile(request,id):
         # print(my)
         my_clients = requests.get(f"http://127.0.0.1:3000/pi_my_clients/{id}").json()[id]
         filtered_clients = []
-        for x in my_clients:
-            if "empty" not in x['answer']:
-                filtered_clients.append(x)
-        # percentage
-        bad_review = []
-        good_review=[]
-        for j in filtered_clients:
-            if j['rating'] == "empty":
-                bad_review.append(j['rating'])
-            elif j['rating'] == "0":
-                bad_review.append(j['rating'])
-            elif j['rating'] == "1.0":
-                bad_review.append(j['rating'])
-            elif j['rating'] == "2.0":
-                bad_review.append(j['rating'])
-            elif j['rating'] == "3.0":
-                good_review.append(j['rating'])
-            elif j['rating'] == "4.0":
-                good_review.append(j['rating'])
-            elif j['rating'] == "5.0":
-                good_review.append(j['rating'])
-        badreview = int(len(bad_review)/len(filtered_clients)*100)
-        goodreview = int(len(good_review)/len(filtered_clients)*100)
+        if len(my_clients) != 0:
+            for x in my_clients:
+                if "empty" not in x['answer']:
+                    filtered_clients.append(x)
+            # percentage
+            bad_review = []
+            good_review=[]
+            for j in filtered_clients:
+                if j['rating'] == "empty":
+                    bad_review.append(j['rating'])
+                elif j['rating'] == "0":
+                    bad_review.append(j['rating'])
+                elif j['rating'] == "1.0":
+                    bad_review.append(j['rating'])
+                elif j['rating'] == "2.0":
+                    bad_review.append(j['rating'])
+                elif j['rating'] == "3.0":
+                    good_review.append(j['rating'])
+                elif j['rating'] == "4.0":
+                    good_review.append(j['rating'])
+                elif j['rating'] == "5.0":
+                    good_review.append(j['rating'])
+            badreview = int(len(bad_review)/len(filtered_clients)*100)
+            goodreview = int(len(good_review)/len(filtered_clients)*100)
         
-        print(len(bad_review))
-        print(len(filtered_clients))
-        print(badreview)
-        print(goodreview)
+            print(len(bad_review))
+            print(len(filtered_clients))
+            print(badreview)
+            print(goodreview)
        
-        #total ratings
-        total_r = []
-        one=[]
-        two=[]
-        three=[]
-        four=[]
-        five=[]
-        
-        for z in filtered_clients:
-        #    print(z['rating'])
-           if "empty" not in z['rating']:
-               total_r.append(z['rating'])
-        # print(total_r)
-        
-        for i in total_r:
-            if j['rating'] == "1.0":
-                one.append(j['rating'])
-            elif j['rating'] == "2.0":
-                two.append(j['rating'])
-            elif j['rating'] == "3.0":
-                three.append(j['rating'])
-            elif j['rating'] == "4.0":
-                four.append(j['rating'])
-            elif j['rating'] == "5.0":
-                five.append(j['rating'])
-        score_total = len(five)*5 + len(four) * 4 + len(three) * 3 + len(two) * 2 + len(one) * 1
-        response_total = len(five)+ len(four) + len(three) + len(two)+len(one)
-        total_ratings = score_total/response_total
-        print((total_ratings))
+            #total ratings
+            total_r = []
+            one=[]
+            two=[]
+            three=[]
+            four=[]
+            five=[]
+            
+            for z in filtered_clients:
+            #    print(z['rating'])
+               if "empty" not in z['rating']:
+                   total_r.append(z['rating'])
+            # print(total_r)
+            
+            for i in total_r:
+                if j['rating'] == "1.0":
+                    one.append(j['rating'])
+                elif j['rating'] == "2.0":
+                    two.append(j['rating'])
+                elif j['rating'] == "3.0":
+                    three.append(j['rating'])
+                elif j['rating'] == "4.0":
+                    four.append(j['rating'])
+                elif j['rating'] == "5.0":
+                    five.append(j['rating'])
+            score_total = len(five)*5 + len(four) * 4 + len(three) * 3 + len(two) * 2 + len(one) * 1
+            response_total = len(five)+ len(four) + len(three) + len(two)+len(one)
+            total_ratings = score_total/response_total
+            print((total_ratings))
+        else:
+            badreview=0
+            goodreview=0
+            total_ratings=0
         context={'key':my,
                  'current_path':request.get_full_path(),
                  'my_clients':filtered_clients,
@@ -392,11 +397,14 @@ def add_client(request,id):
         my = requests.get(f"http://127.0.0.1:3000/pi_my_data/{id}").json()[0]
         # print(my)
         my_client = requests.get(f"http://127.0.0.1:3000/pi_my_clients/{id}").json()[id]
-        print(my_client[0]['answer'])
-        if "empty" not in str(my_client[0]['answer']):
-            result= "complete"
+        # print(my_client[0]['answer'])
+        if len(my_client) !=0:
+            if "empty" not in str(my_client[0]['answer']):
+                result= "complete"
+            else:
+                result= "empty"
         else:
-            result= "empty"
+            result="empty"
         if "my_client_one" in request.POST:
            print(request.POST)
            global my_client_one
@@ -416,13 +424,20 @@ def client_feedback(request,id):
         # print(my)
         # add_client(request,id)
         # print(my_client_one)
-        all_profile_finder = requests.get(f"http://127.0.0.1:3000/pi_my_clients/{id}").json()[id]
-        for x in all_profile_finder:
+        profile_finder_value = requests.get(f"http://127.0.0.1:3000/pi_my_clients/{id}").json()[id]
+        print( profile_finder_value[0]['Questin'])
+        all_profile_finder_Questin = profile_finder_value[0]['Questin']
+        all_profile_finder_answer = profile_finder_value[0]['answer']
+        all_profile_finder = zip(all_profile_finder_Questin,all_profile_finder_answer)
+        # print(all_profile_finder)
+        for x in profile_finder_value:
             if my_client_one == x['uid']:
                 # print(x['uid'])
                 specific_user = x
-                question_and_Answer = requests.get(f"http://127.0.0.1:3000/my_question_and_answer/{x['uid']}").json()[x['uid']]
-                situation_prediction = requests.get(f"http://127.0.0.1:3000/my_question_and_answer/{x['uid']}").json()[x['uid']]
+                # question_and_Answer = requests.get(f"http://127.0.0.1:3000/my_question_and_answer/{x['uid']}").json()[x['uid']]
+                # situation_prediction = requests.get(f"http://127.0.0.1:3000/my_question_and_answer/{x['uid']}").json()[x['uid']]
+                question_and_Answer = x
+                situation_prediction = x
                 print(question_and_Answer)
                 if "empty" not in str(question_and_Answer):
                     result= "complete"
@@ -431,18 +446,23 @@ def client_feedback(request,id):
         
         #situation
         print("situation")
-        sit = []
-        for x in situation_prediction:
-            sit.append(x['answer'])
-        if "empty" in sit:
-            situation = "pending"
-        else:
-            situation = "complete"
+        # sit = []
+        # for x in situation_prediction:
+        #     sit.append(x['answer'])
+        # if "empty" in sit:
+        #     situation = "pending"
+        # else:
+        #     situation = "complete"
               
         #post
         if request.method=="POST":
             print(request.POST)
-            response = requests.post(f"http://127.0.0.1:3000/my_question_and_answer/{specific_user['uid']}",data=request.POST)
+            data={
+                'answer':request.POST['answer'],
+                'question':request.POST['question'],
+                'my_investigator':id
+            }
+            response = requests.post(f"http://127.0.0.1:3000/my_question_and_answer/{specific_user['uid']}",data=data)
             print(response)
             print(response.status_code)
             print(response.text)
@@ -452,7 +472,8 @@ def client_feedback(request,id):
                  'specific_user':[specific_user],
                  'question_and_Answer':question_and_Answer,
                  'result' :result,
-                 'situation':situation,
+                 'all_profile_finder':all_profile_finder,
+                #  'situation':situation,
                  }
         return render(request,"pi_client_feedback.html",context)
 
