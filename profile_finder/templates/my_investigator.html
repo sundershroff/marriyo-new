@@ -56,9 +56,8 @@
                         </div>
                        <center>
                         <div class="progress align-middle mb-3 " style="width:50%" >
-                          {% for i in mydata %}
-
-                            <div class="progress-bar bg-success" style="width:70%"><a href="/my_investigator_question/{{i.uid}}" style="
+                          {% for j in mydata %}
+                            <div class="progress-bar bg-success" style="width:{{i.percentage}}%"><a href="/my_investigator_question/{{j.uid}}" style="
                               width: 10%;
                               height: 3%;
                               position: absolute;
@@ -78,7 +77,7 @@
                              color: white;
                              border:1px solid white
                          "> Task completed:
-                              <span class="" style="color:white">{{total_percent}}%</span></button>
+                              <span class="" style="color:white">{{i.percentage}}%</span></button>
                             </p></div>
                           </form>
                     </div>

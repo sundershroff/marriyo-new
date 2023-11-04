@@ -163,6 +163,7 @@
           <div class="main text-center">
             <h5 class="head text-center">{{i.first_name}} {{i.last_name}}</h5>
             <p class="text-center mb-4">{{i.office_country}} {{i.office_city}} </p>
+            {% comment %} {{my_investigators}} {% endcomment %}
             <div class="ratings mt-3 mb-3">
                             <i class="fa fa-star rating-color"></i>
                             <i class="fa fa-star rating-color"></i>
@@ -255,6 +256,8 @@
         <li>
           {% for a in all_profile_finder  %}
           {% for i,j in a %}
+          {% if i == "empty" %}
+          {% else %}
           {% if j == "empty" %}
           <div class="row content mt-3 ">
 
@@ -293,6 +296,7 @@
     </div>
 </div>    
        {% else %}
+
 
           <div class="row content mt-3  " >
 
@@ -334,6 +338,8 @@
 </div>    
 
        {% endif %}
+       {% endif %}
+
        {% endfor %}
            {% endfor %}
 

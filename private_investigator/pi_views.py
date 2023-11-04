@@ -167,58 +167,61 @@ def admin_dashboard(request,id):
             elif "empty" in x['answer']:
                 pending.append("1")
         # print(len(pending))
-        
-        # percentage
-        bad_review = []
-        good_review=[]
-        for j in filtered_clients:
-            if j['rating'] == "empty":
-                bad_review.append(j['rating'])
-            elif j['rating'] == "0":
-                bad_review.append(j['rating'])
-            elif j['rating'] == "1.0":
-                bad_review.append(j['rating'])
-            elif j['rating'] == "2.0":
-                bad_review.append(j['rating'])
-            elif j['rating'] == "3.0":
-                good_review.append(j['rating'])
-            elif j['rating'] == "4.0":
-                good_review.append(j['rating'])
-            elif j['rating'] == "5.0":
-                good_review.append(j['rating'])
-        badreview = int(len(bad_review)/len(filtered_clients)*100)
-        goodreview = int(len(good_review)/len(filtered_clients)*100)
-        
-        #total ratings
-        total_r = []
-        one=[]
-        two=[]
-        three=[]
-        four=[]
-        five=[]
-        
-        for z in filtered_clients:
-           print(z['rating'])
-           if "empty" not in z['rating']:
-               total_r.append(z['rating'])
-        print(total_r)
-        
-        for i in total_r:
-            if j['rating'] == "1.0":
-                one.append(j['rating'])
-            elif j['rating'] == "2.0":
-                two.append(j['rating'])
-            elif j['rating'] == "3.0":
-                three.append(j['rating'])
-            elif j['rating'] == "4.0":
-                four.append(j['rating'])
-            elif j['rating'] == "5.0":
-                five.append(j['rating'])
-        score_total = len(five)*5 + len(four) * 4 + len(three) * 3 + len(two) * 2 + len(one) * 1
-        response_total = len(five)+ len(four) + len(three) + len(two)+len(one)
-        total_ratings = score_total/response_total
-        print((total_ratings))
-
+        if len(filtered_clients) != 0:
+            # percentage
+            bad_review = []
+            good_review=[]
+            for j in filtered_clients:
+                if j['rating'] == "empty":
+                    bad_review.append(j['rating'])
+                elif j['rating'] == "0":
+                    bad_review.append(j['rating'])
+                elif j['rating'] == "1.0":
+                    bad_review.append(j['rating'])
+                elif j['rating'] == "2.0":
+                    bad_review.append(j['rating'])
+                elif j['rating'] == "3.0":
+                    good_review.append(j['rating'])
+                elif j['rating'] == "4.0":
+                    good_review.append(j['rating'])
+                elif j['rating'] == "5.0":
+                    good_review.append(j['rating'])
+            badreview = int(len(bad_review)/len(filtered_clients)*100)
+            goodreview = int(len(good_review)/len(filtered_clients)*100)
+            
+            #total ratings
+            total_r = []
+            one=[]
+            two=[]
+            three=[]
+            four=[]
+            five=[]
+            
+            for z in filtered_clients:
+               print(z['rating'])
+               if "empty" not in z['rating']:
+                   total_r.append(z['rating'])
+            print(total_r)
+            
+            for j in filtered_clients:
+                if j['rating'] == "1.0":
+                    one.append(j['rating'])
+                elif j['rating'] == "2.0":
+                    two.append(j['rating'])
+                elif j['rating'] == "3.0":
+                    three.append(j['rating'])
+                elif j['rating'] == "4.0":
+                    four.append(j['rating'])
+                elif j['rating'] == "5.0":
+                    five.append(j['rating'])
+            score_total = len(five)*5 + len(four) * 4 + len(three) * 3 + len(two) * 2 + len(one) * 1
+            response_total = len(five)+ len(four) + len(three) + len(two)+len(one)
+            total_ratings = score_total/response_total
+            print((total_ratings))
+        else:
+            total_ratings=0
+            
+    
         context={'key':my,
                  'current_path':request.get_full_path(),
                  'profile_finder':pf_users,
@@ -241,61 +244,67 @@ def profile(request,id):
             for x in my_clients:
                 if "empty" not in x['answer']:
                     filtered_clients.append(x)
-            # percentage
-            bad_review = []
-            good_review=[]
-            for j in filtered_clients:
-                if j['rating'] == "empty":
-                    bad_review.append(j['rating'])
-                elif j['rating'] == "0":
-                    bad_review.append(j['rating'])
-                elif j['rating'] == "1.0":
-                    bad_review.append(j['rating'])
-                elif j['rating'] == "2.0":
-                    bad_review.append(j['rating'])
-                elif j['rating'] == "3.0":
-                    good_review.append(j['rating'])
-                elif j['rating'] == "4.0":
-                    good_review.append(j['rating'])
-                elif j['rating'] == "5.0":
-                    good_review.append(j['rating'])
-            badreview = int(len(bad_review)/len(filtered_clients)*100)
-            goodreview = int(len(good_review)/len(filtered_clients)*100)
-        
-            print(len(bad_review))
-            print(len(filtered_clients))
-            print(badreview)
-            print(goodreview)
-       
-            #total ratings
-            total_r = []
-            one=[]
-            two=[]
-            three=[]
-            four=[]
-            five=[]
+            if len(filtered_clients) != 0:
+                # percentage
+                bad_review = []
+                good_review=[]
+                for j in filtered_clients:
+                    if j['rating'] == "empty":
+                        bad_review.append(j['rating'])
+                    elif j['rating'] == "0":
+                        bad_review.append(j['rating'])
+                    elif j['rating'] == "1.0":
+                        bad_review.append(j['rating'])
+                    elif j['rating'] == "2.0":
+                        bad_review.append(j['rating'])
+                    elif j['rating'] == "3.0":
+                        good_review.append(j['rating'])
+                    elif j['rating'] == "4.0":
+                        good_review.append(j['rating'])
+                    elif j['rating'] == "5.0":
+                        good_review.append(j['rating'])
+                badreview = int(len(bad_review)/len(filtered_clients)*100)
+                goodreview = int(len(good_review)/len(filtered_clients)*100)
             
-            for z in filtered_clients:
-            #    print(z['rating'])
-               if "empty" not in z['rating']:
-                   total_r.append(z['rating'])
-            # print(total_r)
-            
-            for i in total_r:
-                if j['rating'] == "1.0":
-                    one.append(j['rating'])
-                elif j['rating'] == "2.0":
-                    two.append(j['rating'])
-                elif j['rating'] == "3.0":
-                    three.append(j['rating'])
-                elif j['rating'] == "4.0":
-                    four.append(j['rating'])
-                elif j['rating'] == "5.0":
-                    five.append(j['rating'])
-            score_total = len(five)*5 + len(four) * 4 + len(three) * 3 + len(two) * 2 + len(one) * 1
-            response_total = len(five)+ len(four) + len(three) + len(two)+len(one)
-            total_ratings = score_total/response_total
-            print((total_ratings))
+                print(len(bad_review))
+                print(len(filtered_clients))
+                print(badreview)
+                print(goodreview)
+           
+                #total ratings
+                total_r = []
+                one=[]
+                two=[]
+                three=[]
+                four=[]
+                five=[]
+                
+                for z in filtered_clients:
+                #    print(z['rating'])
+                   if "empty" not in z['rating']:
+                       total_r.append(z['rating'])
+                # print(total_r)
+                
+                for j in filtered_clients:
+                    print(j['rating'])
+                    if j['rating'] == "1.0":
+                        one.append(j['rating'])
+                    elif j['rating'] == "2.0":
+                        two.append(j['rating'])
+                    elif j['rating'] == "3.0":
+                        three.append(j['rating'])
+                    elif j['rating'] == "4.0":
+                        four.append(j['rating'])
+                    elif j['rating'] == "5.0":
+                        five.append(j['rating'])
+                score_total = len(five)*5 + len(four) * 4 + len(three) * 3 + len(two) * 2 + len(one) * 1
+                response_total = len(five)+ len(four) + len(three) + len(two)+len(one)
+                total_ratings = score_total/response_total
+                print(total_ratings)
+            else:
+                badreview=0
+                goodreview=0
+                total_ratings=0
         else:
             badreview=0
             goodreview=0
@@ -359,6 +368,7 @@ def client_list(request,id):
 
 def client_details(request,id):
         my = requests.get(f"http://127.0.0.1:3000/pi_my_data/{id}").json()[0]
+        jsonDec = json.decoder.JSONDecoder()
         # print(my)
         client_list(request,id)
         print(client_one)
@@ -366,12 +376,17 @@ def client_details(request,id):
         for x in all_profinder_data:
             if x['uid'] == client_one:
                 specific_user = x
-                question_and_Answer = requests.get(f"http://127.0.0.1:3000/my_question_and_answer/{x['uid']}").json()[x['uid']]
+                if specific_user['Questin'] is not None:
+                   question = jsonDec.decode(specific_user['Questin'])
+                   print(question)
+                else:
+                    question=""
+                # question_and_Answer = requests.get(f"http://127.0.0.1:3000/my_question_and_answer/{x['uid']}").json()[x['uid']]
              
         context={'key':my,
                  'current_path':request.get_full_path(),
                  'specific_user':[specific_user],
-                 'question_and_Answer':question_and_Answer,
+                 'question_and_Answer':question,
                  }
         return render(request,"client_details.html",context)
 
@@ -425,20 +440,21 @@ def client_feedback(request,id):
         # add_client(request,id)
         # print(my_client_one)
         profile_finder_value = requests.get(f"http://127.0.0.1:3000/pi_my_clients/{id}").json()[id]
-        print( profile_finder_value[0]['Questin'])
-        all_profile_finder_Questin = profile_finder_value[0]['Questin']
-        all_profile_finder_answer = profile_finder_value[0]['answer']
-        all_profile_finder = zip(all_profile_finder_Questin,all_profile_finder_answer)
+        
         # print(all_profile_finder)
         for x in profile_finder_value:
             if my_client_one == x['uid']:
-                # print(x['uid'])
+                print(x)
                 specific_user = x
+                print( x['Questin'])
+                all_profile_finder_Questin = x['Questin']
+                all_profile_finder_answer = x['answer']
+                all_profile_finder = zip(all_profile_finder_Questin,all_profile_finder_answer)
                 # question_and_Answer = requests.get(f"http://127.0.0.1:3000/my_question_and_answer/{x['uid']}").json()[x['uid']]
                 # situation_prediction = requests.get(f"http://127.0.0.1:3000/my_question_and_answer/{x['uid']}").json()[x['uid']]
                 question_and_Answer = x
                 situation_prediction = x
-                print(question_and_Answer)
+                # print(question_and_Answer)
                 if "empty" not in str(question_and_Answer):
                     result= "complete"
                 else:

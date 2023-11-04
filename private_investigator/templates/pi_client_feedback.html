@@ -76,18 +76,20 @@
           <div class="main text-center mb-4 ">
             <h5 class="head text-center">{{i.name}}</h5>
             <p class="text-center mb-4">{{i.r_country}}, {{i.r_state}}</p>
-            {% if result == "complete" %}
-            <button class="Pending" id="situation" style="background-color:green">Complete</button>
+            
+            {% if 'empty' in i.answer %}
+            <button class="Pending" id="situation" >Pending</button>
+
 
             {% else %}
-           <button class="Pending" id="situation" >Pending</button>
+            <button class="Pending" id="situation" style="background-color:green">Complete</button>
+
            {% endif %}
       
           </div>
       </div>
-  
       
-      {% if situation == "complete" %}
+      {% if 'empty' not in i.answer %}
       <div class="pay  mt-2  img-thumbnail ">
         <h5 class="mt-4 mb-4 ms-4">Client Feedback</h5>
         {% if i.rating == "5.0" %}

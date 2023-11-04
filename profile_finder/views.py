@@ -2566,7 +2566,7 @@ def hire_investigator(request,id):
 def my_investigator(request,id):
     my = requests.get(f"http://127.0.0.1:3000/alldata/{id}").json()
     my_investigators = requests.get(f"http://127.0.0.1:3000/my_investigator/{id}").json()[id]
-    # question_and_answer = requests.get(f"http://127.0.0.1:3000/my_question_and_answer/{id}").json()[id]
+    # question_and_answer = requests.get(f"http://127.0.0.1:3000/pi_my_clients/{id}").json()[id]
     profile_pic = [my][0]['profile_picture']
     mydata=[my]
     # #percentage
@@ -2598,7 +2598,6 @@ def my_investigator(request,id):
 
 def my_investigator_question(request,id):
     my = requests.get(f"http://127.0.0.1:3000/alldata/{id}").json()
-    # question_and_answer = requests.get(f"http://127.0.0.1:3000/my_question_and_answer/{id}").json()[id]
     profile_pic = [my][0]['profile_picture']
     mydata=[my]
     # print(question_and_answer)
@@ -2609,27 +2608,27 @@ def my_investigator_question(request,id):
         if x['uid'] == hire_id:
             specific_user = x
             investigator_id = x['uid']
-            p_investigator_client = requests.get(f"http://127.0.0.1:3000/pi_my_clients/{investigator_id}").json()[investigator_id][0]
-            print(p_investigator_client)
-            all_profile_finder = {}
-            all_profile_finder_Questin = p_investigator_client['Questin']
-            all_profile_finder_answer = p_investigator_client['answer']
-            all_profile_finder = zip(all_profile_finder_Questin,all_profile_finder_answer)
+            print(x)
+            p_investigator_client = requests.get(f"http://127.0.0.1:3000/pi_my_clients/{investigator_id}").json()[investigator_id]
+            for y in p_investigator_client:
+                if id == y['uid']:
+                   print(y['uid'])
+                   all_profile_finder = {}
+                   all_profile_finder_Questin = y['Questin']
+                   all_profile_finder_answer = y['answer']
+                   all_profile_finder = zip(all_profile_finder_Questin,all_profile_finder_answer)
 
             
 
-            # print(specific_user)
-    #percentage
-    # if len(question_and_answer) != 0:
-    #     total_length = len(question_and_answer)
-    #     completed_length = []
-    #     for x in question_and_answer:
-    #         if "empty" != x['answer']:
-    #            completed_length.append(x['answer'])
-    #     total_percent = int(len(completed_length)/len(question_and_answer)*100)
-    #     print(total_percent)
-    # else:
-    #     total_percent = 0
+                   print(y['answer'])
+                   #percentage 
+                   total_length = len(y['answer'])
+                   completed_length = []
+                   for x in y['answer']:
+                       if "empty" != x:
+                          completed_length.append(x)
+                   total_percent = len(completed_length)/(total_length)*100
+                   print(total_percent)
 
     
     #question
@@ -2654,7 +2653,7 @@ def my_investigator_question(request,id):
             'profile_pic':profile_pic,
             'specific_user':[specific_user],
             # 'question_and_answer':question_and_answer,
-            # 'total_percent':total_percent,
+            'total_percent':int(total_percent),
             'all_profile_finder':[all_profile_finder],
                }
 

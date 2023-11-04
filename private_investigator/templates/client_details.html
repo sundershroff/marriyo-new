@@ -100,6 +100,8 @@
         </div>
         <!-- content -->
         {% for j in  question_and_Answer %}
+        {% for k in j %}
+        {% if "empty" != k %}
         <div class="row content mt-3 mb-3 " >
 
           <div class=" col-md-1 text-center text-success  mt-3">
@@ -107,12 +109,14 @@
           <i class='bi bi-check-circle-fill uncheck' style="font-size: 25px;"></i>
           </div>
           <div class="col-md-9 mt-3">
-            <h5>{{j.question}}</h5>
+            <h5>{{k}}</h5>
           </div>
           {% comment %} <div class="col-md-2 text-center">
             <button class="more pe-3 ps-3 p-1 mt-3 mb-3" type="button" data-bs-toggle="modal" data-bs-target="#myModal1">View answer</button>
           </div>  {% endcomment %}
        </div>
+       {% endif %}
+       {% endfor %}
 
        {% endfor %}
 
