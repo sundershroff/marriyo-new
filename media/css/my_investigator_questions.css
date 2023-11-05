@@ -72,6 +72,14 @@ button.more.pe-2.ps-2.p-1.mt-3.mb-4 {
   to { --progress-value: 40; }
 }
 
+label#rating-error {
+  background: url(images/unchecked.gif) no-repeat;
+  padding-left: 16px;
+  margin-left: -0.7em;
+  /* margin-top: 11px; */
+  display: none;
+  position: absolute;
+}
 .progress-bar-container {
       display: flex;
       justify-content: center;

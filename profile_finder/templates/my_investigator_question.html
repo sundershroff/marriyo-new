@@ -16,6 +16,7 @@
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.css" integrity="sha512-0yYhCyiMB+6XOis4qvWA42kPkKb54+uMaOhbsta6m+aQ7cZOm5hzERPrRkkknlpEdoxVCwYui+yM0jRazpDFuA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
  <link rel="stylesheet" href="/media/css/my_investigator_questions.css">
  <link rel="stylesheet" href="/media/css/style.css">
+ <link rel="stylesheet" href="https://jqueryvalidation.org/files/demo/site-demos.css">
 
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
  <style>
@@ -114,7 +115,7 @@
 </head>
 
 <body>
-  <script>
+  {% comment %} <script>
     $(document).ready(function(){
       
     
@@ -132,7 +133,7 @@
        +"</div></li>");
       });
     });
-    </script>
+    </script> {% endcomment %}
   {% include 'header.html' %}
 
   {% include 'menu_header.html' %}
@@ -176,7 +177,7 @@
           </div>
       </div>
       {% comment %} model {% endcomment %}
-      <form method="POST">
+      <form method="POST" id="myform">
         {% csrf_token %}
       <div class="modal" id="myModalreview">
         <div class="modal-dialog">
@@ -199,6 +200,7 @@
                       <input type="checkbox" name="rating" id="st5" value="1" />
                       <label for="st5"></label>
                     </div>
+                    <label id="rating-error" class="error" for="rating">This field is required.</label>
 
                     <h6 class="head5 mt-4 mb-4 text-muted">Write your Feedback here.</h6>
                       <textarea name="feedback" id="" cols="57" rows="5" style="
@@ -209,7 +211,7 @@
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn1 pe-3 ps-3 pt-2 pb-2 " data-bs-dismiss="modal">Cancel</button>
-                    <button type="submit" name="investigator_uid" value="{{i.uid}}" id="addnew" class="btn text-white" data-bs-dismiss="modal">Submit</button>
+                    <button type="submit" name="investigator_uid" value="{{i.uid}}" id="" class="btn text-white" >Submit</button>
                 </div>
             </div>
         </div>
@@ -463,6 +465,30 @@
           </div>
       </div>
   </div>
+  <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+<script>
+  // just for the demos, avoids form submit
+jQuery.validator.setDefaults({
+  debug: true,
+  success: "valid"
+});
+$( "#myform" ).validate({
+  rules: {
+    feedback: {
+      required: true
+    },
+    rating:{
+      required: true
+    }
+  },
+  submitHandler: function (form) {
+    console.log('test');
+    form.submit();
+}
+});
+</script>
   {% include 'footer.html' %}
 
 </body>

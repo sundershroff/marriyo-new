@@ -2540,8 +2540,83 @@ def hire_investigator(request,id):
     for  x in all_investigator_values:
         if x['uid'] == hire_id:
             specific_user = x
-            print(specific_user)
-    
+            # print(specific_user)
+    #single investigator
+    my_clients = requests.get(f"http://127.0.0.1:3000/pi_my_clients/{hire_id}").json()[hire_id]
+    print(my_clients)
+    filtered_clients = []
+    if len(my_clients) != 0:
+        for x in my_clients:
+            if "empty" not in x['answer']:
+                filtered_clients.append(x)
+        if len(filtered_clients) != 0:
+            # percentage
+            bad_review = []
+            good_review=[]
+            for j in filtered_clients:
+                if j['rating'] == "empty":
+                    bad_review.append(j['rating'])
+                elif j['rating'] == "0":
+                    bad_review.append(j['rating'])
+                elif j['rating'] == "1.0":
+                    bad_review.append(j['rating'])
+                elif j['rating'] == "2.0":
+                    bad_review.append(j['rating'])
+                elif j['rating'] == "3.0":
+                    good_review.append(j['rating'])
+                elif j['rating'] == "4.0":
+                    good_review.append(j['rating'])
+                elif j['rating'] == "5.0":
+                    good_review.append(j['rating'])
+            badreview = int(len(bad_review)/len(filtered_clients)*100)
+            goodreview = int(len(good_review)/len(filtered_clients)*100)
+        
+            print(len(bad_review))
+            print(len(filtered_clients))
+            print(badreview)
+            print(goodreview)
+       
+            #total ratings
+            total_r = []
+            one=[]
+            two=[]
+            three=[]
+            four=[]
+            five=[]
+            
+            for z in filtered_clients:
+            #    print(z['rating'])
+                if "empty" not in z['rating']:
+                    total_r.append(z['rating'])
+            # print(total_r)
+            
+                    for j in filtered_clients:
+                        print(j['rating'])
+                        if j['rating'] == "1.0":
+                            one.append(j['rating'])
+                        elif j['rating'] == "2.0":
+                            two.append(j['rating'])
+                        elif j['rating'] == "3.0":
+                            three.append(j['rating'])
+                        elif j['rating'] == "4.0":
+                            four.append(j['rating'])
+                        elif j['rating'] == "5.0":
+                            five.append(j['rating'])
+                    score_total = len(five)*5 + len(four) * 4 + len(three) * 3 + len(two) * 2 + len(one) * 1
+                    response_total = len(five)+ len(four) + len(three) + len(two)+len(one)
+                    total_ratings = score_total/response_total
+                else:
+                    total_ratings = 0
+        else:
+            badreview=0
+            goodreview=0
+            total_ratings=0
+    else:
+        badreview=0
+        goodreview=0
+        total_ratings=0
+    print(total_ratings)
+
     #hire investigator
     if request.method == "POST":
         print(request.POST)
@@ -2559,6 +2634,10 @@ def hire_investigator(request,id):
             'mydata':mydata,
             'profile_pic':profile_pic,
             'specific_user':[specific_user],
+            'bad_review':badreview,
+            'good_review':goodreview,
+            'total_ratings':total_ratings,
+            'my_clients':filtered_clients,
                }
 
     return render(request,'hire_investigator.html',context)
@@ -2645,7 +2724,15 @@ def my_investigator_question(request,id):
             print(response.text)
         if "feedback" in request.POST:
             print(request.POST)
-            response = requests.post(f"http://127.0.0.1:3000/ratings_feedback/{id}",data=request.POST)
+            if 'rating' not in request.POST:
+                data={
+                    'rating':['0'],
+                    'feedback':request.POST['feedback'],
+                     'investigator_uid': request.POST['investigator_uid']  
+                }
+                response = requests.post(f"http://127.0.0.1:3000/ratings_feedback/{id}",data=data)
+            else:
+                response = requests.post(f"http://127.0.0.1:3000/ratings_feedback/{id}",data=request.POST)
 
 
     context = {

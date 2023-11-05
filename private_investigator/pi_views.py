@@ -281,26 +281,27 @@ def profile(request,id):
                 
                 for z in filtered_clients:
                 #    print(z['rating'])
-                   if "empty" not in z['rating']:
+                    if "empty" not in z['rating']:
                        total_r.append(z['rating'])
                 # print(total_r)
                 
-                for j in filtered_clients:
-                    print(j['rating'])
-                    if j['rating'] == "1.0":
-                        one.append(j['rating'])
-                    elif j['rating'] == "2.0":
-                        two.append(j['rating'])
-                    elif j['rating'] == "3.0":
-                        three.append(j['rating'])
-                    elif j['rating'] == "4.0":
-                        four.append(j['rating'])
-                    elif j['rating'] == "5.0":
-                        five.append(j['rating'])
-                score_total = len(five)*5 + len(four) * 4 + len(three) * 3 + len(two) * 2 + len(one) * 1
-                response_total = len(five)+ len(four) + len(three) + len(two)+len(one)
-                total_ratings = score_total/response_total
-                print(total_ratings)
+                       for j in filtered_clients:
+                           print(j['rating'])
+                           if j['rating'] == "1.0":
+                               one.append(j['rating'])
+                           elif j['rating'] == "2.0":
+                               two.append(j['rating'])
+                           elif j['rating'] == "3.0":
+                               three.append(j['rating'])
+                           elif j['rating'] == "4.0":
+                               four.append(j['rating'])
+                           elif j['rating'] == "5.0":
+                               five.append(j['rating'])
+                       score_total = len(five)*5 + len(four) * 4 + len(three) * 3 + len(two) * 2 + len(one) * 1
+                       response_total = len(five)+ len(four) + len(three) + len(two)+len(one)
+                       total_ratings = score_total/response_total
+                    else:
+                        total_ratings=0
             else:
                 badreview=0
                 goodreview=0
@@ -309,6 +310,7 @@ def profile(request,id):
             badreview=0
             goodreview=0
             total_ratings=0
+        print(total_ratings)
         context={'key':my,
                  'current_path':request.get_full_path(),
                  'my_clients':filtered_clients,
