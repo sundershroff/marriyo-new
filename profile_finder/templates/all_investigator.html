@@ -83,13 +83,67 @@
                   <p class="text-center">{{i.office_country}} {{i.office_city}}</p>
                 </div>
                   <!-- rating start -->
+                  {% if  i.total_ratings == 5  %}
                 <div class="small-ratings text-center">
                   <i class="fa fa-star rating-color"></i>
                   <i class="fa fa-star rating-color"></i>
                   <i class="fa fa-star rating-color"></i>
                   <i class="fa fa-star rating-color"></i>
-                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star rating-color"></i>
                </div>
+               {% elif i.total_ratings >= 4 and i.total_ratings <= 5  %}
+               <div class="small-ratings text-center">
+                <i class="fa fa-star rating-color"></i>
+                <i class="fa fa-star rating-color"></i>
+                <i class="fa fa-star rating-color"></i>
+                <i class="fa fa-star rating-color"></i>
+                <i class="fa fa-star"></i>
+               </div>
+               {% elif i.total_ratings >= 3 and i.total_ratings <= 4  %}
+               <div class="small-ratings text-center">
+                <i class="fa fa-star rating-color"></i>
+                <i class="fa fa-star rating-color"></i>
+                <i class="fa fa-star rating-color"></i>
+                <i class="fa fa-star "></i>
+                <i class="fa fa-star"></i>
+               </div>
+
+               {% elif i.total_ratings >= 2 and i.total_ratings <= 3  %}
+               <div class="small-ratings text-center">
+                <i class="fa fa-star rating-color"></i>
+                <i class="fa fa-star rating-color"></i>
+                <i class="fa fa-star "></i>
+                <i class="fa fa-star "></i>
+                <i class="fa fa-star "></i>
+               </div>
+
+               {% elif i.total_ratings >= 1 and i.total_ratings <= 2  %}
+               <div class="small-ratings text-center">
+                <i class="fa fa-star rating-color"></i>
+                <i class="fa fa-star "></i>
+                <i class="fa fa-star "></i>
+                <i class="fa fa-star "></i>
+                <i class="fa fa-star"></i>
+               </div>
+
+               {% elif i.total_ratings <= 1 %}
+               <div class="small-ratings text-center">
+                <i class="fa fa-star "></i>
+                <i class="fa fa-star "></i>
+                <i class="fa fa-star "></i>
+                <i class="fa fa-star "></i>
+                <i class="fa fa-star"></i>
+               </div>
+               {% elif i.total_ratings is None %}
+               <div class="small-ratings text-center">
+                <i class="fa fa-star "></i>
+                <i class="fa fa-star "></i>
+                <i class="fa fa-star "></i>
+                <i class="fa fa-star "></i>
+                <i class="fa fa-star"></i>
+               </div>
+
+               {% endif %}
 <form method="POST">
   {% csrf_token %}
                 <div class="but text-center p-3">

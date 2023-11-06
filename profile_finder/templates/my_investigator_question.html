@@ -165,13 +165,66 @@
             <h5 class="head text-center">{{i.first_name}} {{i.last_name}}</h5>
             <p class="text-center mb-4">{{i.office_country}} {{i.office_city}} </p>
             {% comment %} {{my_investigators}} {% endcomment %}
+            {% if  i.total_ratings == 5  %}
             <div class="ratings mt-3 mb-3">
                             <i class="fa fa-star rating-color"></i>
                             <i class="fa fa-star rating-color"></i>
                             <i class="fa fa-star rating-color"></i>
                             <i class="fa fa-star rating-color"></i>
-                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star rating-color"></i>
                         </div>
+                        {% elif i.total_ratings >= 4 and i.total_ratings <= 5  %}
+                        <div class="ratings mt-3 mb-3">
+                          <i class="fa fa-star rating-color"></i>
+                         <i class="fa fa-star rating-color"></i>
+                         <i class="fa fa-star rating-color"></i>
+                         <i class="fa fa-star rating-color"></i>
+                         <i class="fa fa-star"></i>
+                        </div>
+                        {% elif i.total_ratings >= 3 and i.total_ratings <= 4  %}
+                        <div class="ratings mt-3 mb-3">
+                          <i class="fa fa-star rating-color"></i>
+                         <i class="fa fa-star rating-color"></i>
+                         <i class="fa fa-star rating-color"></i>
+                         <i class="fa fa-star "></i>
+                         <i class="fa fa-star"></i>
+                        </div>
+         
+                        {% elif i.total_ratings >= 2 and i.total_ratings <= 3  %}
+                        <div class="ratings mt-3 mb-3">
+                          <i class="fa fa-star rating-color"></i>
+                         <i class="fa fa-star rating-color"></i>
+                         <i class="fa fa-star "></i>
+                         <i class="fa fa-star "></i>
+                         <i class="fa fa-star "></i>
+                        </div>
+         
+                        {% elif i.total_ratings >= 1 and i.total_ratings <= 2  %}
+                        <div class="ratings mt-3 mb-3">
+                          <i class="fa fa-star rating-color"></i>
+                         <i class="fa fa-star "></i>
+                         <i class="fa fa-star "></i>
+                         <i class="fa fa-star "></i>
+                         <i class="fa fa-star"></i>
+                        </div>
+         
+                        {% elif i.total_ratings <= 1 %}
+                        <div class="ratings mt-3 mb-3">
+                          <i class="fa fa-star "></i>
+                         <i class="fa fa-star "></i>
+                         <i class="fa fa-star "></i>
+                         <i class="fa fa-star "></i>
+                         <i class="fa fa-star"></i>
+                        </div>
+                        {% elif i.total_ratings is None %}
+                        <div class="ratings mt-3 mb-3">
+                          <i class="fa fa-star "></i>
+                         <i class="fa fa-star "></i>
+                         <i class="fa fa-star "></i>
+                         <i class="fa fa-star "></i>
+                         <i class="fa fa-star"></i>
+                        </div>
+                        {% endif %}
             <button class="btn text-white mb-3" type="button" data-bs-toggle="modal" data-bs-target="#myModalreview">Close Deal & Rate</button>
           
           </div>

@@ -2506,6 +2506,7 @@ def all_investigator(request,id):
                 if x['uid'] not in str(my_investigators):
                     # print(x)
                     all_investigator_values.append(x)
+    print(all_investigator_values)
      
        
     #post
@@ -2543,7 +2544,7 @@ def hire_investigator(request,id):
             # print(specific_user)
     #single investigator
     my_clients = requests.get(f"http://127.0.0.1:3000/pi_my_clients/{hire_id}").json()[hire_id]
-    print(my_clients)
+    # print(my_clients)
     filtered_clients = []
     if len(my_clients) != 0:
         for x in my_clients:
