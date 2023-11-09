@@ -1090,7 +1090,7 @@ def profile_page(request,id):
     for i, sibling_occupation_data in enumerate(sibling_occupation_value):
             sibling[f'sibling_occupation_{i}'] = sibling_occupation_data
     
-    # print(sib)
+    print(sib)
 
 #education
     education_school_value=[]
