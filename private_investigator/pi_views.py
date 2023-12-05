@@ -123,6 +123,21 @@ def profile_picture(request,id):
     return render(request,"pi_profilepicture.html")
 
 def complete_profile(request,id):
+    #hiring manager list
+    hiring_manager = requests.get("http://127.0.0.1:3000/all_hm_data/").json()
+    neww=[]
+    response = requests.get('https://api.first.org/data/v1/countries').json()
+    all = requests.get('https://countriesnow.space/api/v0.1/countries/states').json()
+    states = json.dumps(all["data"])
+    al = (all["data"])
+    for x in al:
+        name = (x.get("name"))
+        neww.append(name)
+    countryname = json.dumps(neww)
+
+    context = {'response': response, 'region': response,'all':al,
+                                            'country': countryname,'states': states,'hiring_manager':hiring_manager}
+
     if request.method == "POST":
         print(request.POST)
         # response = requests.post(f"http://54.159.186.219:8000/profilepicture/{id}",files=request.FILES)
@@ -137,7 +152,7 @@ def complete_profile(request,id):
             return redirect(f"/pi_admin_dashboard/{uidd}")
         # else:
             # return HttpResponse("INVALID data")
-    return render(request,"uploadprofile.html")
+    return render(request,"uploadprofile.html",context)
 
 def admin_dashboard(request,id):
         my = requests.get(f"http://127.0.0.1:3000/pi_my_data/{id}").json()[0]

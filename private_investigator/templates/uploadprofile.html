@@ -65,12 +65,12 @@
       </div>
       <!-- ... (rest of your "Clients" section content) ... -->
      
-      <div class="personaldetails ">
+      {% comment %} <div class="personaldetails ">
         <h1 class="details mt-3 mb-3 " style="
         font-weight: 700;
         color: darkblue;
     ">Complete Profile</h1>
-      </div>
+      </div> {% endcomment %}
   
    
       <div class="container subcontainer ">
@@ -80,7 +80,7 @@
         <div class="row ">
           
           
-          <div class="col-md-4 mt-4">
+          {% comment %} <div class="col-md-4 mt-4">
             <label class="form-label" for="typeText">Office Name</label><span class="textstar">*</span>
                 <input type="text" name="office_name" id="typeText" class="form-control" placeholder="Office Name"> 
         </div>
@@ -92,8 +92,8 @@
               <option value="2">Two</option>
               <option value="3">Three</option>
           </select>
-      </div>
-      <div class="col-md-4 mt-4">
+      </div> {% endcomment %}
+      {% comment %} <div class="col-md-4 mt-4">
         <label class="form-label" for="typeText">City</label><span class="textstar">*</span>
         <select name="office_city" class="form-select text-muted" aria-label="Default select example" >
             <option  value="">Select City</option>
@@ -110,7 +110,7 @@
               <textarea class="form-control" name="office_address" id="Address" rows="1" placeholder="Address"></textarea>
             </div>
           </div>
-        </div>
+        </div> {% endcomment %}
 
      
          <!-- Contact Personal Details -->
@@ -133,21 +133,26 @@
            <div class="row">
 
              <div class="col-md-6 mt-4">
-               <label class="form-label" for="typeText">Country</label><span class="textstar">*</span>
-               <select class="form-select text-muted" name="personal_country" aria-label="Default select example" >
+               <label class="form-label" for="typeText">Country</label><span class="textstar" >*</span>
+               <select id="countrytwo" class="form-select text-muted" name="personal_country" onchange="fun2.call(this,event)" aria-label="Default select example" >
                    <option value="" >Select Country</option>
-                   <option value="1">One</option>
-                   <option value="2">Two</option>
-                   <option value="3">Three</option>
+                  {% for j in all %}
+                    <option value="{{j.name}}">{{j.name}}</option>
+                    {% endfor %}
                </select>
            </div>
            <div class="col-md-6 mt-4">
              <label class="form-label" for="typeText">City</label><span class="textstar">*</span>
-             <select class="form-select text-muted" name="personal_city" aria-label="Default select example" >
+             <select id="res3" class="form-select text-muted" name="personal_city" aria-label="Default select example" >
                  <option value="">Select City</option>
-                 <option value="1">One</option>
-                 <option value="2">Two</option>
-                 <option value="3">Three</option>
+                  <script>
+                stat = {{ states|safe }};
+            ttt = stat[0].states;
+            for (i=0;i<ttt.length;i++){
+               tt = ttt[i].name;
+               document.write("<option value="tt">"+tt+"</option>");
+            }
+          </script>
              </select>
          </div>
          <div class="col-md-12">
@@ -160,9 +165,9 @@
            <label class="form-label" for="typeText">Hiring Manager</label><span class="textstar">*</span>
            <select class="form-select text-muted" name="hiring_manager" aria-label="Default select example" >
                <option  value="">Select</option>
-               <option value="1">One</option>
-               <option value="2">Two</option>
-               <option value="3">Three</option>
+               {% for i in hiring_manager %}
+              <option value="{{i.uid}}">{{i.first_name}} {{i.last_name}}</option>
+              {% endfor %}
            </select>
        </div>
 
@@ -174,7 +179,7 @@
 
            
          </div>
-         <div class="col-md-4  mt-3  mb-2">
+         {% comment %} <div class="col-md-4  mt-3  mb-2">
            <div class="profileid_page_sec1 "> 
                <label class="idcard">ID Card<span  class="imgcard">*</span></label>
                <div class="file-drop-area">
@@ -186,7 +191,7 @@
                    <input class="file-input" type="file" name="id_card" >
                </div>
            </div>
-      </div>
+      </div> {% endcomment %}
       <div class="col-md-12 mt-2">
         <label for="exampleFormControlTextarea3" class="form-label">Tagline</label><span class="textstar">*</span>
         <textarea name="tagline" class="form-control" id="Textarea3" rows="3" ></textarea>
@@ -286,9 +291,9 @@ last_name: {
 personal_country: {
     required: true
 },
-personal_city: {
+{% comment %} personal_city: {
    required: true
-},
+}, {% endcomment %}
 personal_address: {
     required: true
 },
@@ -311,6 +316,25 @@ submitHandler: function (form) {
     }
 });
 </script> 
+  <script type="text/javascript">
+    function fun2(event){
+    a = document.getElementById("countrytwo").value;
+    <!--document.getElementById("res").innerHTML=a;-->
+    c = {{ country|safe }};
+    position =c.indexOf(a);
+    <!--document.getElementById("res1").innerHTML=position;-->
+    stat = {{ states|safe }};
+    ttt = stat[position].states;
+    tt = "<select>";
+    for (i=0;i<ttt.length;i++){
+       tt += "<option>"+ttt[i].name+"</option>";
+    }
+         tt+="</select>";
+          document.getElementById("res3").innerHTML=tt;
+    }
+    
+    </script>
+
 </body>
 </html>
 
